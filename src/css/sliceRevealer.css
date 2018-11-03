@@ -15,7 +15,8 @@ html {
   background-color: #444;
 }
 
-.box-two {
+.box-two,
+.box-three {
   height: 50%;
   width: 50%;
   float: left;
@@ -23,28 +24,7 @@ html {
 }
 
 .box-three {
-  float: left;
-  height: 50%;
-  width: 25%;
   background-color: #000;
-}
-
-.box-four {
-  float: left;
-  height: 50%;
-  width: 25%;
-  background-color: #fff;
-}
-
-.box-four img {
-  height: 100%;
-  width: 100%;
-}
-
-.sr__container {
-  position: absolute;
-  pointer-events: none;
-  background-color: red;
 }
 
 /*# sourceMappingURL=slicerRevealer.css.map */

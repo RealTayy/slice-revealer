@@ -1,3 +1,48 @@
-body {
-  color: pink;
+html {
+  background-color: #888;
+}
+
+.test-boxes {
+  margin: 5vh 5vw;
+  height: 90vh;
+  width: 90vw;
+  background-color: #222;
+}
+
+.box-one {
+  height: 50%;
+  width: 100%;
+  background-color: #444;
+}
+
+.box-two {
+  height: 50%;
+  width: 50%;
+  float: left;
+  background-color: #666;
+}
+
+.box-three {
+  float: left;
+  height: 50%;
+  width: 25%;
+  background-color: #000;
+}
+
+.box-four {
+  float: left;
+  height: 50%;
+  width: 25%;
+  background-color: #fff;
+}
+
+.box-four img {
+  height: 100%;
+  width: 100%;
+}
+
+.sr__container {
+  position: absolute;
+  pointer-events: none;
+  background-color: red;
 }
