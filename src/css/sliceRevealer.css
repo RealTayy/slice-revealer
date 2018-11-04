@@ -3,20 +3,25 @@ html {
 }
 
 .test-boxes {
+  position: relative;
   margin: 5vh 5vw;
   height: 90vh;
   width: 90vw;
   background-color: #222;
 }
 
+.box {
+  position: relative;
+}
+
 .box-one {
+  float: left;
   height: 50%;
   width: 100%;
   background-color: #444;
 }
 
-.box-two,
-.box-three {
+.box-two {
   height: 50%;
   width: 50%;
   float: left;
@@ -24,7 +29,64 @@ html {
 }
 
 .box-three {
+  float: left;
+  height: 50%;
+  width: 25%;
   background-color: #000;
 }
 
-/*# sourceMappingURL=slicerRevealer.css.map */
+.box-four {
+  height: 50%;
+  float: left;
+  width: 25%;
+  background-color: #fff;
+}
+
+.box-four img {
+  height: 100%;
+  width: 100%;
+}
+
+.sr__container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  pointer-events: none;
+  background-color: red;
+}
+
+.sr__slice {
+  position: relative;
+  background-color: blue;
+  float: left;
+  transition-property: top, left;
+}
+
+.sr__slice.sr__top {
+  top: -100%;
+  left: 0%;
+}
+
+.sr__slice.sr__bottom {
+  top: 100%;
+  left: 0%;
+}
+
+.sr__slice.sr__left {
+  top: 0%;
+  left: -100%;
+}
+
+.sr__slice.sr__right {
+  top: 0%;
+  left: 100%;
+}
+
+.sr__slice.sr__middle {
+  top: 0%;
+  left: 0%;
+}
+
+/*# sourceMappingURL=slicerevealer.css.map */
