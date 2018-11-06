@@ -15,7 +15,7 @@ html {
 }
 
 .box-one {
-float:left;
+  float: left;
   height: 50%;
   width: 100%;
   background-color: #444;
@@ -49,22 +49,31 @@ float:left;
 
 .sr__container {
   position: absolute;
+  display: flex;
   height: 100%;
   width: 100%;
   top: 0px;
   left: 0px;
   pointer-events: none;
-  background-color: red;  
+  background-color: red;
 }
 
-.sr__slices {
+.sr__container.sr__horizontal {
+  flex-direction: column;
 }
+
+.sr__container.sr__vertical {
+  flex-direction: row;
+}
+
+.sr__slices {}
 
 .sr__slice {
   position: relative;
   background-color: blue;
   float: left;
-  transition-property: top, left;  
+  transition-property: top, left, opacity;
+  flex-grow: 1;
 }
 
 .sr__slice.sr__top {
@@ -89,5 +98,5 @@ float:left;
 
 .sr__slice.sr__middle {
   top: 0%;
-  left: 0%;
+  left: 0px;
 }

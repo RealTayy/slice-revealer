@@ -49,6 +49,7 @@ html {
 
 .sr__container {
   position: absolute;
+  display: flex;
   height: 100%;
   width: 100%;
   top: 0px;
@@ -57,11 +58,20 @@ html {
   background-color: red;
 }
 
+.sr__container.sr__horizontal {
+  flex-direction: column;
+}
+
+.sr__container.sr__vertical {
+  flex-direction: row;
+}
+
 .sr__slice {
   position: relative;
   background-color: blue;
   float: left;
-  transition-property: top, left;
+  transition-property: top, left, opacity;
+  flex-grow: 1;
 }
 
 .sr__slice.sr__top {
@@ -86,7 +96,7 @@ html {
 
 .sr__slice.sr__middle {
   top: 0%;
-  left: 0%;
+  left: 0px;
 }
 
-/*# sourceMappingURL=slicerevealer.css.map */
+/*# sourceMappingURL=sliceRevealer.css.map */
