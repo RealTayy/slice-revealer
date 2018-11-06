@@ -21,15 +21,13 @@ function SliceRevealer(target, options) {
 	// Initialize Instance of SliceRevealer
 	var defaultOptions = {
 		direction: 'horizontal',
-		numOfSlices: 6,
-		sliceDuration: .5,
-		totalDuration: 3,
+		numOfSlices: 8,
+		sliceDuration: 1,
+		totalDuration: 1.6,
 		startPosition: 'left',
-		endPosition: 'left',
-		startingOpacity: 1,
+		endPosition: 'middle',
+		startOpacity: .999999, // startOpacity set to .999 because chrome doesn't play well with rounding pixels and sometimes is one pixel off.
 		endOpacity: 1,
-		fadeIn: false,
-		fadeOut: false,
 	};
 
 	this.options = { ...defaultOptions, ...options };
@@ -51,8 +49,8 @@ function SliceRevealer(target, options) {
 		sr__container.style.width = '100%';
 
 		// Set direction of slices
-		if (direction === 'vertical') addClass(sr__container, 'sr__vertical');
-		else addClass(sr__container, 'sr__horizontal');
+		if (direction === 'vertical') sr__container.classList.add('sr__vertical');
+		else sr__container.classList.add('sr__horizontal');
 
 		// Append sr__container to target Element
 		target.appendChild(sr__container);
@@ -82,12 +80,12 @@ function SliceRevealer(target, options) {
 
 			// Set Starting Position
 			switch (startPosition) {
-				case 'top': alass(sr__slice, 'sr__top'); break;
-				case 'bottom': addClass(sr__slice, 'sr__bottom'); break;
-				case 'left': addClass(sr__slice, 'sr__left'); break;
-				case 'right': addClass(sr__slice, 'sr__right'); break;
-				case 'middle': addClass(sr__slice, 'sr__middle'); break;
-				default: addClass(sr__slice, 'sr__left');
+				case 'top': sr__slice.classList.add('sr__top'); break;
+				case 'bottom': sr__slice.classList.add('sr__bottom'); break;
+				case 'left': sr__slice.classList.add('sr__left'); break;
+				case 'right': sr__slice.classList.add('sr__right'); break;
+				case 'middle': sr__slice.classList.add('sr__middle'); break;
+				default: sr__slice.classList.add('sr__left');
 			}
 			// Append slices to container then push to slices array
 			container.appendChild(sr__slice);
@@ -96,41 +94,72 @@ function SliceRevealer(target, options) {
 		// Return array of slice elements
 		return slices;
 	}
+}
 
-	// HELPER FUNCTIONS //
-	// Simple helper function to add Class to Elements because IE doesn't support classList
-	function addClass(element, classes) {
-		element.className = element.className + ' ' + classes;
+SliceRevealer.prototype.doIt = function (options) {
+	// OPTIONS
+	var options = { ...this.options, ...options };
+	var endOpacity = options.endOpacity;
+	var endPosition = options.endPosition;
+	var sliceDuration = options.sliceDuration * 1000; // Convert seconds to milliseconds
+	var totalDuration = options.totalDuration * 1000; // Convert seconds to milliseconds	
+
+	var slices = this.slices;
+	var lastSliceTransition = totalDuration - sliceDuration;
+	var sliceInterval = lastSliceTransition / (slices.length - 1 || lastSliceTransition);
+
+	// Do the transition HERE!
+	for (let i = 0; i < slices.length; i++) {
+		let slice = slices[i];
+		const delay = (i * sliceInterval);
+		setTimeout(() => {
+			slice.style.opacity = endOpacity;
+			slice.classList.remove('sr__top', 'sr__bottom', 'sr__left', 'sr__right', 'sr__middle');
+			switch (endPosition) {
+				case 'top': slice.classList.add('sr__top'); break;
+				case 'bottom': slice.classList.add('sr__bottom'); break;
+				case 'left': slice.classList.add('sr__left'); break;
+				case 'right': slice.classList.add('sr__right'); break;
+				case 'middle': slice.classList.add('sr__middle'); break;
+				default: slice.classList.add('sr__left');
+			}
+		}, delay);
 	}
 }
 
-SliceRevealer.prototype.animateIt = function (options) {
+SliceRevealer.prototype.undoIt = function (options) {
 	// OPTIONS
 	var options = { ...this.options, ...options };
 	var startOpacity = options.startOpacity;
-	var endOpacity = options.endOpacity;
+	var startPosition = options.startPosition;
+	var sliceDuration = options.sliceDuration * 1000; // Convert seconds to milliseconds
+	var totalDuration = options.totalDuration * 1000; // Convert seconds to milliseconds	
 
 	var slices = this.slices;
-	// var addClass = this.addClass	
+	var lastSliceTransition = totalDuration - sliceDuration;
+	var sliceInterval = lastSliceTransition / (slices.length - 1 || lastSliceTransition);
 
 	// Do the transition HERE!
-	for (var i = 0; i < slices.length; i++) {
-		console.log(slice);
-		var slice = slices[i];
-		slice.style.opacity = endOpacity;
-		this.removeClass(slice, 'sr__left');
-		this.addClass(slice, 'sr__middle')
+	for (let i = 0; i < slices.length; i++) {
+		let slice = slices[i];
+		const delay = (i * sliceInterval);
+		setTimeout(() => {
+			slice.style.opacity = startOpacity;
+			slice.classList.remove('sr__top', 'sr__bottom', 'sr__left', 'sr__right', 'sr__middle');
+			switch (startPosition) {
+				case 'top': slice.classList.add('sr__top'); break;
+				case 'bottom': slice.classList.add('sr__bottom'); break;
+				case 'left': slice.classList.add('sr__left'); break;
+				case 'right': slice.classList.add('sr__right'); break;
+				case 'middle': slice.classList.add('sr__middle'); break;
+				default: slice.classList.add('sr__left');
+			}
+		}, delay);
 	}
 }
 
-// HELPER FUNCTIONS //
-// Simple helper function to add Class to Elements because IE doesn't support classList
-SliceRevealer.prototype.addClass = function (element, classes) {
-	element.className = element.className + ' ' + classes;
-}
-
-// Simple helper function to remove Class to Elements because IE doesn't support classList
-SliceRevealer.prototype.removeClass = function (element, classes) {
-	const regex = new RegExp(classes, 'g')
-	element.className = element.className.replace(regex, "").trim();
+SliceRevealer.prototype.delete = function () {
+	while (this.container.lastChild) {
+		this.container.removeChild(this.container.lastChild);
+	}
 }

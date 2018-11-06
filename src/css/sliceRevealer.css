@@ -17,7 +17,7 @@ html {
 .box-one {
   float: left;
   height: 50%;
-  width: 100%;
+  width: 101%;
   background-color: #444;
 }
 
@@ -56,6 +56,7 @@ html {
   left: 0px;
   pointer-events: none;
   background-color: red;
+  overflow: hidden;
 }
 
 .sr__container.sr__horizontal {
@@ -68,30 +69,30 @@ html {
 
 .sr__slice {
   position: relative;
-  background-color: blue;
+  background-color: #888888;
   float: left;
-  transition-property: top, left, opacity;
   flex-grow: 1;
+  transition-timing-function: cubic-bezier(1, 0.1, 0.3, 1);
 }
 
 .sr__slice.sr__top {
-  top: -100%;
+  top: -101%;
   left: 0%;
 }
 
 .sr__slice.sr__bottom {
-  top: 100%;
+  top: 101%;
   left: 0%;
 }
 
 .sr__slice.sr__left {
   top: 0%;
-  left: -100%;
+  left: -101%;
 }
 
 .sr__slice.sr__right {
   top: 0%;
-  left: 100%;
+  left: 101%;
 }
 
 .sr__slice.sr__middle {
