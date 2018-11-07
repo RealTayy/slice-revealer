@@ -19,6 +19,6 @@ window.onload = function () {
 	})
 
 	element.addEventListener('mouseleave', function () {
-		slicerTwo.remove();		
+		slicerTwo.undoIt();		
 	})
 }
