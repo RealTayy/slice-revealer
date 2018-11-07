@@ -1,4 +1,4 @@
-$ sass --watch ./src/scss/sliceRevealer.scss ./src/css/sliceRevealer.css
+sass --watch ./src/scss/sliceRevealer.scss ./src/css/sliceRevealer.css
 
 - implement custom easings
 - implement random order

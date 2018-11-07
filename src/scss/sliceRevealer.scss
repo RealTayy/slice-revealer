@@ -71,11 +71,13 @@ html {
 .sr__slices {}
 
 .sr__slice {
+  color: #fff;
   position: relative;
-  background-color: #888888;
+  background-color: currentColor;
   float: left; // transition-property: top, left, opacity;
   flex-grow: 1;
   transition-timing-function: $customease;
+  box-shadow: 0 0 0 1px currentColor;
 }
 
 .sr__slice.sr__top {

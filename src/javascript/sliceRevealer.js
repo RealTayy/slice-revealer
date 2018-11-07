@@ -26,8 +26,11 @@ function SliceRevealer(target, options) {
 		totalDuration: 1.6,
 		startPosition: 'left',
 		endPosition: 'middle',
-		startOpacity: .999999, // startOpacity set to .999 because chrome doesn't play well with rounding pixels and sometimes is one pixel off.
+		startOpacity: 1,
 		endOpacity: 1,
+		startColor: '#ffffff',
+		endColor: '#ffffff',
+
 	};
 
 	this.options = { ...defaultOptions, ...options };
@@ -39,9 +42,9 @@ function SliceRevealer(target, options) {
 	// Function used to create and return sr__container based on options
 	function initializeSRContainer(target, options) {
 		// OPTIONS
-		var direction = options.direction;
+		const direction = options.direction;
 
-		var sr__container = document.createElement('div');
+		const sr__container = document.createElement('div');
 		sr__container.className = 'sr__container';
 
 		// Set sr__container height and width to be same as target	
@@ -61,15 +64,16 @@ function SliceRevealer(target, options) {
 	// Function used to create and return sr__slices based on options
 	function initializeSRSlices(container, options) {
 		// OPTIONS
-		var numOfSlices = options.numOfSlices;
-		var sliceDuration = options.sliceDuration;
-		var startPosition = options.startPosition;
-		var startOpacity = options.startOpacity;
-		var slices = [];
+		const numOfSlices = options.numOfSlices;
+		const sliceDuration = options.sliceDuration;
+		const startPosition = options.startPosition;
+		const startOpacity = options.startOpacity;
+		const startColor = options.startColor;
+		const slices = [];
 
 		// Create slice elements
-		for (var i = 0; i < numOfSlices; i++) {
-			var sr__slice = document.createElement('div');
+		for (let i = 0; i < numOfSlices; i++) {
+			const sr__slice = document.createElement('div');
 			sr__slice.className = 'sr__slice';
 
 			// Set Duration

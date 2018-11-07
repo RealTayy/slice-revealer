@@ -68,11 +68,13 @@ html {
 }
 
 .sr__slice {
+  color: #fff;
   position: relative;
-  background-color: #888888;
+  background-color: currentColor;
   float: left;
   flex-grow: 1;
-  transition-timing-function: cubic-bezier(1, 0.1, 0.3, 1);
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
+  box-shadow: 0 0 0 1px currentColor;
 }
 
 .sr__slice.sr__top {
