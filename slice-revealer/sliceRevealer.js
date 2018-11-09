@@ -1,5 +1,5 @@
 // Initialize and Returns SliceRevealer Instance
-function sliceRevealer(target, options) {	
+function sliceRevealer(target, options) {
 	// Check if target is jQuery object and return SliceRevealer Instance
 	try {
 		if (target instanceof jQuery) return new SliceRevealer(target[0], options);
@@ -47,8 +47,9 @@ function SliceRevealer(target, options) {
 	// SliceRevealer's properties
 	this.options = { ...defaultOptions, ...options };
 	this.target = target;
-	// this.isAnimating = ()=>{curAnimation});
-	this.curAnimation;
+	this.queuedDoneCallback;
+	this.forcedDoneCallback;	
+	this.queuedAnimation	
 	this.container = this.initializeSRContainer(this.target, this.options);
 	this.slices = this.initializeSRSlices(this.container, this.options);
 
@@ -79,10 +80,11 @@ function SliceRevealer(target, options) {
 		// OPTIONS
 		const numOfSlices = options.numOfSlices;
 		const sliceDuration = options.sliceDuration;
-		const curPosition = options.curPosition		
+		const curPosition = options.curPosition
 		const startOpacity = options.startOpacity;
 		const startColor = options.startColor;
 		const slices = [];
+		// Create fixed size array of queued animations for each slice		
 
 		// Create slice elements
 		for (let i = 0; i < numOfSlices; i++) {
@@ -94,6 +96,8 @@ function SliceRevealer(target, options) {
 			sr__slice.style.opacity = startOpacity;
 			sr__slice.style.color = startColor;
 
+			// Set slice's queued animation to empty string so it can be mutated before sealing			
+
 			// Append slices to container then push to slices array
 			container.appendChild(sr__slice);
 			slices.push(sr__slice);
@@ -102,9 +106,10 @@ function SliceRevealer(target, options) {
 		// Set Starting Position of slices				
 		this.resetPosition(curPosition, options, slices);
 
+
 		// Return array of slice elements
 		return slices;
-	}
+	}		
 
 	// TODO: MAKE POSITION OF SLICES GO TO NEW POSITION WITHOUT TRANSITION!
 	// Helper method to position slices without transition
@@ -121,7 +126,7 @@ function SliceRevealer(target, options) {
 		for (let i = 0; i < slices.length; i++) {
 			const slice = slices[i];
 
-			const transitionDuration = slice.style.transitionDuration;			
+			const transitionDuration = slice.style.transitionDuration;
 			slice.classList.add('resetting');
 
 			// Set slice's css back to startCss			
@@ -168,10 +173,10 @@ function SliceRevealer(target, options) {
 
 		// Return relavent translate property
 		switch (position) {
-			case 'top': return `translate(0%, -${(offset) * 100 + 1}%)`;
-			case 'bottom': return `translate(0%, ${(offset) * 100 + 1}%)`;
-			case 'left': return `translate(-${(offset) * 100 + 1}%, 0%)`;
-			case 'right': return `translate(${(offset) * 100 + 1}%, 0%)`;
+			case 'top': return `translate(0%, -${(offset) * 101 + 3}%)`;
+			case 'bottom': return `translate(0%, ${(offset) * 100 + 3}%)`;
+			case 'left': return `translate(-${(offset) * 100 + 3}%, 0%)`;
+			case 'right': return `translate(${(offset) * 100 + 3}%, 0%)`;
 			case 'middle': return 'translate(0%, 0%)';
 			default: return 'translate(0%, 0%)';
 		}
@@ -187,50 +192,71 @@ SliceRevealer.prototype.doIt = function (newPosition, options) {
 	const numOfSlices = options.numOfSlices;
 
 	// Options that can be passed in as arguement
+	const positionTwo = newPosition;
 	const position = options[`${newPosition}Position`];
 	const color = options.color || options[`${newPosition}Color`];
 	const startCB = options.startCB;
 	const doneCB = options.doneCB;
+	const initialDelay = (options.initialDelay) ? options.initialDelay * 1000 : 0; // Convert seconds to milliseconds	
 
+	// Calculate interval between slices
 	const slices = this.slices;
 	const lastSliceTransition = totalDuration - sliceDuration;
 	const sliceInterval = lastSliceTransition / (slices.length - 1 || lastSliceTransition);
 
-	// Callback that runs as animation starts	
-	if (startCB !== undefined) startCB(this);
-
+	clearTimeout(this.queuedAnimation);
 	// Do the transition HERE!
-	for (
-		let i = 0;
-		i < slices.length;
-		i++
-	) {
-		let slice = slices[i];
-		let delay = (i * sliceInterval);
-		setTimeout(() => {
-			// Set slice's new css
-			slice.style.color = color;
-			// Set slice's position
-			// Find each individual silces's position if passed an position array			
-			let newPosition;
-			if (Array.isArray(position)) newPosition = position[i];
-			else newPosition = position;
-			const transform = this.getTransform(newPosition, direction, numOfSlices)
-			slice.style.webkitTransform = transform;
-			slice.style.MozTransform = transform;
-			slice.style.msTransform = transform;
-			slice.style.OTransform = transform;
-			slice.style.transform = transform;
-		}, delay);
-	}
+	this.queuedAnimation = setTimeout(() => {
+		if (startCB) startCB(this);
 
-	// clears currentAnimation callback function and sets a new one.
-	clearTimeout(this.curAnimation);
-	// Callback that runs when animation is done
-	this.curAnimation = setTimeout(() => {
-		if (doneCB) doneCB(this);
-	}, totalDuration + 25);
+
+		for (
+			let i = 0;
+			i < slices.length;
+			i++
+		) {
+			let slice = slices[i];
+			let delay = (i * sliceInterval);
+			setTimeout(() => {
+				// Clear out current slice's queuedAnimation						
+				// Set slice's new css
+				slice.style.color = color;
+				// Set slice's position
+				// Find each individual silces's position if passed an position array			
+				let newPosition;
+				if (Array.isArray(position)) newPosition = position[i];
+				else newPosition = position;
+				const transform = this.getTransform(newPosition, direction, numOfSlices)
+				slice.style.webkitTransform = transform;
+				slice.style.MozTransform = transform;
+				slice.style.msTransform = transform;
+				slice.style.OTransform = transform;
+				slice.style.transform = transform;
+			}, delay)
+		}
+
+
+
+		// Clear any queued up doneCallbacks
+		clearTimeout(this.queuedDoneCallback);
+		if (options.forced) {
+			// If forced. Clear any queued up forced doneCallbacks
+			clearTimeout(this.forcedDoneCallback)
+			// Queue up a forced doneCallback
+			this.forcedDoneCallback = setTimeout(() => {
+				if (doneCB) doneCB(this);
+			}, totalDuration + 25);
+		}
+		else {
+			// Queue up a doneCallback
+			this.queuedDoneCallback = setTimeout(() => {
+				if (doneCB) doneCB(this);
+			}, totalDuration + 25);
+		}
+	}, initialDelay);
 }
+
+
 
 SliceRevealer.prototype.delete = function () {
 	while (this.container.lastChild) {
