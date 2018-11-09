@@ -19,8 +19,8 @@ function sliceRevealer(target, options) {
 // SliceRevealer constructor function
 function SliceRevealer(target, options) {
 	// Initialize Instance of SliceRevealer
-	// const startPosition = options.startPosition || 'left';
-	// if (options) startPosition = options.startPosition
+	let startPosition = 'left';
+	if (options) startPosition = options.startPosition
 	const defaultOptions = {
 		direction: 'horizontal',
 		numOfSlices: 8,
@@ -29,7 +29,7 @@ function SliceRevealer(target, options) {
 		startPosition: 'left',
 		halfwayPosition: 'middle',
 		endPosition: 'left',
-		curPosition: this.startPosition || 'left',
+		curPosition: startPosition || 'left',
 		startOpacity: 1,
 		halfwayOpacity: 1,
 		endOpacity: 1,
@@ -79,9 +79,7 @@ function SliceRevealer(target, options) {
 		// OPTIONS
 		const numOfSlices = options.numOfSlices;
 		const sliceDuration = options.sliceDuration;
-		const curPosition = options.curPosition
-		const startPosition = options.curPosition;
-		const endPosition = options.endPosition;
+		const curPosition = options.curPosition		
 		const startOpacity = options.startOpacity;
 		const startColor = options.startColor;
 		const slices = [];
