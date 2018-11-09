@@ -1,10 +1,11 @@
 window.onload = function () {
 	var element = document.getElementById('box-two');
 	var options = {
-		direction: 'vertical',
-		numOfSlices: 12,
-		startPosition: 'top',
+		// direction: 'vertical',
+		numOfSlices: 3,
+		// startPosition: 'top',
 		halfwayPosition: 'middle',
+		reverse: true
 	}
 
 	var slicerTwo = sliceRevealer(element, options);
@@ -22,7 +23,7 @@ window.onload = function () {
 				console.log(timer + ':entered!');
 			},
 			// initialDelay: 1.6,
-			forced: true,
+			// forced: true,
 		});
 	})
 
@@ -33,9 +34,9 @@ window.onload = function () {
 			},
 			doneCB: (instance) => {
 				console.log(timer + ':left!');
-				instance.resetPosition();
+				// instance.resetPosition();
 			},
-			initialDelay: 1.6,			
+			reverse: true
 		});
 	})
 }

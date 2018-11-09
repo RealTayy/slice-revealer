@@ -20,6 +20,7 @@ function sliceRevealer(target, options) {
 function SliceRevealer(target, options) {
 	// Initialize Instance of SliceRevealer
 	let startPosition = 'left';
+	let transitionOrder = []
 	if (options) startPosition = options.startPosition
 	const defaultOptions = {
 		direction: 'horizontal',
@@ -36,6 +37,7 @@ function SliceRevealer(target, options) {
 		startColor: '#ffffff',
 		halfwayColor: '#ffffff',
 		endColor: '#ffffff',
+		reverse: false,
 	};
 
 	// Hoisted Methods
@@ -48,10 +50,11 @@ function SliceRevealer(target, options) {
 	this.options = { ...defaultOptions, ...options };
 	this.target = target;
 	this.queuedDoneCallback;
-	this.forcedDoneCallback;	
-	this.queuedAnimation	
+	this.forcedDoneCallback;
+	this.queuedAnimation
 	this.container = this.initializeSRContainer(this.target, this.options);
 	this.slices = this.initializeSRSlices(this.container, this.options);
+	this.transitionOrder = transitionOrder;
 
 	// Method used to create and return sr__container based on options
 	function initializeSRContainer(target, options) {
@@ -84,7 +87,7 @@ function SliceRevealer(target, options) {
 		const startOpacity = options.startOpacity;
 		const startColor = options.startColor;
 		const slices = [];
-		// Create fixed size array of queued animations for each slice		
+		const reverse = options.reverse;
 
 		// Create slice elements
 		for (let i = 0; i < numOfSlices; i++) {
@@ -101,15 +104,19 @@ function SliceRevealer(target, options) {
 			// Append slices to container then push to slices array
 			container.appendChild(sr__slice);
 			slices.push(sr__slice);
+			transitionOrder.push(i);
 		}
 
 		// Set Starting Position of slices				
 		this.resetPosition(curPosition, options, slices);
 
+		// TODO: This more customizable
+		// Set transition order of slices
+		if (reverse) transitionOrder = transitionOrder.reverse();
 
 		// Return array of slice elements
 		return slices;
-	}		
+	}
 
 	// TODO: MAKE POSITION OF SLICES GO TO NEW POSITION WITHOUT TRANSITION!
 	// Helper method to position slices without transition
@@ -191,31 +198,35 @@ SliceRevealer.prototype.doIt = function (newPosition, options) {
 	const direction = options.direction;
 	const numOfSlices = options.numOfSlices;
 
-	// Options that can be passed in as arguement
-	const positionTwo = newPosition;
+	// Options that can be passed in as arguement	
 	const position = options[`${newPosition}Position`];
 	const color = options.color || options[`${newPosition}Color`];
 	const startCB = options.startCB;
 	const doneCB = options.doneCB;
-	const initialDelay = (options.initialDelay) ? options.initialDelay * 1000 : 0; // Convert seconds to milliseconds	
+	const initialDelay = (options.initialDelay) ? options.initialDelay * 1000 : 0; // Convert seconds to milliseconds		
+	const reverse = options.reverse || false;
+	let transitionOrder = options.transitionOrder || this.transitionOrder;
 
 	// Calculate interval between slices
 	const slices = this.slices;
 	const lastSliceTransition = totalDuration - sliceDuration;
 	const sliceInterval = lastSliceTransition / (slices.length - 1 || lastSliceTransition);
 
+	// Calculate order slices transition in if special opitions passed	
+	if (reverse) transitionOrder = transitionOrder.reverse();
+
+
+	// Clear any queuedAnimations
 	clearTimeout(this.queuedAnimation);
 	// Do the transition HERE!
 	this.queuedAnimation = setTimeout(() => {
 		if (startCB) startCB(this);
-
-
 		for (
 			let i = 0;
-			i < slices.length;
+			i < transitionOrder.length;
 			i++
 		) {
-			let slice = slices[i];
+			let slice = slices[transitionOrder[i]];
 			let delay = (i * sliceInterval);
 			setTimeout(() => {
 				// Clear out current slice's queuedAnimation						
@@ -235,8 +246,6 @@ SliceRevealer.prototype.doIt = function (newPosition, options) {
 			}, delay)
 		}
 
-
-
 		// Clear any queued up doneCallbacks
 		clearTimeout(this.queuedDoneCallback);
 		if (options.forced) {
@@ -255,8 +264,6 @@ SliceRevealer.prototype.doIt = function (newPosition, options) {
 		}
 	}, initialDelay);
 }
-
-
 
 SliceRevealer.prototype.delete = function () {
 	while (this.container.lastChild) {
