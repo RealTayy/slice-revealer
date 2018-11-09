@@ -122,8 +122,7 @@ function SliceRevealer(target, options) {
 		for (let i = 0; i < slices.length; i++) {
 			const slice = slices[i];
 
-			const transitionDuration = slice.style.transitionDuration;
-			console.log(slice);
+			const transitionDuration = slice.style.transitionDuration;			
 			slice.classList.add('resetting');
 
 			// Set slice's css back to startCss			
