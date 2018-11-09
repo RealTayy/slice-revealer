@@ -1,7 +1,8 @@
-sass --watch ./src/scss/sliceRevealer.scss ./src/css/sliceRevealer.css
+sass --watch ./slice-revealer/sliceRevealer.scss ./slice-revealer/sliceRevealer.css
 
 - implement custom easings
 - implement random order
+- work around for box-shadow 1 pixel off
 
 Notes for readme:
 > Can take jQuery object or Native DOM element.

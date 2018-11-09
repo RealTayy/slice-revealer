@@ -12,7 +12,7 @@ Currently the only way to use Slice Revealer is to manually [download]() and lin
 </head>
 <body>
     <script src="./sliceRevealer.min.js"></script>	
-    <!-- Link your JavaScript file that use sliceRevealer here --->
+    <!-- Link your JavaScript file that uses sliceRevealer here --->
 </body>
 ```
 
@@ -53,4 +53,5 @@ Example javascript
 Slice Reavealer is an open source software under the [MIT license](https://github.com/RealTayy/slice-revealer/blob/master/LICENSE.md)
 ## Shameless Plug
 Interested in who made this? Come visit my portfolio at [MaiCoding](http://www.maiCoding.me)
+
 Want more sick and easy to use animations? Come over to [AnimationZone]()

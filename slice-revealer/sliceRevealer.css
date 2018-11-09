@@ -1,52 +1,3 @@
-html {
-  background-color: #888;
-}
-
-.test-boxes {
-  position: relative;
-  margin: 5vh 5vw;
-  height: 90vh;
-  width: 90vw;
-  background-color: #222;
-}
-
-.box {
-  position: relative;
-}
-
-.box-one {
-  float: left;
-  height: 50%;
-  width: 101%;
-  background-color: #444;
-}
-
-.box-two {
-  height: 50%;
-  width: 50%;
-  float: left;
-  background-color: #666;
-}
-
-.box-three {
-  float: left;
-  height: 50%;
-  width: 25%;
-  background-color: #000;
-}
-
-.box-four {
-  height: 50%;
-  float: left;
-  width: 25%;
-  background-color: #fff;
-}
-
-.box-four img {
-  height: 100%;
-  width: 100%;
-}
-
 .sr__container {
   position: absolute;
   display: flex;
@@ -55,7 +6,6 @@ html {
   top: 0px;
   left: 0px;
   pointer-events: none;
-  background-color: red;
   overflow: hidden;
 }
 
@@ -68,7 +18,7 @@ html {
 }
 
 .sr__slice {
-  color: #fff;
+  color: #ffffff;
   position: relative;
   background-color: currentColor;
   float: left;
@@ -77,29 +27,8 @@ html {
   box-shadow: 0 0 0 1px currentColor;
 }
 
-.sr__slice.sr__top {
-  top: -101%;
-  left: 0%;
-}
-
-.sr__slice.sr__bottom {
-  top: 101%;
-  left: 0%;
-}
-
-.sr__slice.sr__left {
-  top: 0%;
-  left: -101%;
-}
-
-.sr__slice.sr__right {
-  top: 0%;
-  left: 101%;
-}
-
-.sr__slice.sr__middle {
-  top: 0%;
-  left: 0px;
+.sr__slice.resetting {
+  transition-duration: 0s !important;
 }
 
 /*# sourceMappingURL=sliceRevealer.css.map */
