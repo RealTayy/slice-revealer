@@ -1,6 +1,5 @@
 window.onload = function () {
-	var element = document.getElementsByClassName('box-two')[0];
-
+	var element = document.getElementById('box-two');
 	var options = {
 		// direction: 'horizontal',
 		// numOfSlices: 8,
@@ -16,13 +15,10 @@ window.onload = function () {
 		// endOpacity: 1,
 	}
 
-	var slicerTwo = sliceRevealer(element, options);
+	var slicerTwo = sliceRevealer(element);
 
 	element.addEventListener('mouseenter', function () {
-		slicerTwo.doIt('halfway', {
-			startCB: function () { console.log('starting!') },
-			doneCB: () => console.log('finished!')
-		});
+		slicerTwo.doIt('halfway');
 	})
 
 	element.addEventListener('mouseleave', function () {

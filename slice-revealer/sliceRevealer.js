@@ -1,5 +1,5 @@
 // Initialize and Returns SliceRevealer Instance
-function sliceRevealer(target, options) {
+function sliceRevealer(target, options) {	
 	// Check if target is jQuery object and return SliceRevealer Instance
 	try {
 		if (target instanceof jQuery) return new SliceRevealer(target[0], options);
@@ -19,16 +19,17 @@ function sliceRevealer(target, options) {
 // SliceRevealer constructor function
 function SliceRevealer(target, options) {
 	// Initialize Instance of SliceRevealer
-	const curPosition = options.startPosition || 'left';
+	// const startPosition = options.startPosition || 'left';
+	// if (options) startPosition = options.startPosition
 	const defaultOptions = {
 		direction: 'horizontal',
 		numOfSlices: 8,
 		sliceDuration: 1,
 		totalDuration: 1.6,
-		curPosition: curPosition,
 		startPosition: 'left',
 		halfwayPosition: 'middle',
-		endPosition: 'right',
+		endPosition: 'left',
+		curPosition: this.startPosition || 'left',
 		startOpacity: 1,
 		halfwayOpacity: 1,
 		endOpacity: 1,
@@ -48,7 +49,7 @@ function SliceRevealer(target, options) {
 	this.target = target;
 	// this.isAnimating = ()=>{curAnimation});
 	this.curAnimation;
-	this.container = this.initializeSRContainer(this.target, options);
+	this.container = this.initializeSRContainer(this.target, this.options);
 	this.slices = this.initializeSRSlices(this.container, this.options);
 
 	// Method used to create and return sr__container based on options
