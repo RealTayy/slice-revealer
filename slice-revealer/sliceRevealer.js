@@ -140,7 +140,7 @@ function SliceRevealer(target, options) {
 			slice.style.OTransform = transform;
 			slice.style.transform = transform;
 			// TODO: Find a way to achieve this without setTimeout
-			setTimeout(() => slice.classList.remove('resetting'), 10);
+			setTimeout(() => slice.classList.remove('resetting'), 25);
 		}
 	}
 
@@ -230,7 +230,7 @@ SliceRevealer.prototype.doIt = function (newPosition, options) {
 	// Callback that runs when animation is done
 	this.curAnimation = setTimeout(() => {
 		if (doneCB) doneCB(this);
-	}, totalDuration);
+	}, totalDuration + 25);
 }
 
 SliceRevealer.prototype.delete = function () {
