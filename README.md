@@ -47,8 +47,8 @@ For a quick demo on intializing, targeting, and setting options head to this [js
 ### Creating an Instance
 All Slice revealer instances are made through the `sliceRevealer()` function.
 
-##### **sliceRevealer()**
-##### Arguements
+#### **sliceRevealer()**
+#### Arguements
 **target**
 **options**
 
