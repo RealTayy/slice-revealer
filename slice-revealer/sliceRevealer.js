@@ -38,6 +38,7 @@ function SliceRevealer(target, options) {
 		halfwayColor: '#ffffff',
 		endColor: '#ffffff',
 		reverse: false,
+		random: false,
 	};
 
 	// Hoisted Methods
@@ -45,6 +46,7 @@ function SliceRevealer(target, options) {
 	this.initializeSRSlices = initializeSRSlices;
 	this.resetPosition = resetPosition;
 	this.getTransform = getTransform;
+	this.shuffle = shuffle;
 
 	// SliceRevealer's properties
 	this.options = { ...defaultOptions, ...options };
@@ -88,6 +90,7 @@ function SliceRevealer(target, options) {
 		const startColor = options.startColor;
 		const slices = [];
 		const reverse = options.reverse;
+		const random = options.random;
 
 		// Create slice elements
 		for (let i = 0; i < numOfSlices; i++) {
@@ -112,7 +115,9 @@ function SliceRevealer(target, options) {
 
 		// TODO: This more customizable
 		// Set transition order of slices
-		if (reverse) transitionOrder = transitionOrder.reverse();
+		if (random) transitionOrder = shuffle(transitionOrder);
+		else if (reverse) transitionOrder = transitionOrder.reverse();
+		
 
 		// Return array of slice elements
 		return slices;
@@ -188,9 +193,31 @@ function SliceRevealer(target, options) {
 			default: return 'translate(0%, 0%)';
 		}
 	}
+	
+	// HelperFunction to shuffle an array
+	function shuffle(array) {
+		array = array.slice();
+		let i = array.length, temp, randomIndex;
+
+		while (0 !== i) {
+			// Pick a remaining element...
+			randomIndex = Math.floor(Math.random() * i);
+			i -= 1;
+
+			// And swap it with the current element.
+			temp = array[i];
+			array[i] = array[randomIndex];
+			array[randomIndex] = temp;
+	}
+
+  return array;
 }
 
-SliceRevealer.prototype.doIt = function (newPosition, options) {
+}
+
+SliceRevealer.prototype.doIt = function (newPosition, options) {	
+	const reverse = options.reverse || false;
+	console.log(reverse);
 	// OPTIONS
 	options = { ...this.options, ...options };
 	const sliceDuration = options.sliceDuration * 1000; // Convert seconds to milliseconds
@@ -203,9 +230,10 @@ SliceRevealer.prototype.doIt = function (newPosition, options) {
 	const color = options.color || options[`${newPosition}Color`];
 	const startCB = options.startCB;
 	const doneCB = options.doneCB;
-	const initialDelay = (options.initialDelay) ? options.initialDelay * 1000 : 0; // Convert seconds to milliseconds		
-	const reverse = options.reverse || false;
-	let transitionOrder = options.transitionOrder || this.transitionOrder;
+	const initialDelay = (options.initialDelay) ? options.initialDelay * 1000 : 0; // Convert seconds to milliseconds		const reverse = options.reverse || this.options.reverse;
+	const random = options.random;
+	let transitionOrder = options.transitionOrder || this.transitionOrder.slice();
+	
 
 	// Calculate interval between slices
 	const slices = this.slices;
@@ -213,8 +241,8 @@ SliceRevealer.prototype.doIt = function (newPosition, options) {
 	const sliceInterval = lastSliceTransition / (slices.length - 1 || lastSliceTransition);
 
 	// Calculate order slices transition in if special opitions passed	
-	if (reverse) transitionOrder = transitionOrder.reverse();
-
+	if (random) transitionOrder = this.shuffle(transitionOrder);
+	else if (reverse) transitionOrder = transitionOrder.reverse();
 
 	// Clear any queuedAnimations
 	clearTimeout(this.queuedAnimation);

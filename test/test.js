@@ -2,10 +2,10 @@ window.onload = function () {
 	var element = document.getElementById('box-two');
 	var options = {
 		// direction: 'vertical',
-		numOfSlices: 3,
+		numOfSlices: 14,
 		// startPosition: 'top',
 		halfwayPosition: 'middle',
-		reverse: true
+		reverse: true,
 	}
 
 	var slicerTwo = sliceRevealer(element, options);
@@ -36,7 +36,8 @@ window.onload = function () {
 				console.log(timer + ':left!');
 				// instance.resetPosition();
 			},
-			reverse: true
+			random: true,
+			//reverse: false
 		});
 	})
 }
