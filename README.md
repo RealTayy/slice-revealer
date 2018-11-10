@@ -27,6 +27,7 @@ Then in your javascript you need to target a DOM Element you want to cover/revea
 var target = document.getElementById("sr-target");
 var instance = sliceRevealer(target);
 ```
+
 #### Basic Usage
 When you want to cover up your image just type:
 ```javascript
@@ -38,15 +39,24 @@ instance.doIt("start")
 ```
 And that's it! For more in-depth information on customizing your Slice Revealer refer to the ***Initializing*** section below.
 For a basic example head over this [jsFiddle](https://jsfiddle.net/MaiCoding/jvb4oce8/15).
+
 # Documentation
 ## Initialization
 For a quick demo on intializing, targeting, and setting options head to this [jsFiddle](https://jsfiddle.net/MaiCoding/akLcrot7/)
+
 ### Creating an Instance
 All Slice revealer instances are made through the `sliceRevealer()` function.
 
+##### **sliceRevealer()**
+##### Arguements
+**target**
+**options**
+
 ```javascript
+var target = document.getElementById('sr-target');
 // For more information on a valid target refer to the Targeting section below.
-var target = 
+sliceRevealer(target, options);
+// For more information about the options object refer to the Options section below in "Creating an Instance".
 ```
 ### Targeting
 When passing a target to `sliceRevealer()` you can use both `getElementById()` or `getElementsByClassName()`. Please note that using `getElementsByClassName()` will only initializing Slice Revealer on the first element found.
