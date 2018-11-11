@@ -84,6 +84,21 @@ var target = $(someJQuerySelector);
 
 ### Options (Initializing)
 
+| Name            | Type             | Default               | Example      | Description                                                                                                                                              |
+|-----------------|------------------|-----------------------|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| direction       | String           | "horizontal"          | [jsFiddle]() | Accepts "horizontal" or "vertical". Determines the slices will be laid out as horizontal rows or vertical columns.                                       |
+| numOfSlices     | Number (Integer) | 8                     | [jsFiddle]() | The number of slices                                                                                                                                     |
+| sliceDuration   | Number (Float)   | 1                     | [jsFiddle]() | The transition duration for a single slice                                                                                                               |
+| totalDuration   | Number (Float)   | 1.6                   | [jsFiddle]() | The transition duration of the entire animation                                                                                                          |
+| transitionOrder | String /| Array  | "standard"            | [jsFiddle]() | Accepts "standard", "random", "reverse", or an Array. Determines the order in which the slices will animate                                              |
+| startPosition   | String /| Array  | "left"                | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices to animate to for the start phase.                             |
+| halfwayPostion  | String /| Array  | "middle"              | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices to animate to for the halfway phase.                           |
+| endPosition     | String /| Array  | "middle"              | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices to animate to for the end phase.                               |
+| curPosition     | String /| Array  | matches startPosition | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices will be in when the instance is created with `sliceRevealer()` |
+| startColor      | String           | "#ffffff"             | [jsFiddle]() | Accepts a [CSS Color Value](https://www.w3schools.com/cssref/css_colors_legal.asp) Determines the color the slices will be in for the start phase.       |
+| halfwayColor    | String           | "#ffffff"             | [jsFiddle]() | Accepts a [CSS Color Value](https://www.w3schools.com/cssref/css_colors_legal.asp) Determines the color the slices will be in for the halfway phase.     |
+| endColor        | String           | "#ffffff"             | [jsFiddle]() | Accepts a [CSS Color Value](https://www.w3schools.com/cssref/css_colors_legal.asp) Determines the color the slices will be in for the end phase.         |
+
 ## Methods
 All methods are called on the instance that is created when initializing
 ```javascript
