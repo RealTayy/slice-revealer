@@ -60,7 +60,7 @@ Creates and returns an instance of `SliceRevealer()`
 
 | Parameter          | Type                                               | Description                                                                                                                              |
 |--------------------|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| target             | Element object NodeList object jQuery Object | For more information on the target parameter refer to the [**Targetting**](https://github.com/RealTayy/slice-revealer#targeting) section |
+| target             | Element object \| NodeList object \| jQuery Object | For more information on the target parameter refer to the [**Targetting**](https://github.com/RealTayy/slice-revealer#targeting) section |
 | options (optional) | Object                                             | For more information on the options parameter refer to the [**Options (Initializing)**]() section                                        |
 
 ```javascript
