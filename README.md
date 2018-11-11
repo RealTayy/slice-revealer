@@ -57,6 +57,7 @@ sliceRevealer(target, options);
 
 #### **sliceRevealer(target, option)**
 Creates and returns an instance of `SliceRevealer()`
+
 | Parameter          | Type                                               | Description                                                                                                                              |
 |--------------------|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | target             | Element object NodeList object jQuery Object | For more information on the target parameter refer to the [**Targetting**](https://github.com/RealTayy/slice-revealer#targeting) section |
@@ -99,11 +100,11 @@ Example javascript
 ```
 
 #### Options
-| Name | Type | Default | Description |
-|------|------|---------|-------------|
-| asdf | asdf | asdf    | asdf        |
-|      |      |         |             |
-|      |      |         |             |
+| Name | Type | Default |
+|------|------|---------|
+| asdf | asdf | asdf    |
+|      |      |         |
+|      |      |         |
 
 # Misc
 ## License
