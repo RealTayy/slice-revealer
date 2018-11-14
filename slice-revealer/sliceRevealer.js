@@ -39,8 +39,7 @@ function SliceRevealer(target, options) {
 		startColor: '#ffffff',
 		halfwayColor: '#ffffff',
 		endColor: '#ffffff',
-		reverse: false,
-		random: false,
+		queueAnimation: false,
 		startCB: () => { },
 		doneCB: () => { },
 	};
@@ -58,7 +57,8 @@ function SliceRevealer(target, options) {
 	this.container = this.initializeSRContainer(this.target, this.options);
 	this.slices = this.initializeSRSlices(this.container, this.options);
 	this.queuedDoneCallback;
-	this.queuedAnimation;
+	this.queuedParameters = undefined;
+	this.currentAnimation;
 	this.sliceAnimations = sliceAnimations;
 	this.transitionOrder = transitionOrder;
 	this.sliceFinished = new CustomEvent('slicefinished');
@@ -82,11 +82,20 @@ function SliceRevealer(target, options) {
 		// Append sr__container to target Element
 		target.appendChild(sr__container);
 
-		// Listener to check whether to run callback functions or not depending on whether all slices have finished animations 
+		// Listener to check whether to run callback functions and queued animations or not depending on whether all slices have finished animations 
 		sr__container.addEventListener('slicefinished', () => {
+			// Only run if instance is no longer animating any slices
 			if (!this.isAnimating()) {
+				// If there is a queued animation then run it				
+				if (this.queuedParameters.hasOwnProperty('newPosition')) {
+					this.queuedParameters.newOptions.queueAnimation = false;
+					this.doIt(this.queuedParameters.newPosition, this.queuedParameters.newOptions);
+					this.queuedParameters = {};
+				}
+
 				if (this.queuedDoneCallback) {
-					this.queuedDoneCallback()
+					// Run callback and then unreference it
+					this.queuedDoneCallback(this)
 					this.queuedDoneCallback = undefined;
 				};
 			}
@@ -237,10 +246,10 @@ function SliceRevealer(target, options) {
 
 }
 
-SliceRevealer.prototype.doIt = function (newPosition, options) {
-	let transitionOrder = options.transitionOrder;
+SliceRevealer.prototype.doIt = function (newPosition, newOptions) {
+	let transitionOrder = newOptions.transitionOrder;
 	// OPTIONS	
-	options = { ...this.options, ...options };
+	let options = { ...this.options, ...newOptions };
 	const sliceDuration = options.sliceDuration * 1000; // Convert seconds to milliseconds
 	const totalDuration = options.totalDuration * 1000; // Convert seconds to milliseconds	
 	const direction = options.direction;
@@ -252,6 +261,7 @@ SliceRevealer.prototype.doIt = function (newPosition, options) {
 	const startCB = options.startCB;
 	const doneCB = options.doneCB;
 	const initialDelay = (options.initialDelay) ? options.initialDelay * 1000 : 0; // Convert seconds to milliseconds
+	const queueAnimation = options.queueAnimation;
 
 	// Calculate interval between slices
 	const slices = this.slices;
@@ -263,58 +273,70 @@ SliceRevealer.prototype.doIt = function (newPosition, options) {
 	else if (transitionOrder === "reverse") transitionOrder = this.transitionOrder.slice().reverse();
 	else transitionOrder = this.transitionOrder;
 
-	// Clear any queuedAnimations
-	clearTimeout(this.queuedAnimation);
-	// Do the transition HERE!
-	this.queuedAnimation = setTimeout(() => {
-		if (startCB) startCB(this);
-		for (
-			let i = 0;
-			i < transitionOrder.length;
-			i++
-		) {
-			let slice = slices[transitionOrder[i]];
-			let delay = (i * sliceInterval);
 
-			// Canceled current queued animation for slice
-			clearTimeout(this.sliceAnimations[i]);
+	// If queueAnimation is true and not suppose to cancel current animation
+	if (queueAnimation) {
+		// Save parameters into queueredParameters object which runs during current animation's doneCB function
+		this.queuedParameters = {};
+		this.queuedParameters.newPosition = newPosition;
+		this.queuedParameters.newOptions = newOptions;
+	}
+	// Else Do the animation NOW!
+	else {
+		// Clear any currentAnimations
+		clearTimeout(this.currentAnimation);
+		this.currentAnimation = setTimeout(() => {
+			if (startCB) startCB(this);
+			for (
+				let i = 0;
+				i < transitionOrder.length;
+				i++
+			) {
+				let slice = slices[transitionOrder[i]];
+				let delay = (i * sliceInterval);
 
-			// Start and save animation to sliceAnimations in case it needs to be canceled
-			this.sliceAnimations[i] = setTimeout(() => {
-				// Change slice's data-animating to true		
-				slice.setAttribute('animating', true)
-				// Set slice's new css
-				slice.style.color = color;
-				// Find each individual silces's position if passed an position array			
-				let newPosition;
-				if (Array.isArray(position)) newPosition = position[i];
-				else newPosition = position;
-				// Set slice's position
-				const transform = this.getTransform(newPosition, direction, numOfSlices);
-				// If slice was already in correct spot then set data-animating to false
-				if (
-					slice.style.webkitTransform === transform ||
-					slice.style.MozTransform === transform ||
-					slice.style.msTransform === transform ||
-					slice.style.OTransform === transform ||
-					slice.style.transform === transform
-				) {
-					slice.setAttribute('animating', false)
-					this.container.dispatchEvent(this.sliceFinished);
-				}
-				// Else animate it!
-				else {
-					slice.style.webkitTransform = transform;
-					slice.style.MozTransform = transform;
-					slice.style.msTransform = transform;
-					slice.style.OTransform = transform;
-					slice.style.transform = transform;
-				}
-			}, delay)
-		}
-		// Queue up a callback to execute upon animation finishing
-		this.queuedDoneCallback = doneCB;
-	}, initialDelay);
+				// Canceled current queued animation for slice
+				clearTimeout(this.sliceAnimations[i]);
+
+				// Start and save animation to sliceAnimations in case it needs to be canceled
+				this.sliceAnimations[i] = setTimeout(() => {
+					// Change slice's data-animating to true and give it animating class
+					slice.setAttribute('animating', true);
+					slice.classList.add('animating')
+
+					// Set slice's new css
+					slice.style.color = color;
+					// Find each individual silces's position if passed an position array			
+					let newPosition;
+					if (Array.isArray(position)) newPosition = position[i];
+					else newPosition = position;
+					// Set slice's position
+					const transform = this.getTransform(newPosition, direction, numOfSlices);
+					// If slice was already in correct spot then set data-animating to false
+					if (
+						slice.style.webkitTransform === transform ||
+						slice.style.MozTransform === transform ||
+						slice.style.msTransform === transform ||
+						slice.style.OTransform === transform ||
+						slice.style.transform === transform
+					) {
+						slice.setAttribute('animating', false)
+						this.container.dispatchEvent(this.sliceFinished);
+					}
+					// Else animate it!
+					else {
+						slice.style.webkitTransform = transform;
+						slice.style.MozTransform = transform;
+						slice.style.msTransform = transform;
+						slice.style.OTransform = transform;
+						slice.style.transform = transform;
+					}
+				}, delay)
+			}
+			// Queue up a callback to execute upon animation finishing
+			this.queuedDoneCallback = doneCB;
+		}, initialDelay);
+	}
 }
 
 // Returns a boolean whether the instance is currently animating or not

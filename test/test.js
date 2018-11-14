@@ -3,7 +3,8 @@ window.onload = function () {
 	var options = {
 		numOfSlices: 12,
 		halfwayPosition: 'middle',
-		transitionOrder: "random",
+		endPosition: 'top',
+		// transitionOrder: "random",
 
 	}
 
@@ -16,30 +17,27 @@ window.onload = function () {
 
 	element.addEventListener('mouseenter', function () {
 		isNotHover = false;
-		slicerTwo.doIt('end', {
-			startCB: () => {
+		slicerTwo.doIt('halfway', {
+			startCB: (instance) => {
 				console.log(timer + ':entering...');
 			},
 			doneCB: (instance) => {
 				console.log(timer + ':entered!');
 			},
-			// random: true,
-			// initialDelay: 1.6,
-			// forced: true,
+			transitionOrder: 'reverse'
 		});
 	})
 
 	element.addEventListener('mouseleave', function () {
-		slicerTwo.doIt('start', {
+		slicerTwo.doIt('end', {
 			startCB: (instance) => {
 				console.log(timer + ':leaving...');
 			},
 			doneCB: (instance) => {
 				console.log(timer + ':left!');
-				// instance.resetPosition();
+				instance.resetPosition();
 			},
-			// random: true,
-			//reverse: false
+			queueAnimation: true
 		});
 	})
 }
