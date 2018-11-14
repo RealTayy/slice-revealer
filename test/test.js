@@ -1,9 +1,10 @@
 window.onload = function () {
 	var element = document.getElementById('box-two');
-	var options = {		
-		numOfSlices: 14,		
-		halfwayPosition: 'middle',		
+	var options = {
+		numOfSlices: 12,
+		halfwayPosition: 'middle',
 		transitionOrder: "random",
+
 	}
 
 	var slicerTwo = sliceRevealer(element, options);
@@ -11,9 +12,11 @@ window.onload = function () {
 	let time = 0;
 	let timer = 0;
 	setInterval(() => { time++; timer = time / 100 }, 10);
+	setInterval(() => { slicerTwo.isAnimating() }, 500)
 
 	element.addEventListener('mouseenter', function () {
-		slicerTwo.doIt('halfway', {
+		isNotHover = false;
+		slicerTwo.doIt('end', {
 			startCB: () => {
 				console.log(timer + ':entering...');
 			},
@@ -27,7 +30,7 @@ window.onload = function () {
 	})
 
 	element.addEventListener('mouseleave', function () {
-		slicerTwo.doIt('end', {
+		slicerTwo.doIt('start', {
 			startCB: (instance) => {
 				console.log(timer + ':leaving...');
 			},

@@ -4,7 +4,7 @@ function sliceRevealer(target, options) {
 	try {
 		if (target instanceof jQuery) return new SliceRevealer(target[0], options);
 	} catch (e) {
-		// Don't eorror and exit out of function yet if not jQuery Object
+		// Don't error and exit out of function yet if not jQuery Object
 	}
 
 	// Check if target if Native DOM element and return SliceRevealer Instance
@@ -18,6 +18,7 @@ function sliceRevealer(target, options) {
 
 // SliceRevealer constructor function
 function SliceRevealer(target, options) {
+	const instance = this;
 	// Initialize Instance of SliceRevealer
 	let startPosition = 'left';
 	let transitionOrder = [];
@@ -30,7 +31,7 @@ function SliceRevealer(target, options) {
 		totalDuration: 1.6,
 		startPosition: 'left',
 		halfwayPosition: 'middle',
-		endPosition: 'left',
+		endPosition: 'middle',
 		curPosition: startPosition || 'left',
 		startOpacity: 1,
 		halfwayOpacity: 1,
@@ -40,6 +41,8 @@ function SliceRevealer(target, options) {
 		endColor: '#ffffff',
 		reverse: false,
 		random: false,
+		startCB: () => { },
+		doneCB: () => { },
 	};
 
 	// Hoisted Methods
@@ -55,10 +58,10 @@ function SliceRevealer(target, options) {
 	this.container = this.initializeSRContainer(this.target, this.options);
 	this.slices = this.initializeSRSlices(this.container, this.options);
 	this.queuedDoneCallback;
-	this.forcedDoneCallback;
 	this.queuedAnimation;
 	this.sliceAnimations = sliceAnimations;
 	this.transitionOrder = transitionOrder;
+	this.sliceFinished = new CustomEvent('slicefinished');
 
 	// Method used to create and return sr__container based on options
 	function initializeSRContainer(target, options) {
@@ -79,6 +82,16 @@ function SliceRevealer(target, options) {
 		// Append sr__container to target Element
 		target.appendChild(sr__container);
 
+		// Listener to check whether to run callback functions or not depending on whether all slices have finished animations 
+		sr__container.addEventListener('slicefinished', () => {
+			if (!this.isAnimating()) {
+				if (this.queuedDoneCallback) {
+					this.queuedDoneCallback()
+					this.queuedDoneCallback = undefined;
+				};
+			}
+		});
+
 		return sr__container;
 	}
 
@@ -91,8 +104,6 @@ function SliceRevealer(target, options) {
 		const startOpacity = options.startOpacity;
 		const startColor = options.startColor;
 		const slices = [];
-		const reverse = options.reverse;
-		const random = options.random;
 
 		// Create slice elements
 		for (let i = 0; i < numOfSlices; i++) {
@@ -104,7 +115,6 @@ function SliceRevealer(target, options) {
 			sr__slice.style.opacity = startOpacity;
 			sr__slice.style.color = startColor;
 
-			// Set slice's queued animation to empty string so it can be mutated before sealing			
 
 			// Append slices to container then push to slices array
 			container.appendChild(sr__slice);
@@ -115,14 +125,26 @@ function SliceRevealer(target, options) {
 
 			// Push empty string to sliceAnimations array to track animations
 			sliceAnimations.push('');
+
+			// TODO: Cross browser compatibility issue for this maybe?
+			// Adds event listener to detect when slice is not animating anymore
+			sr__slice.setAttribute('animating', false);
+			sr__slice.addEventListener(
+				'transitionend',
+				function () {
+					sr__slice.setAttribute('animating', false);
+					container.dispatchEvent(instance.sliceFinished)
+				}
+			);
+
 		}
 
 		// Set Starting Position of slices				
 		this.resetPosition(curPosition, options, slices);
 
 		// Set transition order of slices		
-		if (options.transitionOrder === "random") transitionOrder = shuffle(transitionOrder);
-		else if (options.transitionOrder === "reverse") transitionOrder = transitionOrder.reverse();
+		if (options.transitionOrder === 'random') transitionOrder = shuffle(transitionOrder);
+		else if (options.transitionOrder === 'random') transitionOrder = transitionOrder.reverse();
 
 		// Return array of slice elements
 		return slices;
@@ -190,10 +212,10 @@ function SliceRevealer(target, options) {
 
 		// Return relavent translate property
 		switch (position) {
-			case 'top': return `translate(0%, -${(offset) * 101 + 3}%)`;
-			case 'bottom': return `translate(0%, ${(offset) * 100 + 3}%)`;
-			case 'left': return `translate(-${(offset) * 100 + 3}%, 0%)`;
-			case 'right': return `translate(${(offset) * 100 + 3}%, 0%)`;
+			case 'top': return `translate(0%, calc(-${(offset) * 100}% - 1px))`;
+			case 'bottom': return `translate(0%, calc(${(offset) * 100}% + 1px))`;
+			case 'left': return `translate(calc(-${(offset) * 100}% - 1px), 0%)`;
+			case 'right': return `translate(calc(${(offset) * 100}% + 1px), 0%)`;
 			case 'middle': return 'translate(0%, 0%)';
 			default: return 'translate(0%, 0%)';
 		}
@@ -203,18 +225,13 @@ function SliceRevealer(target, options) {
 	function shuffle(array) {
 		array = array.slice();
 		let i = array.length, temp, randomIndex;
-
 		while (0 !== i) {
-			// Pick a remaining element...
 			randomIndex = Math.floor(Math.random() * i);
 			i -= 1;
-
-			// And swap it with the current element.
 			temp = array[i];
 			array[i] = array[randomIndex];
 			array[randomIndex] = temp;
 		}
-
 		return array;
 	}
 
@@ -264,44 +281,50 @@ SliceRevealer.prototype.doIt = function (newPosition, options) {
 
 			// Start and save animation to sliceAnimations in case it needs to be canceled
 			this.sliceAnimations[i] = setTimeout(() => {
-				// Clear out current slice's queuedAnimation						
+				// Change slice's data-animating to true		
+				slice.setAttribute('animating', true)
 				// Set slice's new css
 				slice.style.color = color;
-				// Set slice's position
 				// Find each individual silces's position if passed an position array			
 				let newPosition;
 				if (Array.isArray(position)) newPosition = position[i];
 				else newPosition = position;
-				const transform = this.getTransform(newPosition, direction, numOfSlices)
-				slice.style.webkitTransform = transform;
-				slice.style.MozTransform = transform;
-				slice.style.msTransform = transform;
-				slice.style.OTransform = transform;
-				slice.style.transform = transform;
+				// Set slice's position
+				const transform = this.getTransform(newPosition, direction, numOfSlices);
+				// If slice was already in correct spot then set data-animating to false
+				if (
+					slice.style.webkitTransform === transform ||
+					slice.style.MozTransform === transform ||
+					slice.style.msTransform === transform ||
+					slice.style.OTransform === transform ||
+					slice.style.transform === transform
+				) {
+					slice.setAttribute('animating', false)
+					this.container.dispatchEvent(this.sliceFinished);
+				}
+				// Else animate it!
+				else {
+					slice.style.webkitTransform = transform;
+					slice.style.MozTransform = transform;
+					slice.style.msTransform = transform;
+					slice.style.OTransform = transform;
+					slice.style.transform = transform;
+				}
 			}, delay)
 		}
-
-		// Clear any queued up doneCallbacks
-		clearTimeout(this.queuedDoneCallback);
-		if (options.forced) {
-			// If forced. Clear any queued up forced doneCallbacks
-			clearTimeout(this.forcedDoneCallback)
-			// Queue up a forced doneCallback
-			this.forcedDoneCallback = setTimeout(() => {
-				if (doneCB) doneCB(this);
-			}, totalDuration + 25);
-		}
-		else {
-			// Queue up a doneCallback
-			this.queuedDoneCallback = setTimeout(() => {
-				if (doneCB) doneCB(this);
-			}, totalDuration + 25);
-		}
+		// Queue up a callback to execute upon animation finishing
+		this.queuedDoneCallback = doneCB;
 	}, initialDelay);
 }
 
-SliceRevealer.prototype.delete = function () {
-	while (this.container.lastChild) {
-		this.container.removeChild(this.container.lastChild);
-	}
+// Returns a boolean whether the instance is currently animating or not
+SliceRevealer.prototype.isAnimating = function () {
+	return this.slices.some((slice) => {
+		return slice.getAttribute('animating') === "true";
+	})
+}
+
+// TODO: Actually destroy instance instead of removing sr_container
+SliceRevealer.prototype.destroy = function () {
+	this.container.remove();
 }
