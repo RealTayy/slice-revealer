@@ -69,7 +69,7 @@ sliceRevealer(target, options);
 ```
 
 ### Targeting
-When passing a target to `sliceRevealer()` you can use both `getElementById()` or `getElementsByClassName()`. Please note that using `getElementsByClassName()` will only initializing Slice Revealer on the first element found.
+When passing a target to `sliceRevealer()` you can use both `getElementById()` or `getElementsByClassName()`. Please note that using `getElementsByClassName()` will only initialize Slice Revealer on the first element found.
 ```javascript
 // Both of these work!
 var target = document.getElementById("targetID");
