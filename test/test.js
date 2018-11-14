@@ -1,9 +1,9 @@
 window.onload = function () {
 	var element = document.getElementById('box-two');
 	var options = {
-		numOfSlices: 12,
+		numOfSlices: 20,
 		halfwayPosition: 'middle',
-		endPosition: 'top',
+		endPosition: 'left',
 		// transitionOrder: "random",
 
 	}
@@ -37,7 +37,7 @@ window.onload = function () {
 				console.log(timer + ':left!');
 				instance.resetPosition();
 			},
-			queueAnimation: true
+			// queueAnimation: true
 		});
 	})
 }

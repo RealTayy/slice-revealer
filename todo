@@ -3,3 +3,4 @@ sass --watch ./slice-revealer/sliceRevealer.scss ./slice-revealer/sliceRevealer.
 > Implement custom easings
 > Work around for box-shadow 1 pixel off
 > Make reset work better
+> Move getAttribute to array for array lookups YO!

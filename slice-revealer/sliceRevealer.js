@@ -87,7 +87,7 @@ function SliceRevealer(target, options) {
 			// Only run if instance is no longer animating any slices
 			if (!this.isAnimating()) {
 				// If there is a queued animation then run it				
-				if (this.queuedParameters.hasOwnProperty('newPosition')) {
+				if (this.queuedParameters && this.queuedParameters.hasOwnProperty('newPosition')) {
 					this.queuedParameters.newOptions.queueAnimation = false;
 					this.doIt(this.queuedParameters.newPosition, this.queuedParameters.newOptions);
 					this.queuedParameters = {};
@@ -108,19 +108,16 @@ function SliceRevealer(target, options) {
 	function initializeSRSlices(container, options) {
 		// OPTIONS
 		const numOfSlices = options.numOfSlices;
-		const sliceDuration = options.sliceDuration;
 		const curPosition = options.curPosition
 		const startOpacity = options.startOpacity;
 		const startColor = options.startColor;
 		const slices = [];
-
 		// Create slice elements
 		for (let i = 0; i < numOfSlices; i++) {
 			const sr__slice = document.createElement('div');
 			sr__slice.className = 'sr__slice';
 
-			// Set starting CSS
-			sr__slice.style.transitionDuration = sliceDuration + 's';
+			// Set starting CSS			
 			sr__slice.style.opacity = startOpacity;
 			sr__slice.style.color = startColor;
 
@@ -138,12 +135,22 @@ function SliceRevealer(target, options) {
 			// TODO: Cross browser compatibility issue for this maybe?
 			// Adds event listener to detect when slice is not animating anymore
 			sr__slice.setAttribute('animating', false);
-			sr__slice.addEventListener(
-				'transitionend',
-				function () {
+			sr__slice.setAttribute('index', i);
+			sr__slice.addEventListener('transitionend', function (e) {
+				// Get ref # of current animation and see if there is a another animation waiting to fire after a timeout
+				const curTimeout = parseInt(e.target.getAttribute('timeout'));
+				const queuedTimeout = instance.sliceAnimations[i];
+
+				// If there is a animation waiting to fire then do nothing
+				if (curTimeout !== queuedTimeout) { }
+				// Else set animating to false, get rid of transition-duaction, clear 
+				else {
 					sr__slice.setAttribute('animating', false);
+					sr__slice.style.transitionDuration = '';
+					// instance.sliceAnimations[i] === false;
 					container.dispatchEvent(instance.sliceFinished)
 				}
+			}
 			);
 
 		}
@@ -174,8 +181,8 @@ function SliceRevealer(target, options) {
 		for (let i = 0; i < slices.length; i++) {
 			const slice = slices[i];
 
-			const transitionDuration = slice.style.transitionDuration;
-			slice.classList.add('resetting');
+			// TODO:HERE
+			slice.setAttribute('animating', false);
 
 			// Set slice's css back to startCss			
 			slice.style.color = startColor;
@@ -191,8 +198,6 @@ function SliceRevealer(target, options) {
 			slice.style.msTransform = transform;
 			slice.style.OTransform = transform;
 			slice.style.transform = transform;
-			// TODO: Find a way to achieve this without setTimeout
-			setTimeout(() => slice.classList.remove('resetting'), 25);
 		}
 	}
 
@@ -221,10 +226,10 @@ function SliceRevealer(target, options) {
 
 		// Return relavent translate property
 		switch (position) {
-			case 'top': return `translate(0%, calc(-${(offset) * 100}% - 1px))`;
-			case 'bottom': return `translate(0%, calc(${(offset) * 100}% + 1px))`;
-			case 'left': return `translate(calc(-${(offset) * 100}% - 1px), 0%)`;
-			case 'right': return `translate(calc(${(offset) * 100}% + 1px), 0%)`;
+			case 'top': return `translate(0%, calc(-${(offset) * 100}% - 5px))`;
+			case 'bottom': return `translate(0%, calc(${(offset) * 100}% + 5px))`;
+			case 'left': return `translate(calc(-${(offset) * 100}% - 5px), 0%)`;
+			case 'right': return `translate(calc(${(offset) * 100}% + 5px), 0%)`;
 			case 'middle': return 'translate(0%, 0%)';
 			default: return 'translate(0%, 0%)';
 		}
@@ -276,7 +281,7 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions) {
 
 	// If queueAnimation is true and not suppose to cancel current animation
 	if (queueAnimation) {
-		// Save parameters into queueredParameters object which runs during current animation's doneCB function
+		// Save parameters into queueredParameters object which runs during current animation's doneCB function		
 		this.queuedParameters = {};
 		this.queuedParameters.newPosition = newPosition;
 		this.queuedParameters.newOptions = newOptions;
@@ -289,42 +294,48 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions) {
 			if (startCB) startCB(this);
 			for (
 				let i = 0;
-				i < transitionOrder.length;
+				i < slices.length;
 				i++
 			) {
-				let slice = slices[transitionOrder[i]];
+				let sliceIndex = transitionOrder[i];
+				let slice = slices[sliceIndex];
 				let delay = (i * sliceInterval);
 
 				// Canceled current queued animation for slice
-				clearTimeout(this.sliceAnimations[i]);
-
+				clearTimeout(this.sliceAnimations[sliceIndex]);
 				// Start and save animation to sliceAnimations in case it needs to be canceled
-				this.sliceAnimations[i] = setTimeout(() => {
-					// Change slice's data-animating to true and give it animating class
-					slice.setAttribute('animating', true);
-					slice.classList.add('animating')
+				this.sliceAnimations[sliceIndex] = setTimeout(() => {
+					// set slice's data-timeout to new timeout reference #					
+					slice.setAttribute('timeout', this.sliceAnimations[sliceIndex]);
 
 					// Set slice's new css
 					slice.style.color = color;
 					// Find each individual silces's position if passed an position array			
 					let newPosition;
-					if (Array.isArray(position)) newPosition = position[i];
+					if (Array.isArray(position)) newPosition = position[sliceIndex];
 					else newPosition = position;
 					// Set slice's position
 					const transform = this.getTransform(newPosition, direction, numOfSlices);
-					// If slice was already in correct spot then set data-animating to false
+					// If slice was already in correct spot then set data-animating to false					
 					if (
-						slice.style.webkitTransform === transform ||
-						slice.style.MozTransform === transform ||
-						slice.style.msTransform === transform ||
-						slice.style.OTransform === transform ||
-						slice.style.transform === transform
+						(
+							slice.style.webkitTransform === transform ||
+							slice.style.MozTransform === transform ||
+							slice.style.msTransform === transform ||
+							slice.style.OTransform === transform ||
+							slice.style.transform === transform
+						)
 					) {
-						slice.setAttribute('animating', false)
-						this.container.dispatchEvent(this.sliceFinished);
+						if (slice.getAttribute('animating') === "true") {
+						}
+						else {
+							// this.container.dispatchEvent(this.sliceFinished);
+						}
 					}
 					// Else animate it!
 					else {
+						slice.setAttribute('animating', true);
+						slice.style.transitionDuration = sliceDuration / 1000 + 's';
 						slice.style.webkitTransform = transform;
 						slice.style.MozTransform = transform;
 						slice.style.msTransform = transform;
@@ -341,8 +352,14 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions) {
 
 // Returns a boolean whether the instance is currently animating or not
 SliceRevealer.prototype.isAnimating = function () {
-	return this.slices.some((slice) => {
-		return slice.getAttribute('animating') === "true";
+	return this.slices.some((slice, i) => {
+		// If currently Animating return true
+		if (slice.getAttribute('animating') === "true") return true;
+		// If not animating but a slice has a queued animation return true
+		const curTimeout = parseInt(this.slices[i].getAttribute('timeout'));
+		const queuedTimeout = this.sliceAnimations[i];
+		if (curTimeout !== queuedTimeout) return true;
+		return false;
 	})
 }
 
