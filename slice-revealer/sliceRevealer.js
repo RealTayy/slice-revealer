@@ -20,7 +20,8 @@ function sliceRevealer(target, options) {
 function SliceRevealer(target, options) {
 	// Initialize Instance of SliceRevealer
 	let startPosition = 'left';
-	let transitionOrder = []
+	let transitionOrder = [];
+	let sliceAnimations = [];
 	if (options) startPosition = options.startPosition
 	const defaultOptions = {
 		direction: 'horizontal',
@@ -51,11 +52,12 @@ function SliceRevealer(target, options) {
 	// SliceRevealer's properties
 	this.options = { ...defaultOptions, ...options };
 	this.target = target;
-	this.queuedDoneCallback;
-	this.forcedDoneCallback;
-	this.queuedAnimation
 	this.container = this.initializeSRContainer(this.target, this.options);
 	this.slices = this.initializeSRSlices(this.container, this.options);
+	this.queuedDoneCallback;
+	this.forcedDoneCallback;
+	this.queuedAnimation;
+	this.sliceAnimations = sliceAnimations;
 	this.transitionOrder = transitionOrder;
 
 	// Method used to create and return sr__container based on options
@@ -107,17 +109,20 @@ function SliceRevealer(target, options) {
 			// Append slices to container then push to slices array
 			container.appendChild(sr__slice);
 			slices.push(sr__slice);
+
+			// Push index to transition order array to track order
 			transitionOrder.push(i);
+
+			// Push empty string to sliceAnimations array to track animations
+			sliceAnimations.push('');
 		}
 
 		// Set Starting Position of slices				
 		this.resetPosition(curPosition, options, slices);
 
-		// TODO: This more customizable
-		// Set transition order of slices
-		if (random) transitionOrder = shuffle(transitionOrder);
-		else if (reverse) transitionOrder = transitionOrder.reverse();
-		
+		// Set transition order of slices		
+		if (options.transitionOrder === "random") transitionOrder = shuffle(transitionOrder);
+		else if (options.transitionOrder === "reverse") transitionOrder = transitionOrder.reverse();
 
 		// Return array of slice elements
 		return slices;
@@ -193,7 +198,7 @@ function SliceRevealer(target, options) {
 			default: return 'translate(0%, 0%)';
 		}
 	}
-	
+
 	// HelperFunction to shuffle an array
 	function shuffle(array) {
 		array = array.slice();
@@ -208,17 +213,16 @@ function SliceRevealer(target, options) {
 			temp = array[i];
 			array[i] = array[randomIndex];
 			array[randomIndex] = temp;
+		}
+
+		return array;
 	}
 
-  return array;
 }
 
-}
-
-SliceRevealer.prototype.doIt = function (newPosition, options) {	
-	const reverse = options.reverse || false;
-	console.log(reverse);
-	// OPTIONS
+SliceRevealer.prototype.doIt = function (newPosition, options) {
+	let transitionOrder = options.transitionOrder;
+	// OPTIONS	
 	options = { ...this.options, ...options };
 	const sliceDuration = options.sliceDuration * 1000; // Convert seconds to milliseconds
 	const totalDuration = options.totalDuration * 1000; // Convert seconds to milliseconds	
@@ -230,19 +234,17 @@ SliceRevealer.prototype.doIt = function (newPosition, options) {
 	const color = options.color || options[`${newPosition}Color`];
 	const startCB = options.startCB;
 	const doneCB = options.doneCB;
-	const initialDelay = (options.initialDelay) ? options.initialDelay * 1000 : 0; // Convert seconds to milliseconds		const reverse = options.reverse || this.options.reverse;
-	const random = options.random;
-	let transitionOrder = options.transitionOrder || this.transitionOrder.slice();
-	
+	const initialDelay = (options.initialDelay) ? options.initialDelay * 1000 : 0; // Convert seconds to milliseconds
 
 	// Calculate interval between slices
 	const slices = this.slices;
 	const lastSliceTransition = totalDuration - sliceDuration;
 	const sliceInterval = lastSliceTransition / (slices.length - 1 || lastSliceTransition);
 
-	// Calculate order slices transition in if special opitions passed	
-	if (random) transitionOrder = this.shuffle(transitionOrder);
-	else if (reverse) transitionOrder = transitionOrder.reverse();
+	// Calculate order slices transition in if special opitions passed		
+	if (transitionOrder === "random") transitionOrder = this.shuffle(this.transitionOrder);
+	else if (transitionOrder === "reverse") transitionOrder = this.transitionOrder.slice().reverse();
+	else transitionOrder = this.transitionOrder;
 
 	// Clear any queuedAnimations
 	clearTimeout(this.queuedAnimation);
@@ -256,7 +258,12 @@ SliceRevealer.prototype.doIt = function (newPosition, options) {
 		) {
 			let slice = slices[transitionOrder[i]];
 			let delay = (i * sliceInterval);
-			setTimeout(() => {
+
+			// Canceled current queued animation for slice
+			clearTimeout(this.sliceAnimations[i]);
+
+			// Start and save animation to sliceAnimations in case it needs to be canceled
+			this.sliceAnimations[i] = setTimeout(() => {
 				// Clear out current slice's queuedAnimation						
 				// Set slice's new css
 				slice.style.color = color;

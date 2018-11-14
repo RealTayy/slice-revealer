@@ -49,7 +49,7 @@ For a basic example head over this [jsFiddle](https://jsfiddle.net/MaiCoding/jvb
 For a quick demo on intializing, targeting, and setting options head to this [jsFiddle](https://jsfiddle.net/MaiCoding/akLcrot7/)
 
 ### Creating an Instance
-All Slice revealer instances are made through the `sliceRevealer()` function which takes two .
+All Slice revealer instances are made through the `sliceRevealer()` function which takes two arguements.
 ```javascript
 var target = document.getElementById('sr-target');
 sliceRevealer(target, options);
@@ -90,11 +90,11 @@ var target = $(someJQuerySelector);
 | numOfSlices     | Number (Integer) | 8                     | [jsFiddle]() | The number of slices                                                                                                                                     |
 | sliceDuration   | Number (Float)   | 1                     | [jsFiddle]() | The transition duration for a single slice                                                                                                               |
 | totalDuration   | Number (Float)   | 1.6                   | [jsFiddle]() | The transition duration of the entire animation                                                                                                          |
-| transitionOrder | String /| Array  | "standard"            | [jsFiddle]() | Accepts "standard", "random", "reverse", or an Array. Determines the order in which the slices will animate                                              |
-| startPosition   | String /| Array  | "left"                | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices to animate to for the start phase.                             |
-| halfwayPostion  | String /| Array  | "middle"              | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices to animate to for the halfway phase.                           |
-| endPosition     | String /| Array  | "middle"              | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices to animate to for the end phase.                               |
-| curPosition     | String /| Array  | matches startPosition | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices will be in when the instance is created with `sliceRevealer()` |
+| transitionOrder | String \| Array  | "standard"            | [jsFiddle]() | Accepts "standard", "random", "reverse", or an Array. Determines the order in which the slices will animate                                              |
+| startPosition   | String \| Array  | "left"                | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices to animate to for the start phase.                             |
+| halfwayPostion  | String \| Array  | "middle"              | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices to animate to for the halfway phase.                           |
+| endPosition     | String \| Array  | "middle"              | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices to animate to for the end phase.                               |
+| curPosition     | String \| Array  | matches startPosition | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices will be in when the instance is created with `sliceRevealer()` |
 | startColor      | String           | "#ffffff"             | [jsFiddle]() | Accepts a [CSS Color Value](https://www.w3schools.com/cssref/css_colors_legal.asp) Determines the color the slices will be in for the start phase.       |
 | halfwayColor    | String           | "#ffffff"             | [jsFiddle]() | Accepts a [CSS Color Value](https://www.w3schools.com/cssref/css_colors_legal.asp) Determines the color the slices will be in for the halfway phase.     |
 | endColor        | String           | "#ffffff"             | [jsFiddle]() | Accepts a [CSS Color Value](https://www.w3schools.com/cssref/css_colors_legal.asp) Determines the color the slices will be in for the end phase.         |
