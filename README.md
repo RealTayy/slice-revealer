@@ -57,20 +57,20 @@ var target = document.getElementById('sr-target');
 sliceRevealer(target, options);
 ```
 
-#### **sliceRevealer(target, option)**
+### sliceRevealer(target, options)
 Creates and returns an instance of `SliceRevealer()`
 
 | Parameter          | Type                                               | Description                                                                                                                              |
 |--------------------|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| target             | Element object \| NodeList object \| jQuery Object | For more information on the target parameter refer to the [Targetting](https://github.com/RealTayy/slice-revealer#targeting) section |
-| options (optional) | Object                                             | For more information on the options parameter refer to the [Options (Initializing)](https://github.com/RealTayy/slice-revealer#options-initializing) section                                        |
+| target             | Element object \| NodeList object \| jQuery Object | For more information on the target parameter refer to the [**Targetting**](https://github.com/RealTayy/slice-revealer#targeting) section |
+| options (optional) | Object                                             | For more information on the options parameter refer to the [**Options (Initializing)**](https://github.com/RealTayy/slice-revealer#options-initializing) section                                        |
 
 ```javascript
 var target = document.getElementById('sr-target');
 sliceRevealer(target, options);
 ```
 
-### Targeting
+#### Targeting
 When passing a target to `sliceRevealer()` you can use both `getElementById()` or `getElementsByClassName()`. Please note that using `getElementsByClassName()` will only initialize Slice Revealer on the first element found.
 ```javascript
 // Both of these work!
@@ -84,22 +84,26 @@ While Slice Revealer is dependency free and does not rely on jQuery you can stil
 var target = $(someJQuerySelector);
 ```
 
-### Options (Initializing)
+#### Options (Initializing)
 
-| Name            | Type             | Default               | Example      | Description                                                                                                                                              |
-|-----------------|------------------|-----------------------|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| direction       | String           | "horizontal"          | [jsFiddle]() | Accepts "horizontal" or "vertical". Determines the slices will be laid out as horizontal rows or vertical columns.                                       |
-| numOfSlices     | Number (Integer) | 8                     | [jsFiddle]() | The number of slices                                                                                                                                     |
-| sliceDuration   | Number (Float)   | 1                     | [jsFiddle]() | The transition duration for a single slice                                                                                                               |
-| totalDuration   | Number (Float)   | 1.6                   | [jsFiddle]() | The transition duration of the entire animation                                                                                                          |
-| transitionOrder | String \| Array  | "standard"            | [jsFiddle]() | Accepts "standard", "random", "reverse", or an Array. Determines the order in which the slices will animate                                              |
-| startPosition   | String \| Array  | "left"                | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices to animate to for the start phase.                             |
-| halfwayPostion  | String \| Array  | "middle"              | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices to animate to for the halfway phase.                           |
-| endPosition     | String \| Array  | "middle"              | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices to animate to for the end phase.                               |
-| curPosition     | String \| Array  | matches startPosition | [jsFiddle]() | Accepts "top", "bottom", "right", "left", or "middle". Determines the position the slices will be in when the instance is created with `sliceRevealer()` |
-| startColor      | String           | "#ffffff"             | [jsFiddle]() | Accepts a [CSS Color Value](https://www.w3schools.com/cssref/css_colors_legal.asp) Determines the color the slices will be in for the start phase.       |
-| halfwayColor    | String           | "#ffffff"             | [jsFiddle]() | Accepts a [CSS Color Value](https://www.w3schools.com/cssref/css_colors_legal.asp) Determines the color the slices will be in for the halfway phase.     |
-| endColor        | String           | "#ffffff"             | [jsFiddle]() | Accepts a [CSS Color Value](https://www.w3schools.com/cssref/css_colors_legal.asp) Determines the color the slices will be in for the end phase.         |
+| Name            | Type             | Default               | Example     | Description                                                                                                                                                                                                                                                                            |
+|-----------------|------------------|-----------------------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| direction       | String           | "horizontal"          | [CodePen]() | Accepts "horizontal" or "vertical". Determines the   slices will be laid out as horizontal rows or vertical columns.                                                                                                                                                                   |
+| numOfSlices     | Number (Integer) | 8                     | [CodePen]() | The number of slices                                                                                                                                                                                                                                                                   |
+| sliceDuration   | Number (Float)   | 1                     | [CodePen]() | The transition duration for a single slice                                                                                                                                                                                                                                             |
+| totalDuration   | Number (Float)   | 1.6                   | [CodePen]() | The transition duration of the entire animation                                                                                                                                                                                                                                        |
+| transitionOrder | String /| Array  | "standard"            | [CodePen]() | Accepts "standard", "random", "reverse", or   an Array. Determines the order in which the slices will animate                                                                                                                                                                          |
+| startPosition   | String /| Array  | "left"                | [CodePen]() | Accepts "top", "bottom", "right",   "left", or "middle". Determines the position the slices   to animate to for the start phase.                                                                                                                                                       |
+| halfwayPostion  | String /| Array  | "middle"              | [CodePen]() | Accepts "top", "bottom", "right",   "left", or "middle". Determines the position the slices   to animate to for the halfway phase.                                                                                                                                                     |
+| endPosition     | String /| Array  | "middle"              | [CodePen]() | Accepts "top", "bottom", "right",   "left", or "middle". Determines the position the slices   to animate to for the end phase.                                                                                                                                                         |
+| curPosition     | String /| Array  | matches startPosition | [CodePen]() | Accepts "top", "bottom", "right",   "left", or "middle". Determines the position the slices   will be in when the instance is created with `sliceRevealer()`                                                                                                                           |
+| startColor      | String           | "#ffffff"             | [CodePen]() | Accepts a [CSS Color   Value](https://www.w3schools.com/cssref/css_colors_legal.asp) Determines the   color the slices will be in for the start phase.                                                                                                                                 |
+| halfwayColor    | String           | "#ffffff"             | [CodePen]() | Accepts a [CSS Color   Value](https://www.w3schools.com/cssref/css_colors_legal.asp) Determines the   color the slices will be in for the halfway phase.                                                                                                                               |
+| endColor        | String           | "#ffffff"             | [CodePen]() | Accepts a [CSS Color   Value](https://www.w3schools.com/cssref/css_colors_legal.asp) Determines the   color the slices will be in for the end phase.                                                                                                                                   |
+| queueAnimation  | Boolean          | false                 | [CodePen]() | If true then firing an animation while an animation is already playing   will queue the second animation behind the first one and fire when the first   one finishes. You can only have one queued animation per instance at a time.   Queuing a new one will replace the current one. |
+| startOptions    | Object           | {}                    | [CodePen]() | Accepts an Object that will pass options whenever you animate to the   start phase. For a list of valid phase options refer to the [Options   (Phase)](https://github.com/RealTayy/slice-revealer#options-phase) section.                                                              |
+| halfwayOptions  | Object           | {}                    | [CodePen]() | Accepts an Object that will pass options whenever you animate to the   halfway phase. For a list of valid phase options refer to the [Options   (Phase)](https://github.com/RealTayy/slice-revealer#options-phase) section.                                                            |
+| endOptions      | Object           | {}                    | [CodePen]() | Accepts an Object that will pass options whenever you animate to the end   phase. For a list of valid phase options refer to the [Options   (Phase)](https://github.com/RealTayy/slice-revealer#options-phase) section.                                                                |
 
 ## Methods
 All methods are called on the instance that is created when initializing
@@ -108,25 +112,25 @@ var element = document
 var instance = slick
 ```
 
-##### .doIt()
+### .doIt(phase, options)
 .doIt() description
-###### Arguements
+#### Phase
 **options (optional):**  description
 ```javascript
 Example javascript
 ```
 
-#### Options
+#### Options (Phase)
 | Name | Type | Default |
 |------|------|---------|
 | asdf | asdf | asdf    |
 |      |      |         |
 |      |      |         |
 
-# Misc
-## License
+## Misc
+### License
 Slice Reavealer is an open source software under the [MIT license](https://github.com/RealTayy/slice-revealer/blob/master/LICENSE.md)
-## Credit/Shameless Plug
+### Credit/Shameless Plug
 Interested in who made this? Come visit my portfolio at [**MaiCoding**](http://www.maiCoding.me)
 
 Want more sick and easy to use animations? Come over to [**AnimationZone**]()
