@@ -5,7 +5,7 @@ Slice Revealer is a easy to use dependency free library that allows users to cov
 Demo site coming soon!
 
 ## Getting Started
-Currently the only way to use Slice Revealer is to manually [download]() and link `slickRevealer.min.js` and `slickRevealer.css` in your HTML
+Currently the only way to use Slice Revealer is to manually [download](https://github.com/RealTayy/slice-revealer/raw/v1.0.0-prerelease/archive/sliceRevealer-v1.0.0.zip) and link `slickRevealer.min.js` and `slickRevealer.css` in your HTML
 ```html
 <head>
     <link rel="stylesheet" type="text/css" href="./sliceRevealer.css">
@@ -126,4 +126,5 @@ Example javascript
 Slice Reavealer is an open source software under the [MIT license](https://github.com/RealTayy/slice-revealer/blob/master/LICENSE.md)
 ## Credit/Shameless Plug
 Interested in who made this? Come visit my portfolio at [**MaiCoding**](http://www.maiCoding.me)
+
 Want more sick and easy to use animations? Come over to [**AnimationZone**]()
