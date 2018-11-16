@@ -40,6 +40,9 @@ function SliceRevealer(target, options) {
 		halfwayColor: '#ffffff',
 		endColor: '#ffffff',
 		queueAnimation: false,
+		startOptions: {},
+		halfwayOptions: {},
+		endOptions: {},
 		startCB: () => { },
 		doneCB: () => { },
 	};
@@ -59,7 +62,7 @@ function SliceRevealer(target, options) {
 	this.container = this.initializeSRContainer(this.target, this.options);
 	this.slices = this.initializeSRSlices(this.container, this.options);
 	this.queuedDoneCallback;
-	this.queuedParameters = undefined;
+	this.queuedParameters = {};
 	this.currentAnimation;
 	this.sliceAnimations = sliceAnimations;
 	this.transitionOrder = transitionOrder;
@@ -145,7 +148,7 @@ function SliceRevealer(target, options) {
 
 			// TODO: Cross browser/Old browser compatibility issue for this maybe?
 			// Adds event listener to detect when slice is not animating anymore			
-			const vendorTransitionEnd;
+			let vendorTransitionEnd;
 			switch (getBrowser()) {
 				case 'Opera': vendorTransitionEnd = 'otransitionend'; break;
 				case 'Safari': vendorTransitionEnd = 'webkitTransitionEnd'; break;
@@ -176,8 +179,9 @@ function SliceRevealer(target, options) {
 		this.resetPosition(curPosition, options, slices);
 
 		// Set transition order of slices		
-		if (options.transitionOrder === 'random') transitionOrder = shuffle(transitionOrder);
-		else if (options.transitionOrder === 'reverse') transitionOrder = transitionOrder.reverse();
+		if (options.transitionOrder === 'random') transitionOrder = shuffle(transitionOrder)
+		else if (options.transitionOrder === 'reverse') transitionOrder = transitionOrder.reverse()
+		else if (Array.isArray(options.transitionOrder)) transitionOrder = options.transitionOrder;
 
 		// Return array of slice elements
 		return slices;
@@ -293,15 +297,22 @@ function SliceRevealer(target, options) {
 }
 
 SliceRevealer.prototype.doIt = function (newPosition, newOptions = {}) {
-	// OPTIONS
+
+	// OPTIONS	
+	switch (newPosition) {
+		case 'start': newOptions = { ...this.options.startOptions, ...newOptions }; break;
+		case 'halfway': newOptions = { ...this.options.halfwayOptions, ...newOptions }; break;
+		case 'end': newOptions = { ...this.options.endOptions, ...newOptions }; break;
+		default: throw new Error(`'${newPosition}' not valid position. Valid positions are 'start', 'halfway', and 'end'`);
+	}
 	let options = { ...this.options, ...newOptions };
+	const position = options[`${newPosition}Position`];
 	const sliceDuration = options.sliceDuration * 1000; // Convert seconds to milliseconds
 	const totalDuration = options.totalDuration * 1000; // Convert seconds to milliseconds	
 	const direction = options.direction;
 	const numOfSlices = options.numOfSlices;
 
 	// Options that can be passed in as arguement	
-	const position = options[`${newPosition}Position`];
 	const color = options.color || options[`${newPosition}Color`];
 	const startCB = options.startCB;
 	const doneCB = options.doneCB;
@@ -309,23 +320,25 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions = {}) {
 	const queueAnimation = options.queueAnimation;
 	let transitionOrder = (newOptions.transitionOrder !== undefined) ? newOptions.transitionOrder : this.transitionOrder;
 
+	// Calculate order slices transition in if special opitions passed		
+	if (transitionOrder === "random") transitionOrder = this.shuffle(this.transitionOrder);
+	else if (transitionOrder === "reverse") transitionOrder = this.transitionOrder.slice().reverse();
+	else if (transitionOrder === "standard") transitionOrder = this.transitionOrder.slice().sort();
 
 	// Calculate interval between slices
 	const slices = this.slices;
 	const lastSliceTransition = totalDuration - sliceDuration;
 	const sliceInterval = lastSliceTransition / (slices.length - 1 || lastSliceTransition);
 
-	// Calculate order slices transition in if special opitions passed		
-	if (transitionOrder === "random") transitionOrder = this.shuffle(this.transitionOrder);
-	else if (transitionOrder === "reverse") transitionOrder = this.transitionOrder.slice().reverse();
-	else if (transitionOrder === "standard") transitionOrder = this.transitionOrder.slice().sort();
-
 	// If queueAnimation is true and not suppose to cancel current animation
+	const qParaIsEmpty = (Object.keys(this.queuedParameters).length === 0 && this.queuedParameters.constructor === Object);
 	if (queueAnimation && this.isAnimating()) {
 		// Save parameters into queueredParameters object which runs during current animation's doneCB function		
-		this.queuedParameters = {};
-		this.queuedParameters.newPosition = newPosition;
-		this.queuedParameters.newOptions = newOptions;
+		if (this.queuedParameters.newPosition === newPosition && this.queuedParameters.newOptions === newOptions) { }
+		else {
+			this.queuedParameters.newPosition = newPosition;
+			this.queuedParameters.newOptions = newOptions;
+		}
 	}
 	// Else Do the animation NOW!
 	else {

@@ -1,42 +1,38 @@
-window.onload = function () {
-	const element = document.getElementById('box-two');
-	const options = {
-		numOfSlices: 13,
-		// transitionOrder: 'reverse',
-		halfwayPosition: 'top',
+// Different ways to target
+const idTarget = document.getElementById('target-id');
+const classTarget = document.getElementsByClassName('target-class')[0]
+const jQueryTarget = $('#target-jQuery')[0];
 
-	}
-
-	const slicerTwo = sliceRevealer(element, options);
-
-	let time = 0;
-	let timer = 0;
-	setInterval(() => { time++; timer = time / 100 }, 10);
-	// setInterval(() => { slicerTwo.isAnimating() }, 500)
-
-	element.addEventListener('mouseenter', function () {
-		slicerTwo.doIt('end', {
-			startCB: (instance) => {
-				console.log(timer + ':entering...');
-			},
-			doneCB: (instance) => {
-				console.log(timer + ':entered!');
-			},
-			// queueAnimation: true
-		});
-	})
-
-	element.addEventListener('mouseleave', function () {
-		slicerTwo.doIt('halfway', {
-			startCB: (instance) => {
-				console.log(timer + ':leaving...');
-			},
-			doneCB: (instance) => {
-				console.log(timer + ':left!');
-				instance.resetPosition();
-			},
-			queueAnimation: true,
-			// transitionOrder: 'reverse',
-		});
-	})
+// the target-class box
+const classTargetOptions = {
+  numOfSlices: 10,
+  
 }
+const classTargetInstance = sliceRevealer(classTarget, classTargetOptions);
+classTarget.addEventListener('mouseenter', () => {
+  classTargetInstance.doIt('end')
+})
+
+classTarget.addEventListener('mouseleave', () => {
+  classTargetInstance.doIt('start')
+})
+
+// The target-jQuery box
+const jQueryTargetOptions = {  
+  numOfSlices: 6,
+  startPosition: 'middle',
+  startColor: '#173753',
+  queueAnimation: true,
+  endPosition: ['left', 'right', 'left', 'right', 'left', 'right'],
+  endColor: '#173753',  
+  endOptions: { doneCB: (instance) => instance.resetPosition('bottom') },  
+  
+}
+const jQueryTargetInstance = sliceRevealer(jQueryTarget, jQueryTargetOptions);
+jQueryTarget.addEventListener('mouseenter', () => {
+  jQueryTargetInstance.doIt('end')
+})
+
+jQueryTarget.addEventListener('mouseleave', () => {
+  jQueryTargetInstance.doIt('start')
+})

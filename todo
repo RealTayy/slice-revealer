@@ -4,6 +4,9 @@ sass --watch ./slice-revealer/sliceRevealer.scss ./slice-revealer/sliceRevealer.
 > Work around for box-shadow 1 pixel off
 > Make reset work better
 > Move getAttribute to array for array lookups YO!
+> be able to pass in just one ['left', 'right']
+> just passsing color options sets ALL colors
 
 KNOWN BUG:
-> There
+> Unreliable detect stat of CSS animation
+> QueuedAnimation is buggy when moving firing rapid doIt()s.

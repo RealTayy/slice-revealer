@@ -2,8 +2,9 @@
 Slice Revealer is a easy to use dependency free library that allows users to cover and uncover DOM elements with customizable animated slices. The idea was inspired by [Zhenya Rynzhuk](https://zhenyary.com/) of [Sochnik](https://dribbble.com/Sochnik)'s [transition experiments](https://dribbble.com/shots/4132057-Selected-Works-Transitions-Experiments).
 
 ## Demos & Documentation
-Demo site(s) coming soon.
-Documentation site coming soon. For now refer to the [Documentation](https://github.com/RealTayy/slice-revealer#documentation) section below.
+[Options & Targeting Demo](https://codepen.io/maiCoding/pen/VVWMRM)
+More demo sites coming soon.
+Documentation site coming soon. For now refer to the [**Documentation**](https://github.com/RealTayy/slice-revealer#documentation) section below.
 
 ## Getting Started
 Currently the only way to use Slice Revealer is to manually [download](https://github.com/RealTayy/slice-revealer/raw/v1.0.0-prerelease/archive/sliceRevealer-v1.0.0.zip) and link `slickRevealer.min.js` and `slickRevealer.css` in your HTML
@@ -43,11 +44,11 @@ instance.doIt("start")
 ```
 
 And that's it! For more in-depth information on customizing your Slice Revealer refer to the [**Initialization**](https://github.com/RealTayy/slice-revealer#initialization) section below.
-For a basic example head over this [jsFiddle](https://jsfiddle.net/MaiCoding/jvb4oce8/15).
+For a basic example head over this [CodePen](https://codepen.io/maiCoding/pen/JeJEXr).
 
 # Documentation
 ## Initialization
-For a quick demo on intializing, targeting, and setting options head to this [jsFiddle](https://jsfiddle.net/MaiCoding/akLcrot7/)
+For a quick demo on intializing, targeting, and setting options head to this [CodePen](https://codepen.io/maiCoding/pen/VVWMRM)
 
 ### Creating an Instance
 All Slice revealer instances are made through the `sliceRevealer()` function which takes two arguements.
