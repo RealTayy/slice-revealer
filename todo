@@ -4,3 +4,6 @@ sass --watch ./slice-revealer/sliceRevealer.scss ./slice-revealer/sliceRevealer.
 > Work around for box-shadow 1 pixel off
 > Make reset work better
 > Move getAttribute to array for array lookups YO!
+
+KNOWN BUG:
+> There

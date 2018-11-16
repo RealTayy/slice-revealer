@@ -130,12 +130,19 @@ function SliceRevealer(target, options) {
 			transitionOrder.push(i);
 
 			// Push empty string to sliceAnimations array to track animations
-			sliceAnimations.push('');
+			sliceAnimations.push(-1);
+
+			// Set initial animating state to false
+			sr__slice.setAttribute('animating', false);
+
+			// Set initial timeout ref# to -1
+			sr__slice.setAttribute('timeout', -1);
+
+			// Set data-index to slice's index
+			sr__slice.setAttribute('index', i);
 
 			// TODO: Cross browser compatibility issue for this maybe?
-			// Adds event listener to detect when slice is not animating anymore
-			sr__slice.setAttribute('animating', false);
-			sr__slice.setAttribute('index', i);
+			// Adds event listener to detect when slice is not animating anymore			
 			sr__slice.addEventListener('transitionend', function (e) {
 				// Get ref # of current animation and see if there is a another animation waiting to fire after a timeout
 				const curTimeout = parseInt(e.target.getAttribute('timeout'));
@@ -147,7 +154,6 @@ function SliceRevealer(target, options) {
 				else {
 					sr__slice.setAttribute('animating', false);
 					sr__slice.style.transitionDuration = '';
-					// instance.sliceAnimations[i] === false;
 					container.dispatchEvent(instance.sliceFinished)
 				}
 			}
@@ -160,7 +166,7 @@ function SliceRevealer(target, options) {
 
 		// Set transition order of slices		
 		if (options.transitionOrder === 'random') transitionOrder = shuffle(transitionOrder);
-		else if (options.transitionOrder === 'random') transitionOrder = transitionOrder.reverse();
+		else if (options.transitionOrder === 'reverse') transitionOrder = transitionOrder.reverse();
 
 		// Return array of slice elements
 		return slices;
@@ -251,9 +257,8 @@ function SliceRevealer(target, options) {
 
 }
 
-SliceRevealer.prototype.doIt = function (newPosition, newOptions) {
-	let transitionOrder = newOptions.transitionOrder;
-	// OPTIONS	
+SliceRevealer.prototype.doIt = function (newPosition, newOptions = {}) {
+	// OPTIONS
 	let options = { ...this.options, ...newOptions };
 	const sliceDuration = options.sliceDuration * 1000; // Convert seconds to milliseconds
 	const totalDuration = options.totalDuration * 1000; // Convert seconds to milliseconds	
@@ -267,6 +272,8 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions) {
 	const doneCB = options.doneCB;
 	const initialDelay = (options.initialDelay) ? options.initialDelay * 1000 : 0; // Convert seconds to milliseconds
 	const queueAnimation = options.queueAnimation;
+	let transitionOrder = (newOptions.transitionOrder !== undefined) ? newOptions.transitionOrder : this.transitionOrder;
+
 
 	// Calculate interval between slices
 	const slices = this.slices;
@@ -276,11 +283,10 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions) {
 	// Calculate order slices transition in if special opitions passed		
 	if (transitionOrder === "random") transitionOrder = this.shuffle(this.transitionOrder);
 	else if (transitionOrder === "reverse") transitionOrder = this.transitionOrder.slice().reverse();
-	else transitionOrder = this.transitionOrder;
-
-
+	else if (transitionOrder === "standard") transitionOrder = this.transitionOrder.slice().sort();
+	
 	// If queueAnimation is true and not suppose to cancel current animation
-	if (queueAnimation) {
+	if (queueAnimation && this.isAnimating()) {
 		// Save parameters into queueredParameters object which runs during current animation's doneCB function		
 		this.queuedParameters = {};
 		this.queuedParameters.newPosition = newPosition;
@@ -303,11 +309,12 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions) {
 
 				// Canceled current queued animation for slice
 				clearTimeout(this.sliceAnimations[sliceIndex]);
+				// this.sliceAnimations[sliceIndex] = -1
 				// Start and save animation to sliceAnimations in case it needs to be canceled
 				this.sliceAnimations[sliceIndex] = setTimeout(() => {
-					// set slice's data-timeout to new timeout reference #					
+					// this.sliceAnimations[sliceIndex] = queuedSliceAnimation;
+					// set slice's data-timeout to new timeout reference #										
 					slice.setAttribute('timeout', this.sliceAnimations[sliceIndex]);
-
 					// Set slice's new css
 					slice.style.color = color;
 					// Find each individual silces's position if passed an position array			
@@ -327,20 +334,23 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions) {
 						)
 					) {
 						if (slice.getAttribute('animating') === "true") {
+							slice.setAttribute('animating', false);
+							slice.style.transitionDuration = '';
+							this.container.dispatchEvent(this.sliceFinished)
 						}
 						else {
-							// this.container.dispatchEvent(this.sliceFinished);
+							// Do NOTHING!
 						}
 					}
 					// Else animate it!
 					else {
-						slice.setAttribute('animating', true);
 						slice.style.transitionDuration = sliceDuration / 1000 + 's';
 						slice.style.webkitTransform = transform;
 						slice.style.MozTransform = transform;
 						slice.style.msTransform = transform;
 						slice.style.OTransform = transform;
 						slice.style.transform = transform;
+						slice.setAttribute('animating', true);
 					}
 				}, delay)
 			}
@@ -352,15 +362,16 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions) {
 
 // Returns a boolean whether the instance is currently animating or not
 SliceRevealer.prototype.isAnimating = function () {
-	return this.slices.some((slice, i) => {
-		// If currently Animating return true
+	const isAnimating = this.slices.some((slice, i) => {
+		// If currently Animating return true		
 		if (slice.getAttribute('animating') === "true") return true;
 		// If not animating but a slice has a queued animation return true
 		const curTimeout = parseInt(this.slices[i].getAttribute('timeout'));
-		const queuedTimeout = this.sliceAnimations[i];
+		const queuedTimeout = this.sliceAnimations[i];		
 		if (curTimeout !== queuedTimeout) return true;
 		return false;
-	})
+	});	
+	return isAnimating
 }
 
 // TODO: Actually destroy instance instead of removing sr_container

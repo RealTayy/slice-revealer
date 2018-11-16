@@ -1,8 +1,9 @@
 # Slice Revealer
-Slice Revealer is a easy to use dependency free library that allows users to cover and uncover images with customizable animated slices. The idea was inspired by [Zhenya Rynzhuk](https://zhenyary.com/) of [Sochnik](https://dribbble.com/Sochnik)'s [transition experiments](https://dribbble.com/shots/4132057-Selected-Works-Transitions-Experiments).
+Slice Revealer is a easy to use dependency free library that allows users to cover and uncover DOM elements with customizable animated slices. The idea was inspired by [Zhenya Rynzhuk](https://zhenyary.com/) of [Sochnik](https://dribbble.com/Sochnik)'s [transition experiments](https://dribbble.com/shots/4132057-Selected-Works-Transitions-Experiments).
 
-## Demo
-Demo site coming soon!
+## Demos & Documentation
+Demo site(s) coming soon.
+Documentation site coming soon. For now refer to the [Documentation](https://github.com/RealTayy/slice-revealer#documentation) section below.
 
 ## Getting Started
 Currently the only way to use Slice Revealer is to manually [download](https://github.com/RealTayy/slice-revealer/raw/v1.0.0-prerelease/archive/sliceRevealer-v1.0.0.zip) and link `slickRevealer.min.js` and `slickRevealer.css` in your HTML
@@ -18,7 +19,7 @@ Currently the only way to use Slice Revealer is to manually [download](https://g
 
 ## How to use
 ### Basic Initialization
-The DOM Element you want to cover/ reveal MUST have it's position, height, and width set explicitly.
+The DOM Element you want to cover/reveal MUST have it's position, height, and width set explicitly.
 ```html
 <!-- Important! Always set the container position/height/width explicitly in your HTML or CSS-->
 <div id="sr-target" style="position: relative; height: 100%; width: 100%"></div>
@@ -60,8 +61,8 @@ Creates and returns an instance of `SliceRevealer()`
 
 | Parameter          | Type                                               | Description                                                                                                                              |
 |--------------------|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| target             | Element object \| NodeList object \| jQuery Object | For more information on the target parameter refer to the [**Targetting**](https://github.com/RealTayy/slice-revealer#targeting) section |
-| options (optional) | Object                                             | For more information on the options parameter refer to the [**Options (Initializing)**]() section                                        |
+| target             | Element object \| NodeList object \| jQuery Object | For more information on the target parameter refer to the [Targetting](https://github.com/RealTayy/slice-revealer#targeting) section |
+| options (optional) | Object                                             | For more information on the options parameter refer to the [Options (Initializing)](https://github.com/RealTayy/slice-revealer#options-initializing) section                                        |
 
 ```javascript
 var target = document.getElementById('sr-target');
