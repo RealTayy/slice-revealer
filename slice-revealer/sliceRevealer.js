@@ -44,12 +44,14 @@ function SliceRevealer(target, options) {
 		doneCB: () => { },
 	};
 
-	// Hoisted Methods
+	// Hoisted methods
 	this.initializeSRContainer = initializeSRContainer;
 	this.initializeSRSlices = initializeSRSlices;
 	this.resetPosition = resetPosition;
+	// Helper functions
 	this.getTransform = getTransform;
 	this.shuffle = shuffle;
+	this.getBrowser = getBrowser;
 
 	// SliceRevealer's properties
 	this.options = { ...defaultOptions, ...options };
@@ -141,9 +143,18 @@ function SliceRevealer(target, options) {
 			// Set data-index to slice's index
 			sr__slice.setAttribute('index', i);
 
-			// TODO: Cross browser compatibility issue for this maybe?
+			// TODO: Cross browser/Old browser compatibility issue for this maybe?
 			// Adds event listener to detect when slice is not animating anymore			
-			sr__slice.addEventListener('transitionend', function (e) {
+			const vendorTransitionEnd;
+			switch (getBrowser()) {
+				case 'Opera': vendorTransitionEnd = 'otransitionend'; break;
+				case 'Safari': vendorTransitionEnd = 'webkitTransitionEnd'; break;
+				case 'Chrome':
+				case 'Firefox':
+				case 'IE':
+				default: vendorTransitionEnd = 'transitionend';
+			}
+			sr__slice.addEventListener(vendorTransitionEnd, function (e) {
 				// Get ref # of current animation and see if there is a another animation waiting to fire after a timeout
 				const curTimeout = parseInt(e.target.getAttribute('timeout'));
 				const queuedTimeout = instance.sliceAnimations[i];
@@ -187,7 +198,6 @@ function SliceRevealer(target, options) {
 		for (let i = 0; i < slices.length; i++) {
 			const slice = slices[i];
 
-			// TODO:HERE
 			slice.setAttribute('animating', false);
 
 			// Set slice's css back to startCss			
@@ -241,7 +251,7 @@ function SliceRevealer(target, options) {
 		}
 	}
 
-	// HelperFunction to shuffle an array
+	// Helper function to shuffle an array
 	function shuffle(array) {
 		array = array.slice();
 		let i = array.length, temp, randomIndex;
@@ -254,6 +264,31 @@ function SliceRevealer(target, options) {
 		}
 		return array;
 	}
+
+	// Helper function to detect browser to apply prefixes
+	function getBrowser() {
+		if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+			return ('Opera');
+		}
+		else if (navigator.userAgent.indexOf("Chrome") != -1) {
+			return ('Chrome');
+		}
+		else if (navigator.userAgent.indexOf("Safari") != -1) {
+			return ('Safari');
+		}
+		else if (navigator.userAgent.indexOf("Firefox") != -1) {
+			return ('Firefox');
+		}
+		else if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) //IF IE > 10
+		{
+			return ('IE');
+		}
+		else {
+			return ('unknown');
+		}
+	}
+
+
 
 }
 
@@ -284,7 +319,7 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions = {}) {
 	if (transitionOrder === "random") transitionOrder = this.shuffle(this.transitionOrder);
 	else if (transitionOrder === "reverse") transitionOrder = this.transitionOrder.slice().reverse();
 	else if (transitionOrder === "standard") transitionOrder = this.transitionOrder.slice().sort();
-	
+
 	// If queueAnimation is true and not suppose to cancel current animation
 	if (queueAnimation && this.isAnimating()) {
 		// Save parameters into queueredParameters object which runs during current animation's doneCB function		
@@ -309,7 +344,6 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions = {}) {
 
 				// Canceled current queued animation for slice
 				clearTimeout(this.sliceAnimations[sliceIndex]);
-				// this.sliceAnimations[sliceIndex] = -1
 				// Start and save animation to sliceAnimations in case it needs to be canceled
 				this.sliceAnimations[sliceIndex] = setTimeout(() => {
 					// this.sliceAnimations[sliceIndex] = queuedSliceAnimation;
@@ -367,10 +401,10 @@ SliceRevealer.prototype.isAnimating = function () {
 		if (slice.getAttribute('animating') === "true") return true;
 		// If not animating but a slice has a queued animation return true
 		const curTimeout = parseInt(this.slices[i].getAttribute('timeout'));
-		const queuedTimeout = this.sliceAnimations[i];		
+		const queuedTimeout = this.sliceAnimations[i];
 		if (curTimeout !== queuedTimeout) return true;
 		return false;
-	});	
+	});
 	return isAnimating
 }
 
