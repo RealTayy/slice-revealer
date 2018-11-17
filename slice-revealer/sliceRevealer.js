@@ -75,6 +75,7 @@ function SliceRevealer(target, options) {
 		// OPTIONS
 		const direction = options.direction;
 		const sticky = options.sticky;
+		const zIndex = options.zIndex;
 
 		const sr__container = document.createElement('div');
 		sr__container.className = 'sr__container';
