@@ -6,6 +6,7 @@ sass --watch ./slice-revealer/sliceRevealer.scss ./slice-revealer/sliceRevealer.
 > Move getAttribute to array for array lookups YO!
 > be able to pass in just one ['left', 'right']
 > just passsing color options sets ALL colors
+> Add sticky options for init ALSO zIndex
 
 KNOWN BUG:
 > Unreliable detect stat of CSS animation

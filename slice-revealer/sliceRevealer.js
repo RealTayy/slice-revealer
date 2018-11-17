@@ -45,6 +45,8 @@ function SliceRevealer(target, options) {
 		endOptions: {},
 		startCB: () => { },
 		doneCB: () => { },
+		sticky: false,
+		zIndex: 1,
 	};
 
 	// Hoisted methods
@@ -72,6 +74,7 @@ function SliceRevealer(target, options) {
 	function initializeSRContainer(target, options) {
 		// OPTIONS
 		const direction = options.direction;
+		const sticky = options.sticky;
 
 		const sr__container = document.createElement('div');
 		sr__container.className = 'sr__container';
@@ -84,8 +87,16 @@ function SliceRevealer(target, options) {
 		if (direction === 'vertical') sr__container.classList.add('sr__vertical');
 		else sr__container.classList.add('sr__horizontal');
 
-		// Append sr__container to target Element
-		target.appendChild(sr__container);
+		// Append sr__container as firstChild to target Element if sticky and make position: sticky;
+		if (sticky) {
+			target.insertBefore(sr__container, target.firstChild);
+			sr__container.style.position = 'sticky';
+		}
+		// Else append to end of target
+		else target.appendChild(sr__container);	
+		
+		// Set sr__container's zIndex
+		sr__container.style.zIndex = zIndex;
 
 		// Listener to check whether to run callback functions and queued animations or not depending on whether all slices have finished animations 
 		sr__container.addEventListener('slicefinished', () => {
