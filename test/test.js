@@ -21,11 +21,10 @@ classTarget.addEventListener('mouseleave', () => {
 const jQueryTargetOptions = {  
   numOfSlices: 6,
   startPosition: 'middle',
-  startColor: '#173753',
+  color: '#173753',
   queueAnimation: true,
-  endPosition: ['left', 'right', 'left', 'right', 'left', 'right'],
-  endColor: '#173753',  
-  endOptions: { doneCB: (instance) => instance.resetPosition('bottom') },  
+  endPosition: ['left', 'right', 'left', 'right', 'left', 'right'],  
+  endOptions: { doneCB: (instance) => instance.resetPosition('bottom'), color: '#ffffff' },  
   
 }
 const jQueryTargetInstance = sliceRevealer(jQueryTarget, jQueryTargetOptions);
@@ -34,5 +33,5 @@ jQueryTarget.addEventListener('mouseenter', () => {
 })
 
 jQueryTarget.addEventListener('mouseleave', () => {
-  jQueryTargetInstance.doIt('start')
+  jQueryTargetInstance.doIt('start', {color: 'red'})
 })

@@ -33,12 +33,7 @@ function SliceRevealer(target, options) {
 		halfwayPosition: 'middle',
 		endPosition: 'middle',
 		curPosition: startPosition || 'left',
-		startOpacity: 1,
-		halfwayOpacity: 1,
-		endOpacity: 1,
-		startColor: '#ffffff',
-		halfwayColor: '#ffffff',
-		endColor: '#ffffff',
+		color: '#ffffff',
 		queueAnimation: false,
 		startOptions: {},
 		halfwayOptions: {},
@@ -94,8 +89,8 @@ function SliceRevealer(target, options) {
 			sr__container.style.position = 'sticky';
 		}
 		// Else append to end of target
-		else target.appendChild(sr__container);	
-		
+		else target.appendChild(sr__container);
+
 		// Set sr__container's zIndex
 		sr__container.style.zIndex = zIndex;
 
@@ -126,17 +121,15 @@ function SliceRevealer(target, options) {
 		// OPTIONS
 		const numOfSlices = options.numOfSlices;
 		const curPosition = options.curPosition
-		const startOpacity = options.startOpacity;
-		const startColor = options.startColor;
+		const color = options.color;
 		const slices = [];
 		// Create slice elements
 		for (let i = 0; i < numOfSlices; i++) {
 			const sr__slice = document.createElement('div');
 			sr__slice.className = 'sr__slice';
 
-			// Set starting CSS			
-			sr__slice.style.opacity = startOpacity;
-			sr__slice.style.color = startColor;
+			// Set starting CSS						
+			sr__slice.style.color = color;
 
 
 			// Append slices to container then push to slices array
@@ -206,7 +199,7 @@ function SliceRevealer(target, options) {
 		options = { ...this.options, ...options };
 		const direction = options.direction;
 		const numOfSlices = options.numOfSlices;
-		const startColor = options.startColor;
+		const color = options.color;
 		position = position || options.startPosition;
 
 		slices = slices || this.slices
@@ -217,7 +210,7 @@ function SliceRevealer(target, options) {
 			slice.setAttribute('animating', false);
 
 			// Set slice's css back to startCss			
-			slice.style.color = startColor;
+			slice.style.color = color;
 
 			// Set slice's position
 			// Find each individual silces's position if passed an position array			
@@ -309,14 +302,10 @@ function SliceRevealer(target, options) {
 }
 
 SliceRevealer.prototype.doIt = function (newPosition, newOptions = {}) {
-
 	// OPTIONS	
-	switch (newPosition) {
-		case 'start': newOptions = { ...this.options.startOptions, ...newOptions }; break;
-		case 'halfway': newOptions = { ...this.options.halfwayOptions, ...newOptions }; break;
-		case 'end': newOptions = { ...this.options.endOptions, ...newOptions }; break;
-		default: throw new Error(`'${newPosition}' not valid position. Valid positions are 'start', 'halfway', and 'end'`);
-	}
+	// Load in position options that were created during instance intialization
+	newOptions = { ...this.options[`${newPosition}Options`], ...newOptions }
+	// Load general options that were created during instance in
 	let options = { ...this.options, ...newOptions };
 	const position = options[`${newPosition}Position`];
 	const sliceDuration = options.sliceDuration * 1000; // Convert seconds to milliseconds
@@ -325,14 +314,14 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions = {}) {
 	const numOfSlices = options.numOfSlices;
 
 	// Options that can be passed in as arguement	
-	const color = options.color || options[`${newPosition}Color`];
+	const color = options.color;
 	const startCB = options.startCB;
 	const doneCB = options.doneCB;
 	const initialDelay = (options.initialDelay) ? options.initialDelay * 1000 : 0; // Convert seconds to milliseconds
 	const queueAnimation = options.queueAnimation;
 	let transitionOrder = (newOptions.transitionOrder !== undefined) ? newOptions.transitionOrder : this.transitionOrder;
 
-	// Calculate order slices transition in if special opitions passed		
+	// Calculate order slices transition in if special options passed		
 	if (transitionOrder === "random") transitionOrder = this.shuffle(this.transitionOrder);
 	else if (transitionOrder === "reverse") transitionOrder = this.transitionOrder.slice().reverse();
 	else if (transitionOrder === "standard") transitionOrder = this.transitionOrder.slice().sort();
@@ -342,8 +331,7 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions = {}) {
 	const lastSliceTransition = totalDuration - sliceDuration;
 	const sliceInterval = lastSliceTransition / (slices.length - 1 || lastSliceTransition);
 
-	// If queueAnimation is true and not suppose to cancel current animation
-	const qParaIsEmpty = (Object.keys(this.queuedParameters).length === 0 && this.queuedParameters.constructor === Object);
+	// If queueAnimation is true and not suppose to cancel current animation	
 	if (queueAnimation && this.isAnimating()) {
 		// Save parameters into queueredParameters object which runs during current animation's doneCB function		
 		if (this.queuedParameters.newPosition === newPosition && this.queuedParameters.newOptions === newOptions) { }
@@ -370,9 +358,8 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions = {}) {
 				// Canceled current queued animation for slice
 				clearTimeout(this.sliceAnimations[sliceIndex]);
 				// Start and save animation to sliceAnimations in case it needs to be canceled
-				this.sliceAnimations[sliceIndex] = setTimeout(() => {
-					// this.sliceAnimations[sliceIndex] = queuedSliceAnimation;
-					// set slice's data-timeout to new timeout reference #										
+				this.sliceAnimations[sliceIndex] = setTimeout(() => {					
+					// Set slice's data-timeout to new timeout reference #										
 					slice.setAttribute('timeout', this.sliceAnimations[sliceIndex]);
 					// Set slice's new css
 					slice.style.color = color;

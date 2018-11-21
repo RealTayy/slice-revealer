@@ -2,10 +2,9 @@ sass --watch ./slice-revealer/sliceRevealer.scss ./slice-revealer/sliceRevealer.
 
 > Implement custom easings
 > Work around for box-shadow 1 pixel off
-> Make reset work better
 > Move getAttribute to array for array lookups YO!
-> be able to pass in just one ['left', 'right']
-> just passsing color options sets ALL colors
+> Be able to pass in just one ['left', 'right']
+> Just passsing color options sets ALL colors
 > Add sticky options for init ALSO zIndex
 
 KNOWN BUG:
