@@ -38,8 +38,6 @@ function SliceRevealer(target, options) {
 		startOptions: {},
 		halfwayOptions: {},
 		endOptions: {},
-		startCB: () => { },
-		doneCB: () => { },
 		sticky: false,
 		zIndex: 1,
 	};
@@ -101,7 +99,7 @@ function SliceRevealer(target, options) {
 				// If there is a queued animation then run it				
 				if (this.queuedParameters && this.queuedParameters.hasOwnProperty('newPosition')) {
 					this.queuedParameters.newOptions.queueAnimation = false;
-					this.doIt(this.queuedParameters.newPosition, this.queuedParameters.newOptions);
+					this.goPhase(this.queuedParameters.newPosition, this.queuedParameters.newOptions);
 					this.queuedParameters = {};
 				}
 
@@ -177,7 +175,6 @@ function SliceRevealer(target, options) {
 				}
 			}
 			);
-
 		}
 
 		// Set Starting Position of slices				
@@ -192,7 +189,6 @@ function SliceRevealer(target, options) {
 		return slices;
 	}
 
-	// TODO: MAKE POSITION OF SLICES GO TO NEW POSITION WITHOUT TRANSITION!
 	// Helper method to position slices without transition
 	function resetPosition(position, options, slices) {
 		// OPTIONS				
@@ -301,19 +297,19 @@ function SliceRevealer(target, options) {
 
 }
 
-SliceRevealer.prototype.doIt = function (newPosition, newOptions = {}) {
+SliceRevealer.prototype.goPhase = function (newPosition, newOptions = {}) {
 	// OPTIONS	
 	// Load in position options that were created during instance intialization
 	newOptions = { ...this.options[`${newPosition}Options`], ...newOptions }
 	// Load general options that were created during instance in
 	let options = { ...this.options, ...newOptions };
 	const position = options[`${newPosition}Position`];
-	const sliceDuration = options.sliceDuration * 1000; // Convert seconds to milliseconds
-	const totalDuration = options.totalDuration * 1000; // Convert seconds to milliseconds	
 	const direction = options.direction;
 	const numOfSlices = options.numOfSlices;
-
+	
 	// Options that can be passed in as arguement	
+	const sliceDuration = options.sliceDuration * 1000; // Convert seconds to milliseconds
+	const totalDuration = options.totalDuration * 1000; // Convert seconds to milliseconds	
 	const color = options.color;
 	const startCB = options.startCB;
 	const doneCB = options.doneCB;
@@ -358,7 +354,7 @@ SliceRevealer.prototype.doIt = function (newPosition, newOptions = {}) {
 				// Canceled current queued animation for slice
 				clearTimeout(this.sliceAnimations[sliceIndex]);
 				// Start and save animation to sliceAnimations in case it needs to be canceled
-				this.sliceAnimations[sliceIndex] = setTimeout(() => {					
+				this.sliceAnimations[sliceIndex] = setTimeout(() => {
 					// Set slice's data-timeout to new timeout reference #										
 					slice.setAttribute('timeout', this.sliceAnimations[sliceIndex]);
 					// Set slice's new css

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Slice Revealer | Demo 1</title>
+	<meta name="description" content="A demo of the slice revealer library by MaiCoding">
+	<meta name="keywords" content="slice, revealer, effect, animation, css, web development, web design, maicoding, animation zone, slice revealer">
+	<meta name="author" content="MaiCoding">
+	<!-- Font: Assistant -->
+	<link href="https://fonts.googleapis.com/css?family=Assistant" rel="stylesheet">
+	<!-- Font: Permanent Marker -->
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	 crossorigin="anonymous">
+	<!-- Slice Reaveler -->
+	<link rel="stylesheet" href="../../slice-revealer/sliceRevealer.css">
+	<!-- Page Css -->
+	<link rel="stylesheet" href="./demo1.css">
+</head>
+
+<body>
+	<div class="container f-1">
+		<div class="links">
+			<div class="top-links">
+				<header>
+					<div class="title">Slice Revealer</div>
+					<nav class="demo-nav">
+						<span class="demo-link active">Demo 1</span><span class="demo-link">Demo 2</span><span class="demo-link">Demo 3</span>
+					</nav>
+				</header>
+			</div>
+			<div class="middle-links">
+				<div class="arrow-nav">
+					<span class="arrow-previous"><i class="fas fa-caret-left"></i> BACK</span>
+					<span class="arrow-next">NEXT <i class="fas fa-caret-right"></i></span>
+				</div>
+			</div>
+			<div class="bottom-links">
+				<footer>
+					<a href="http://maicoding.me" target="_blank">
+						<img class="mini-logo" src="images/minimini-black.png">
+					</a>
+				</footer>
+				<nav class="pagination f-2">
+					<span class="page active">Land</span><span class="page">Ocean</span><span class="page">Sky</span><span class="page">Space</span>
+				</nav>
+			</div>
+		</div>
+		<main>
+			<div class="content">
+				<div id="slides" class="slides">
+					<div class="slide zoom" index="0">
+						<div class="slide-img" style="background-image: url(./images/earth.jpg)"></div>
+					</div>
+					<div class="slide zoom" index="1">
+						<div class="slide-img" style="background-image: url(./images/ocean.jpg)"></div>
+					</div>
+					<div class="slide zoom" index="2">
+						<div class="slide-img" style="background-image: url(./images/sky.jpg)"></div>
+					</div>
+					<div class="slide zoom" index="3">
+						<div class="slide-img" style="background-image: url(./images/space2.jpg)"></div>
+					</div>
+				</div>
+			</div>
+
+			<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+			<script src="../../slice-revealer/sliceRevealer.min.js"></script>
+			<script src="demo1.js"></script>
+		</main>
+	</div>
+</body>
+
+
+</html>

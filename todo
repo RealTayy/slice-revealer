@@ -1,11 +1,15 @@
 sass --watch ./slice-revealer/sliceRevealer.scss ./slice-revealer/sliceRevealer.css
 
+DO BEFORE v1 RELEASE
+> fix readman options link
+
 > Implement custom easings
 > Work around for box-shadow 1 pixel off
 > Move getAttribute to array for array lookups YO!
 > Be able to pass in just one ['left', 'right']
 > Just passsing color options sets ALL colors
 > Add sticky options for init ALSO zIndex
+> Ability to flip directions of slices
 
 KNOWN BUG:
 > Unreliable detect stat of CSS animation
