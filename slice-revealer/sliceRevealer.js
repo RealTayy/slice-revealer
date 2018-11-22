@@ -27,8 +27,8 @@ function SliceRevealer(target, options) {
 	const defaultOptions = {
 		direction: 'horizontal',
 		numOfSlices: 8,
-		sliceDuration: 1,
-		totalDuration: 1.6,
+		sliceDuration: .8,
+		totalDuration: 1.3,
 		startPosition: 'left',
 		halfwayPosition: 'middle',
 		endPosition: 'middle',

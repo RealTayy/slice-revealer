@@ -73,13 +73,20 @@ html {
 
 .links {
   position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   height: 53vh;
   width: 100vw;
-	justify-content: space-between;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 	font-size: 22px;
-	z-index: 1;
+	z-index: 2;
 }
 
 .links .top-links,
@@ -99,9 +106,11 @@ header .title {
 
 nav span {
 	opacity: .75;
-	color: #ccc;
+	color: #aaa;
 	padding: 0 8px;
-	transition-duration: .4s;
+	-webkit-transition-duration: .3s;
+	     -o-transition-duration: .3s;
+	        transition-duration: .3s;
 }
 
 nav span:hover {
@@ -110,7 +119,9 @@ nav span:hover {
 
 .arrow-nav span {
 	opacity: .75;
-	transition-duration: .4s;
+	-webkit-transition-duration: .3s;
+	     -o-transition-duration: .3s;
+	        transition-duration: .3s;
 }
 
 .arrow-nav span:hover {
@@ -123,18 +134,27 @@ nav span.active {
 }
 
 .links .middle-links {
-  order: 2;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
 }
 
 .links .arrow-nav {	
+  display: -webkit-box;	
+  display: -ms-flexbox;	
   display: flex;
-	justify-content: space-between;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 }
 
 nav, .arrow-nav span {
 	cursor: pointer;
 	display: inline-block;
-	user-select: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
 }
 
 .arrow-nav i {
@@ -155,6 +175,44 @@ footer .mini-logo {
 	position: relative;	
 	height: 17px;
 }
+
+footer a {
+	opacity: .75;
+	color: #333;
+	padding: 0px 5px;
+	-webkit-transition-duration: .3s;
+	     -o-transition-duration: .3s;
+	        transition-duration: .3s;
+	text-decoration: none;	
+}
+
+footer a:hover {
+	opacity: 1;
+}
+
+footer a span { 
+	position: relative;
+	top: -3px;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	max-width: 0px;
+	-webkit-transition-duration: 1s;
+	     -o-transition-duration: 1s;
+	        transition-duration: 1s;
+	padding-left: 5px;
+	font-size: 22px;
+}
+
+.pagination .page {
+	font-size: 28px;
+}
+.shadow {
+	-webkit-filter: drop-shadow(2px 2px 1px black);
+	        filter: drop-shadow(2px 2px 1px black);
+}
+
+
 
 /* content stuff */
 
@@ -182,7 +240,9 @@ main {
 }
 
 .slide.active.zoom .slide-img{		
-	transform: scale(1.2);
+	-webkit-transform: scale(1.2);		
+	    -ms-transform: scale(1.2);		
+	        transform: scale(1.2);
 }
 
 .slide-img {
@@ -191,9 +251,26 @@ main {
 	width: 100%;
 	background-size: cover;
 	background-position: center;
-	transform: scale(1);
-	transition-duration: 2s;
+	-webkit-transform: scale(1);
+	    -ms-transform: scale(1);
+	        transform: scale(1);
+	-webkit-transition-duration: 2s;
+	     -o-transition-duration: 2s;
+	        transition-duration: 2s;
+	-webkit-transition-property: -webkit-transform;
+	transition-property: -webkit-transform;
+	-o-transition-property: transform;
 	transition-property: transform;
+	transition-property: transform, -webkit-transform;
+}
+
+.slide-text {
+	position: absolute;
+	font-size: 120px;
+	z-index: 1;
+	bottom: -10px;
+	right: -10px;
+	color: #fff;
 }
 
 @media only screen and (min-width: 600px) {
@@ -202,7 +279,9 @@ main {
 	}
 
 	.links .middle-links {
-		order: 0;
+		-webkit-box-ordinal-group: 1;
+		    -ms-flex-order: 0;
+		        order: 0;
 	}
 	
 	.links {
@@ -215,8 +294,15 @@ main {
 	}
 	
 	.bottom-links {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: space-between;
+		-webkit-box-pack: justify;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
+		-webkit-box-align: baseline;
+		    -ms-flex-align: baseline;
+		        align-items: baseline;
 	}
 	
 	.links .top-links,
@@ -226,7 +312,30 @@ main {
 	}
 	
 	header {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		align-items: baseline;
+		-webkit-box-align: baseline;
+		    -ms-flex-align: baseline;
+		        align-items: baseline;
+	}
+
+	footer .mini-logo {
+		position: relative;	
+		height: 26px;
+	}
+
+	footer a i {
+		position: relative;
+		top: -2px;
+		font-size: 30px;
+	}
+
+	footer a:hover span{		
+		max-width: 150px;
+	}
+
+	.slide-text {
+		font-size: 200px;
 	}
 }

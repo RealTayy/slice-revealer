@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			endPosition: 'right',
 			color: '#111',
 			numOfSlices: 6,
-			zIndex: 0
+			zIndex: 1
 		},
 		{
 			direction: 'vertical',
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			color: '#111',
 			numOfSlices: 15,
 			transitionOrder: [7, 8, 6, 9, 5, 10, 4, 11, 3, 12, 2, 13, 1, 14, 0],
-			zIndex: 0
+			zIndex: 1
 		},
 		{
 			startPosition: 'middle',
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			color: '#111',
 			transitionOrder: 'random',
 			numOfSlices: 12,
-			zIndex: 0
+			zIndex: 1
 		},
 		{
 			direction: 'vertical',
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			color: '#111',
 			numOfSlices: 16,
 			transitionOrder: [15, 0, 14, 1, 13, 2, 12, 3, 11, 4, 10, 5, 9, 6, 8, 7],
-			zIndex: 0
+			zIndex: 1
 		},
 	];
 
