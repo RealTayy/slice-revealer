@@ -1,0 +1,341 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Page CSS starts here */
+
+html {
+	background-color: #111;
+}
+
+.f-1 {
+	/* font-family: 'Assistant', sans-serif; */
+	font-family: 'Oswald', sans-serif;
+
+	color: #333;
+}
+
+.f-2 {
+	font-family: 'Permanent Marker', cursive;
+
+}
+.container {
+	position: relative;
+	height: 100vh;
+}
+
+/* links stuff */
+
+.links {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 53vh;
+  width: 100vw;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	font-size: 22px;
+	z-index: 2;
+}
+
+.links .top-links,
+.links .middle-links,
+.links .bottom-links {
+  padding: 12px 12px 0 12px;
+}
+
+.top-links header {
+	text-align: center;
+}
+
+header .title {
+	font-size: 38px;
+	margin-bottom: 12px;
+}
+
+nav span {
+	opacity: .75;
+	color: #aaa;
+	padding: 0 8px;
+	-webkit-transition-duration: .3s;
+	     -o-transition-duration: .3s;
+	        transition-duration: .3s;
+}
+
+nav span:hover {
+	opacity: 1;	
+}
+
+.arrow-nav span {
+	opacity: .75;
+	-webkit-transition-duration: .3s;
+	     -o-transition-duration: .3s;
+	        transition-duration: .3s;
+}
+
+.arrow-nav span:hover {
+	opacity: 1;
+}
+
+nav span.active {
+	/* opacity: 1; */
+	color: #333;
+}
+
+.links .middle-links {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+
+.links .arrow-nav {	
+  display: -webkit-box;	
+  display: -ms-flexbox;	
+  display: flex;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+}
+
+nav, .arrow-nav span {
+	cursor: pointer;
+	display: inline-block;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
+
+.arrow-nav i {
+	position: relative;	
+}
+
+.bottom-links {
+	text-align: center;
+}
+
+footer {
+	margin-top: -100px;
+	margin-bottom: 60px;
+	text-align: center;
+}
+
+footer .mini-logo {
+	position: relative;	
+	height: 17px;
+}
+
+footer a {
+	opacity: .75;
+	color: #333;
+	padding: 0px 5px;
+	-webkit-transition-duration: .3s;
+	     -o-transition-duration: .3s;
+	        transition-duration: .3s;
+	text-decoration: none;	
+}
+
+footer a:hover {
+	opacity: 1;
+}
+
+footer a span { 
+	position: relative;
+	top: -3px;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	max-width: 0px;
+	-webkit-transition-duration: 1s;
+	     -o-transition-duration: 1s;
+	        transition-duration: 1s;
+	padding-left: 5px;
+	font-size: 22px;
+}
+
+.pagination .page {
+	font-size: 28px;
+}
+.shadow {
+	-webkit-filter: drop-shadow(2px 2px 1px black);
+	        filter: drop-shadow(2px 2px 1px black);
+}
+
+
+
+/* content stuff */
+
+main {
+	position: relative;
+  height: 100vh;
+	width: 100vw;	
+	overflow: hidden;
+}
+
+.content {
+	height: 100%;
+	width: 100%;
+}
+
+.slide {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	opacity: 0;	
+}
+
+.slide.active {	
+	opacity: 1;
+}
+
+.slide.active.zoom .slide-img{		
+	-webkit-transform: scale(1.2);		
+	    -ms-transform: scale(1.2);		
+	        transform: scale(1.2);
+}
+
+.slide-img {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	background-size: cover;
+	background-position: center;
+	-webkit-transform: scale(1);
+	    -ms-transform: scale(1);
+	        transform: scale(1);
+	-webkit-transition-duration: 2s;
+	     -o-transition-duration: 2s;
+	        transition-duration: 2s;
+	-webkit-transition-property: -webkit-transform;
+	transition-property: -webkit-transform;
+	-o-transition-property: transform;
+	transition-property: transform;
+	transition-property: transform, -webkit-transform;
+}
+
+.slide-text {
+	position: absolute;
+	font-size: 120px;
+	z-index: 1;
+	bottom: -10px;
+	right: -10px;
+	color: #fff;
+}
+
+@media only screen and (min-width: 600px) {
+	.title {
+		margin-right: 20px;
+	}
+
+	.links .middle-links {
+		-webkit-box-ordinal-group: 1;
+		    -ms-flex-order: 0;
+		        order: 0;
+	}
+	
+	.links {
+		height: 100%;
+	}
+	
+	footer {
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+	
+	.bottom-links {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: justify;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
+		-webkit-box-align: baseline;
+		    -ms-flex-align: baseline;
+		        align-items: baseline;
+	}
+	
+	.links .top-links,
+	.links .middle-links,
+	.links .bottom-links {
+		padding: 30px;
+	}
+	
+	header {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-align: baseline;
+		    -ms-flex-align: baseline;
+		        align-items: baseline;
+	}
+
+	footer .mini-logo {
+		position: relative;	
+		height: 26px;
+	}
+
+	footer a i {
+		position: relative;
+		top: -2px;
+		font-size: 30px;
+	}
+
+	footer a:hover span{		
+		max-width: 150px;
+	}
+
+	.slide-text {
+		font-size: 200px;
+	}
+}
