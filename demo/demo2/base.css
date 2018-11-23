@@ -47,19 +47,18 @@ table {
 	border-spacing: 0;
 }
 
+a {
+	text-decoration-line: none;
+}
+
 /* Page CSS starts here */
 
 html {
-	background-color: #111;
+	/* background-color: #111; */
 }
 
 .f-1 {	
-	font-family: 'Oswald', sans-serif;
-	color: #333;
-}
-
-.f-2 {
-	font-family: 'Permanent Marker', cursive;
+	font-family: 'Oswald', sans-serif;	
 }
 
 .container {
@@ -67,19 +66,10 @@ html {
 	height: 100vh;
 }
 
-a {
-	text-decoration-line: none;
-}
-
-.instructions {
-	display: none;
-}
-
-
 /* links stuff */
 
 .links {
-  position: absolute;
+  position: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -87,17 +77,21 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 53vh;
+  height: 95vh;
   width: 100vw;
 	-webkit-box-pack: justify;
 	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	font-size: 22px;
 	z-index: 2;
+	pointer-events: none;
+}
+
+.links a {
+	pointer-events: auto;
 }
 
 .links .top-links,
-.links .middle-links,
 .links .bottom-links {
   padding: 12px 12px 0 12px;
 }
@@ -111,7 +105,7 @@ header .title {
 	margin-bottom: 12px;
 }
 
-nav span {
+.links nav span {	
 	opacity: .75;
 	color: #aaa;
 	padding: 0 8px;
@@ -120,61 +114,19 @@ nav span {
 	        transition-duration: .3s;
 }
 
-nav span:hover {
+.links nav span:hover {
 	opacity: 1;	
 }
 
-.arrow-nav span {
-	opacity: .75;
-	-webkit-transition-duration: .3s;
-	     -o-transition-duration: .3s;
-	        transition-duration: .3s;
-}
-
-.arrow-nav span:hover {
-	opacity: 1;
-}
-
-nav span.active {
-	/* opacity: 1; */
+nav span.active {	
 	color: #333;
-}
-
-.links .middle-links {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
-}
-
-.links .arrow-nav {	
-  display: -webkit-box;	
-  display: -ms-flexbox;	
-  display: flex;
-	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
-}
-
-nav, .arrow-nav span {
-	cursor: pointer;
-	display: inline-block;
-	-webkit-user-select: none;
-	   -moz-user-select: none;
-	    -ms-user-select: none;
-	        user-select: none;
-}
-
-.arrow-nav i {
-	position: relative;	
 }
 
 .bottom-links {
 	text-align: center;
 }
 
-footer {
-	margin-top: -100px;
-	margin-bottom: 60px;
+footer {	
 	text-align: center;
 }
 
@@ -197,8 +149,7 @@ footer a:hover {
 	opacity: 1;
 }
 
-footer a span {
-	color: #fff;
+footer a span { 
 	height: 30px;
 	position: relative;
 	top: 6px;
@@ -214,29 +165,20 @@ footer a span {
 }
 
 footer a i span {
-	color: #fff !important;
 	height: 22px;
 	position: relative;	
 	top: 0px;
 }
 
-.pagination .page {
-	font-size: 28px;
-}
 .shadow {
-	-webkit-filter: drop-shadow(1px 1px 1px black);
-	        filter: drop-shadow(1px 1px 1px black);
+	-webkit-filter: drop-shadow(2px 2px 1px black);
+	        filter: drop-shadow(2px 2px 1px black);
 }
-
-
 
 /* content stuff */
-
 main {
-	position: relative;
-  height: 100vh;
-	width: 100vw;	
-	overflow: hidden;
+	position: relative;	
+	width: 100wv;
 }
 
 .content {
@@ -244,66 +186,15 @@ main {
 	width: 100%;
 }
 
-.slide {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	opacity: 0;	
-}
-
-.slide.active {	
-	opacity: 1;
-}
-
-.slide.active.zoom .slide-img{		
-	-webkit-transform: scale(1.2);		
-	    -ms-transform: scale(1.2);		
-	        transform: scale(1.2);
-}
-
-.slide-img {
-	position: relative;
-	height: 100%;
-	width: 100%;
-	background-size: cover;
-	background-position: center;
-	-webkit-transform: scale(1);
-	    -ms-transform: scale(1);
-	        transform: scale(1);
-	-webkit-transition-duration: 2s;
-	     -o-transition-duration: 2s;
-	        transition-duration: 2s;
-	-webkit-transition-property: -webkit-transform;
-	transition-property: -webkit-transform;
-	-o-transition-property: transform;
-	transition-property: transform;
-	transition-property: transform, -webkit-transform;
-}
-
-.slide-text {
-	position: absolute;
-	font-size: 120px;
-	z-index: 1;
-	bottom: -10px;
-	right: -10px;
-	color: #fff;
+.sr__slice {
+	pointer-events: auto;
 }
 
 @media only screen and (min-width: 600px) {
-	.instructions {
-		display: block;
-	}
-
 	.title {
 		margin-right: 20px;
 	}
 
-	.links .middle-links {
-		-webkit-box-ordinal-group: 1;
-		    -ms-flex-order: 0;
-		        order: 0;
-	}
-	
 	.links {
 		height: 100%;
 	}
@@ -325,8 +216,7 @@ main {
 		        align-items: baseline;
 	}
 	
-	.links .top-links,
-	.links .middle-links,
+	.links .top-links,	
 	.links .bottom-links {
 		padding: 30px;
 	}
@@ -357,9 +247,5 @@ main {
 
 	footer a:hover span{		
 		max-width: 150px;
-	}
-
-	.slide-text {
-		font-size: 200px;
 	}
 }
