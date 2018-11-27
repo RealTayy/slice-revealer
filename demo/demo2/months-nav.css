@@ -1,0 +1,165 @@
+:root {
+	--jan-out: #fff;
+	--jan-in: #fff;
+	--jan-shadow: #D9A28C;
+	--feb-out: #FFD8D9;
+	--feb-in: #FFD8D9;
+	--feb-shadow: #D12329;
+	--mar-out: #FAE17C;
+	--mar-in: #fff;
+	--mar-shadow: #748961;
+	--apr-out: #DEE5E5;
+	--apr-in: #1E3040;
+	--apr-shadow: #7F94A6;
+	--may-out: #D9CAD0;
+	--may-in: #1E2432;
+	--may-shadow: #E3D8DC;
+	--jun-out: #DFD5A5;
+	--jun-in: #DFD5A5;
+	--jun-shadow: #96897B;
+}
+
+/* Jan */
+.f-jan {
+	font-family: 'Permanent Marker', cursive;
+}
+
+#jan-nav .nav-title {
+	color: var(--jan-out);
+	text-shadow: 2px 2px 1px var(--jan-shadow);
+}
+
+#jan-nav .nav-img {
+	background-image: url(./images/jan.jpg);
+}
+
+#jan-nav .nav-quote {
+	color: var(--jan-in);
+	text-shadow: 1px 1px 1px var(--jan-shadow);
+}
+
+#jan-nav .nav-author {
+	color: var(--jan-in);
+	text-shadow: 1px 1px 1px var(--jan-shadow);
+}
+
+/* Feb */
+.f-feb {
+	font-family: 'Pacifico', cursive;
+}
+
+#feb-nav .nav-title {
+	color: var(--feb-out);
+	text-shadow: 2px 2px 1px var(--feb-shadow);
+}
+
+#feb-nav .nav-img {
+	background-image: url(./images/feb.jpg);
+}
+
+#feb-nav .nav-quote {
+	color: var(--feb-in);
+	text-shadow: 1px 1px 1px var(--feb-shadow);
+}
+
+#feb-nav .nav-author {
+	color: var(--feb-in);
+	text-shadow: 1px 1px 1px var(--feb-shadow);
+}
+
+/* March */
+.f-mar {
+	font-family: 'Sedgwick Ave', cursive;
+}
+
+#mar-nav .nav-title {
+	color: var(--mar-out);
+	text-shadow: 2px 2px 1px var(--mar-shadow);
+}
+
+#mar-nav .nav-img {
+	background-image: url(./images/mar.jpg);
+}
+
+#mar-nav .nav-quote {
+	color: var(--mar-in);
+	text-shadow: 1px 1px 1px var(--mar-shadow);
+}
+
+#mar-nav .nav-author {
+	color: var(--mar-in);
+	text-shadow: 1px 1px 1px var(--mar-shadow);
+}
+
+/* April */
+.f-apr {
+	font-family: 'Gloria Hallelujah', cursive;
+}
+
+#apr-nav .nav-title {
+	color: var(--apr-out);
+	text-shadow: 2px 2px 1px var(--apr-shadow);
+}
+
+#apr-nav .nav-img {
+	background-image: url(./images/apr.jpg);
+}
+
+#apr-nav .nav-quote {
+	color: var(--apr-in);
+	text-shadow: 1px 1px 1px var(--apr-shadow);
+}
+
+#apr-nav .nav-author {
+	color: var(--apr-in);
+	text-shadow: 1px 1px 1px var(--apr-shadow);
+}
+
+/* May */
+.f-may {
+	font-family: 'Shadows Into Light', cursive;
+}
+
+#may-nav .nav-title {
+	color: var(--may-out);
+	text-shadow: 2px 2px 1px var(--may-shadow);
+}
+
+#may-nav .nav-img {
+	background-image: url(./images/may.jpg);
+}
+
+#may-nav .nav-quote {
+	color: var(--may-in);
+	text-shadow: 1px 1px 1px var(--may-shadow);
+}
+
+#may-nav .nav-author {
+	color: var(--may-in);
+	text-shadow: 1px 1px 1px var(--may-shadow);
+}
+
+/* June */
+.f-jun {
+	font-family: 'Dancing Script', cursive;
+	font-weight: bold;
+}
+
+#jun-nav .nav-title {
+	color: var(--jun-out);
+	text-shadow: 2px 2px 1px var(--jun-shadow);
+}
+
+#jun-nav .nav-img {
+	background-image: url(./images/jun.jpg);
+}
+
+#jun-nav .nav-quote {
+	color: var(--jun-in);
+	text-shadow: 1px 1px 1px var(--jun-shadow);
+}
+
+#jun-nav .nav-author {
+	color: var(--jun-in);
+	text-shadow: 1px 1px 1px var(--jun-shadow);
+}

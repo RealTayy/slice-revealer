@@ -39,13 +39,16 @@
 
 .nav-cover .nav-title {
   opacity: 1;
-  font-size: 42px;
-  text-decoration-line: underline;
+  font-size: 42px;  
   transition-duration: .8s;
   transition-delay: .1s;
   transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
   transform: translate(0%, 0%);
-  padding: 5px;
+  padding: 20px;
+}
+
+.nav-box:hover .nav-title {
+  padding: 0px;
 }
 
 .nav-content {
@@ -76,7 +79,9 @@
 	font-size: 24px;
 	transition-duration: .8s;
   transition-delay: .3s;
-  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);    
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
+  text-emphasis-color: 
+
 }
 
 .nav-author {
@@ -126,11 +131,11 @@
 }
 
 .nav-box:hover .nav-wall.up {
-  transform: translate(0%, -50%);
+  transform: translate(0%, -100%);
 }
 
 .nav-box:hover .nav-wall.down {
-  transform: translate(0%, 50%);
+  transform: translate(0%, 100%);
 }
 
 .nav-box:hover .nav-wall.left .nav-title {
@@ -163,11 +168,11 @@
 }
 
 .nav-box .quote-wall.up {
-  transform: translate(50%, 0%);
+  transform: translate(0%, 50%);
 }
 
 .nav-box .quote-wall.down {
-  transform: translate(-50%, 0%);
+  transform: translate(0%, -50%);
 }
 
 .nav-box .quote-wall.left .nav-quote {
@@ -179,11 +184,11 @@
 }
 
 .nav-box .quote-wall.up .nav-quote {
-  transform: translate(101%, 0%);
+  transform: translate(0%, 101%);
 }
 
 .nav-box .quote-wall.down .nav-quote {
-  transform: translate(-101%, 0%);
+  transform: translate(0%, -101%);
 }
 
 .nav-box:hover .quote-wall {
@@ -205,11 +210,11 @@
 }
 
 .nav-box .author-wall.up {
-  transform: translate(50%, 0%);
+  transform: translate(0%, 50%);
 }
 
 .nav-box .author-wall.down {
-  transform: translate(-50%, 0%);
+  transform: translate(0%, -50%);
 }
 
 .nav-box .author-wall.left .nav-author {
@@ -221,11 +226,11 @@
 }
 
 .nav-box .author-wall.up .nav-author {
-  transform: translate(101%, 0%);
+  transform: translate(0%, 101%);
 }
 
 .nav-box .author-wall.down .nav-author {
-  transform: translate(-101%, 0%);
+  transform: translate(0%, -101%);
 }
 
 .nav-box:hover .author-wall {
