@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		// Feb
 		{
 			...defaultNavOptions,
-			color: "#FF5056",
+			color: "#ED5B6E",
 			direction: "vertical",
 			endPosition: ["top", "bottom"],
 			numOfSlices: 2,
@@ -42,8 +42,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		{
 			...defaultNavOptions,
 			color: "#365874",
-			endPosition: ["left", "right", "left", "right", "left", "right"],
-			numOfSlices: 6,
+			endPosition: "left",
+			numOfSlices: 13,
+			transitionOrder: [0, 12, 1, 11, 2, 10, 3, 9, 4, 8, 5, 7, 6]
 		},
 		// May
 		{
@@ -66,26 +67,53 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		// Jul
 		{
 			...defaultNavOptions,
+			color: "#02797a",
+			direction: "vertical",
+			endPosition: ["top", "bottom", "top", "bottom", "top", "bottom", "top", "bottom", "top", "bottom", "top", "bottom", "top", "bottom"],
+			numOfSlices: 14,
+			sliceDuration: 1.3,
 		},
 		//Aug
 		{
 			...defaultNavOptions,
+			color: "#9A0200",
+			endPosition: "right",
+			numOfSlices: 5,
+			transitionOrder: "reverse"
 		},
 		// Sep
 		{
 			...defaultNavOptions,
+			color: "#5D730E",
+			direction: "vertical",
+			numOfSlices: 3,
+			endPosition: "bottom",
 		},
 		// Oct
 		{
 			...defaultNavOptions,
+			color: "#3D4139",
+			numOfSlices: 13,
+			transitionOrder: [6, 1, 4, 12, 0, 5, 9, 2, 8, 3, 10, 11, 7]
 		},
 		//Nov
 		{
 			...defaultNavOptions,
+			color: "#571510",
+			direction: "vertical",
+			endPosition: ["bottom", "bottom", "bottom", "bottom", "bottom", "bottom", "top", "top", "top", "top", "top", "top"],
+			transitionOrder: [6, 5, 7, 4, 8, 3, 9, 2, 10, 1, 11, 0],
+			numOfSlices: 12,
+
 		},
 		// Dec
 		{
 			...defaultNavOptions,
+			color: "#DBF3FF",
+			direction: "vertical",
+			endPosition: "top",
+			numOfSlices: 12,
+			transitionOrder: "random"
 		},
 	]
 

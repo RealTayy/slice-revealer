@@ -39,12 +39,12 @@
 
 .nav-cover .nav-title {
   opacity: 1;
-  font-size: 42px;  
+  font-size: 64px;  
   transition-duration: .8s;
   transition-delay: .1s;
   transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
   transform: translate(0%, 0%);
-  padding: 20px;
+  padding: 30px 5px;
 }
 
 .nav-box:hover .nav-title {
@@ -91,7 +91,7 @@
 	text-transform: uppercase;
 	transition-duration: .8s;
   transition-delay: .4s;
-  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);    
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);  
 }
 @media only screen and (min-width: 600px) {
 	.nav-box {  
@@ -123,11 +123,11 @@
 /* Hover Effects HERE */
 
 .nav-box:hover .nav-wall.left {
-  transform: translate(-50%, 0%);
+  transform: translate(-25%, 0%);
 }
 
 .nav-box:hover .nav-wall.right {
-  transform: translate(50%, 0%);
+  transform: translate(25%, 0%);
 }
 
 .nav-box:hover .nav-wall.up {
@@ -140,31 +140,31 @@
 
 .nav-box:hover .nav-wall.left .nav-title {
   opacity: 0;
-  transform: translate(-101%, 0%);
+  transform: translate(-100%, 0%);
 }
 
 .nav-box:hover .nav-wall.right .nav-title {
   opacity: 0;
-  transform: translate(101%, 0%);
+  transform: translate(100%, 0%);
 }
 
 .nav-box:hover .nav-wall.up .nav-title {
   opacity: 0;
-  transform: translate(0%, -101%);
+  transform: translate(0%, -100%);
 }
 
 .nav-box:hover .nav-wall.down .nav-title {
   opacity: 0;
-  transform: translate(0%, 101%);
+  transform: translate(0%, 100%);
 }
 
 /* Quote hover */
 .nav-box .quote-wall.left {
-  transform: translate(50%, 0%);
+  transform: translate(25%, 0%);
 }
 
 .nav-box .quote-wall.right {
-  transform: translate(-50%, 0%);
+  transform: translate(-25%, 0%);
 }
 
 .nav-box .quote-wall.up {
@@ -176,19 +176,19 @@
 }
 
 .nav-box .quote-wall.left .nav-quote {
-  transform: translate(101%, 0%);
+  transform: translate(75%, 0%);
 }
 
 .nav-box .quote-wall.right .nav-quote {
-  transform: translate(-101%, 0%);
+  transform: translate(-75%, 0%);
 }
 
 .nav-box .quote-wall.up .nav-quote {
-  transform: translate(0%, 101%);
+  transform: translate(0%, 50%);
 }
 
 .nav-box .quote-wall.down .nav-quote {
-  transform: translate(0%, -101%);
+  transform: translate(0%, -50%);
 }
 
 .nav-box:hover .quote-wall {
@@ -218,19 +218,19 @@
 }
 
 .nav-box .author-wall.left .nav-author {
-  transform: translate(101%, 0%);
+  transform: translate(100%, 0%);
 }
 
 .nav-box .author-wall.right .nav-author {
-  transform: translate(-101%, 0%);
+  transform: translate(-100%, 0%);
 }
 
 .nav-box .author-wall.up .nav-author {
-  transform: translate(0%, 101%);
+  transform: translate(0%, 100%);
 }
 
 .nav-box .author-wall.down .nav-author {
-  transform: translate(0%, -101%);
+  transform: translate(0%, -100%);
 }
 
 .nav-box:hover .author-wall {

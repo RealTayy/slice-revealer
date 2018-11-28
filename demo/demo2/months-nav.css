@@ -3,20 +3,38 @@
 	--jan-in: #fff;
 	--jan-shadow: #D9A28C;
 	--feb-out: #FFD8D9;
-	--feb-in: #FFD8D9;
+	--feb-in: #fff;
 	--feb-shadow: #D12329;
 	--mar-out: #FAE17C;
 	--mar-in: #fff;
 	--mar-shadow: #748961;
 	--apr-out: #DEE5E5;
-	--apr-in: #1E3040;
+	--apr-in: #fff;
 	--apr-shadow: #7F94A6;
 	--may-out: #D9CAD0;
-	--may-in: #1E2432;
-	--may-shadow: #E3D8DC;
+	--may-in: #fff;
+	--may-shadow: #725760;
 	--jun-out: #DFD5A5;
-	--jun-in: #DFD5A5;
+	--jun-in: #fff;
 	--jun-shadow: #96897B;
+	--jul-out: #FEBB74;
+	--jul-in: #fff;
+	--jul-shadow: #BA9466;
+	--aug-out: #FFBD4C;
+	--aug-in: #fff;
+	--aug-shadow: #FEA008;
+	--sep-out: #F3941D;
+	--sep-in: #fff;
+	--sep-shadow: #F6B15A;
+	--oct-out: #CBC9CC;
+	--oct-in: #fff;
+	--oct-shadow: #B8AEAC;
+	--nov-out: #9C7853;
+	--nov-in: #fff;
+	--nov-shadow: #6F4A25;
+	--dec-out: #fff;
+	--dec-in: #fff;
+	--dec-shadow: #7B8D98;
 }
 
 /* Jan */
@@ -162,4 +180,151 @@
 #jun-nav .nav-author {
 	color: var(--jun-in);
 	text-shadow: 1px 1px 1px var(--jun-shadow);
+}
+
+/* July */
+.f-jul {
+	font-family: 'Caveat', cursive;
+	/* font-weight:  */
+}
+
+#jul-nav .nav-title {
+	color: var(--jul-out);
+	text-shadow: 2px 2px 1px var(--jul-shadow);
+}
+
+#jul-nav .nav-img {
+	background-image: url(./images/jul.jpg);
+}
+
+#jul-nav .nav-quote {
+	color: var(--jul-in);
+	text-shadow: 1px 1px 1px var(--jul-shadow);
+}
+
+#jul-nav .nav-author {
+	color: var(--jul-in);
+	text-shadow: 1px 1px 1px var(--jul-shadow);
+}
+
+/* August */
+.f-aug {
+	font-family: 'Courgette', cursive;	
+}
+
+#aug-nav .nav-title {
+	color: var(--aug-out);
+	text-shadow: 2px 2px 1px var(--aug-shadow);
+}
+
+#aug-nav .nav-img {
+	background-image: url(./images/aug.jpg);
+}
+
+#aug-nav .nav-quote {
+	color: var(--aug-in);
+	text-shadow: 1px 1px 1px var(--aug-shadow);
+}
+
+#aug-nav .nav-author {
+	color: var(--aug-in);
+	text-shadow: 1px 1px 1px var(--aug-shadow);
+}
+
+/* September */
+.f-sep {
+	font-family: 'Satisfy', cursive;	
+}
+
+#sep-nav .nav-title {
+	color: var(--sep-out);
+	text-shadow: 2px 2px 1px var(--sep-shadow);
+}
+
+#sep-nav .nav-img {
+	background-image: url(./images/sep.jpg);
+}
+
+#sep-nav .nav-quote {
+	color: var(--sep-in);
+	text-shadow: 1px 1px 1px var(--sep-shadow);
+}
+
+#sep-nav .nav-author {
+	color: var(--sep-in);
+	text-shadow: 1px 1px 1px var(--sep-shadow);
+}
+
+/* October */
+.f-oct {
+	font-family: 'Amatic SC', cursive;
+	font-weight: bold;
+}
+
+#oct-nav .nav-title {
+	color: var(--oct-out);
+	text-shadow: 2px 2px 1px var(--oct-shadow);
+}
+
+#oct-nav .nav-img {
+	background-image: url(./images/oct.jpg);
+}
+
+#oct-nav .nav-quote {
+	color: var(--oct-in);
+	text-shadow: 1px 1px 1px var(--oct-shadow);
+}
+
+#oct-nav .nav-author {
+	color: var(--oct-in);
+	text-shadow: 1px 1px 1px var(--oct-shadow);
+}
+
+/* November */
+.f-nov {
+	font-family: 'Covered By Your Grace', cursive;
+}
+
+#nov-nav .nav-title {
+	color: var(--nov-out);
+	text-shadow: 2px 2px 1px var(--nov-shadow);
+}
+
+#nov-nav .nav-img {
+	background-image: url(./images/nov.jpg);
+}
+
+#nov-nav .nav-quote {
+	color: var(--nov-in);
+	text-shadow: 1px 1px 1px var(--nov-shadow);
+}
+
+#nov-nav .nav-author {
+	color: var(--nov-in);
+	text-shadow: 1px 1px 1px var(--nov-shadow);
+}
+
+/* December */
+.f-dec {
+	font-family: 'Cookie', cursive;
+
+}
+
+#dec-nav .nav-title {
+	color: var(--dec-out);
+	text-shadow: 2px 2px 1px var(--dec-shadow);
+}
+
+#dec-nav .nav-img {
+	background-image: url(./images/dec.jpg);
+}
+
+#dec-nav .nav-quote {
+	color: var(--dec-in);
+	text-shadow: 1px 1px 1px var(--dec-shadow);
+}
+
+#dec-nav .nav-author {
+	color: var(--dec-in);
+	text-shadow: 1px 1px 1px var(--dec-shadow);
 }
