@@ -2,6 +2,8 @@
 Slice Revealer is a easy to use dependency free library that allows users to cover and uncover DOM elements with customizable animated slices. The idea was inspired by [Zhenya Rynzhuk](https://zhenyary.com/) of [Sochnik](https://dribbble.com/Sochnik)'s [transition experiments](https://dribbble.com/shots/4132057-Selected-Works-Transitions-Experiments).
 
 ## Demos & Documentation
+[Demo 1]()
+[Demo 2]()
 [Options & Targeting Demo](https://codepen.io/maiCoding/pen/VVWMRM)
 
 More demo sites coming soon.
@@ -113,7 +115,7 @@ var target = document.getElementById("sr-target");
 var instance = sliceRevealer(target);
 ```
 
-### .goPhase(phase, options)
+### **.goPhase(phase, options)**
 ```javascript
 instance.goPhase(phase, options)
 ```
