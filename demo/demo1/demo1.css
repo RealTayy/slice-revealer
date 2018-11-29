@@ -284,8 +284,8 @@ main {
 	position: absolute;
 	font-size: 120px;
 	z-index: 1;
-	bottom: -10px;
-	right: -10px;
+	bottom: 0px;
+	right: 0px;
 	color: #fff;
 }
 
@@ -361,5 +361,7 @@ main {
 
 	.slide-text {
 		font-size: 200px;
+		bottom: -10px;
+		right: -10px;
 	}
 }

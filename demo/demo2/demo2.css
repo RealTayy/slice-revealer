@@ -57,8 +57,8 @@
   justify-content: center;
   align-items: center;
 	height: 100%;
-	padding: 0 75px;
-  width: calc(100% - 150px);
+	padding: 0 50px;
+  width: calc(100% - 100px);
   cursor: pointer;
 	flex-direction: column;
 	overflow: hidden;
@@ -79,9 +79,7 @@
 	font-size: 24px;
 	transition-duration: .8s;
   transition-delay: .3s;
-  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
-  text-emphasis-color: 
-
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);  
 }
 
 .nav-author {
