@@ -70,7 +70,8 @@
 	transition-duration: .8s;
   transition-delay: .2s;
 	transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
-	text-align: center;
+  text-align: center;
+  pointer-events: none;
 }
 
 .nav-quote {
@@ -79,7 +80,8 @@
 	font-size: 24px;
 	transition-duration: .8s;
   transition-delay: .3s;
-  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);  
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
+  pointer-events: none;
 }
 
 .nav-author {
@@ -89,7 +91,8 @@
 	text-transform: uppercase;
 	transition-duration: .8s;
   transition-delay: .4s;
-  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);  
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
+  pointer-events: none;
 }
 @media only screen and (min-width: 600px) {
 	.nav-box {  

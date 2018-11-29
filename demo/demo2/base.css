@@ -248,4 +248,8 @@ main {
 	footer a:hover span{		
 		max-width: 150px;
 	}
+
+	.sr__slice {
+		pointer-events: none;
+	}
 }

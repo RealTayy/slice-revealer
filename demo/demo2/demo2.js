@@ -3,14 +3,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	const defaultNavOptions = {
 		startPosition: 'middle',
 		endPosition: 'left',
-		startOptions: {
-			startCB: (instance) => {
-				console.log(instance.target);
-			}
-		},
-		endOptions: {
-			startCB: () => console.log('hi')
-		},
 	}
 
 	const navOptionsArr = [
@@ -117,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		},
 	]
 
-	// Initialize all navBoxes's sliceRevealer instance and push to navInstances.
+	// Initialize all nav-box's sliceRevealer instance and push to navInstances.
 	const navInstances = [];
 	const navBoxes = document.getElementsByClassName('nav-box');
 	for (let i = 0; i < navBoxes.length; i++) {
@@ -126,5 +118,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		navInstances.push(instance);
 		navBox.addEventListener('mouseenter', () => instance.goPhase('end'));
 		navBox.addEventListener('mouseleave', () => instance.goPhase('start'));
+	}
+
+	// Initialize all nav-link's click event listeners
+	const navLinks = document.getElementsByClassName('nav-link');
+	for (let i = 0; i < navBoxes.length; i++) {
+		navLink = navLinks[i];
+		navLink.addEventListener('click', (e) => {
+			const month = e.target.dataset.month;
+			console.log(month);
+		});
 	}
 });
