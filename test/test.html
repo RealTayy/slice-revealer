@@ -12,25 +12,46 @@
 </head>
 
 <body>
-
-	<div class=" test-boxes test-boxes-one ">
-		<div class="box box-one "></div>
-		<div id="box-two" class="box box-two "></div>
-		<div class="box box-three "></div>
-		<div class="box box-four ">
-			<img src="http://via.placeholder.com/128x128 " alt="img element ">
-		</div>
+	<div id="target-id" class="box">
+		<p>I was targeted using getElementById()</p>
+		<ul>
+			<li>options: {</li>
+			<li>hi</li>
+			<li>}</li>
+		</ul>
 	</div>
 
-	<div class="test-boxes test-boxes-two ">
-		<div class="box box-two"></div>
-		<div id="box-three" class="box box-three "></div>
-		<div class="box box-four ">
-			<img src="http://via.placeholder.com/128x128 " alt="img element ">
-		</div>
-		<div class="box box-one "></div>
+	<div class="target-class box">
+		<p>I was targeted using getElementsByClassName()</p>
+		<code>
+			const jQueryTarget = $('#target-jQuery')[0];
+			<ul>
+				<li>options: {</li>
+				<li>hi</li>
+				<li>}</li>
+			</ul>
+		</code>
 	</div>
 
+	<div id="target-jQuery" class="box">
+		<p>I was targeted using jQuery</p>
+		<code>
+			const jQueryTarget = $('#target-jQuery')[0];
+			<ul>
+				<li>jQueryTargetOptions: {</li>
+				<li>startPosition: 'middle',</li>
+				<li>startColor: '#173753',</li>
+				<li>startOptions: { queueAnimation: true },</li>
+				<li>endPosition: ['left', 'right', 'left', 'right', 'left', 'right'],</li>
+				<li>endColor: '#173753',</li>
+				<li>endOptions: { doneCB: (instance) => instance.resetPosition('bottom') }</li>
+				<li>}</li>
+			</ul>
+			const jQueryTargetInstance = sliceRevealer(jQueryTarget, jQueryTargetOptions);
+		</code>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	 crossorigin="anonymous"></script>
 	<script src="../slice-revealer/sliceRevealer.js "></script>
 	<script src="./test.js "></script>
 </body>
