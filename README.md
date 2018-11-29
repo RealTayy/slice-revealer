@@ -123,6 +123,7 @@ There are 3 different phases you can pass: `"start"`, `"halfway"`, and `"end"`. 
 
 #### Options - Phase (Optional)
 The options passed during `goPhase()` will override any default options and options that were set during initialization.
+
 | Name            | Type            | Default    | Example     | Description                                                                                                                                                                                                                                                                      |
 |-----------------|-----------------|------------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | startCB         | Function        | undefined  | [CodePen]() | Callback function that runs once the animation starts                                                                                                                                                                                                                            |
