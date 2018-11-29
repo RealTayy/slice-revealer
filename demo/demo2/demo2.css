@@ -1,0 +1,241 @@
+.nav-boxes {
+  position: relative;
+  width: 100%;
+}
+
+.nav-box {
+  position: relative;
+  width: 100%;
+  height: 33.3333vh;
+}
+
+.nav-box .nav-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.nav-cover {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.nav-wall {
+  z-index: 2;
+  pointer-events: none;
+  position: absolute;
+  overflow: hidden;
+  transition-duration: .8s;
+  transition-delay: .1s;
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
+  transform: translate(0%, 0%);
+}
+
+.nav-cover .nav-title {
+  opacity: 1;
+  font-size: 64px;  
+  transition-duration: .8s;
+  transition-delay: .1s;
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
+  transform: translate(0%, 0%);
+  padding: 30px 5px;
+}
+
+.nav-box:hover .nav-title {
+  padding: 0px;
+}
+
+.nav-content {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	height: 100%;
+	padding: 0 50px;
+  width: calc(100% - 100px);
+  cursor: pointer;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.quote-wall,
+.author-wall {	
+	overflow: hidden;
+	transition-duration: .8s;
+  transition-delay: .2s;
+	transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
+	text-align: center;
+}
+
+.nav-quote {
+	padding: 5px;
+	opacity: 0;
+	font-size: 24px;
+	transition-duration: .8s;
+  transition-delay: .3s;
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);  
+}
+
+.nav-author {
+	padding: 5px;
+	opacity: 0;
+  font-size: 18px;
+	text-transform: uppercase;
+	transition-duration: .8s;
+  transition-delay: .4s;
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);  
+}
+@media only screen and (min-width: 600px) {
+	.nav-box {  
+		width: 50%;	
+		float: left;
+	}
+}
+
+@media only screen and (min-width: 960px) {
+	.nav-box {  
+		width: 33.3333%;			
+	}
+}
+
+@media only screen and (min-width: 1140px) {
+	.nav-box {  
+		width: 25%;			
+	}
+}
+
+/* Hover Effects HERE */
+
+/* Hover Effects HERE */
+
+/* Hover Effects HERE */
+
+/* Hover Effects HERE */
+
+/* Hover Effects HERE */
+
+.nav-box:hover .nav-wall.left {
+  transform: translate(-25%, 0%);
+}
+
+.nav-box:hover .nav-wall.right {
+  transform: translate(25%, 0%);
+}
+
+.nav-box:hover .nav-wall.up {
+  transform: translate(0%, -100%);
+}
+
+.nav-box:hover .nav-wall.down {
+  transform: translate(0%, 100%);
+}
+
+.nav-box:hover .nav-wall.left .nav-title {
+  opacity: 0;
+  transform: translate(-100%, 0%);
+}
+
+.nav-box:hover .nav-wall.right .nav-title {
+  opacity: 0;
+  transform: translate(100%, 0%);
+}
+
+.nav-box:hover .nav-wall.up .nav-title {
+  opacity: 0;
+  transform: translate(0%, -100%);
+}
+
+.nav-box:hover .nav-wall.down .nav-title {
+  opacity: 0;
+  transform: translate(0%, 100%);
+}
+
+/* Quote hover */
+.nav-box .quote-wall.left {
+  transform: translate(25%, 0%);
+}
+
+.nav-box .quote-wall.right {
+  transform: translate(-25%, 0%);
+}
+
+.nav-box .quote-wall.up {
+  transform: translate(0%, 50%);
+}
+
+.nav-box .quote-wall.down {
+  transform: translate(0%, -50%);
+}
+
+.nav-box .quote-wall.left .nav-quote {
+  transform: translate(75%, 0%);
+}
+
+.nav-box .quote-wall.right .nav-quote {
+  transform: translate(-75%, 0%);
+}
+
+.nav-box .quote-wall.up .nav-quote {
+  transform: translate(0%, 50%);
+}
+
+.nav-box .quote-wall.down .nav-quote {
+  transform: translate(0%, -50%);
+}
+
+.nav-box:hover .quote-wall {
+	transform: translate(0%, 0%);	
+}
+
+.nav-box:hover .nav-quote {
+	transform: translate(0%, 0%) !important;
+	opacity: 1;
+}
+
+/* Author hover */
+.nav-box .author-wall.left {
+  transform: translate(50%, 0%);
+}
+
+.nav-box .author-wall.right {
+  transform: translate(-50%, 0%);
+}
+
+.nav-box .author-wall.up {
+  transform: translate(0%, 50%);
+}
+
+.nav-box .author-wall.down {
+  transform: translate(0%, -50%);
+}
+
+.nav-box .author-wall.left .nav-author {
+  transform: translate(100%, 0%);
+}
+
+.nav-box .author-wall.right .nav-author {
+  transform: translate(-100%, 0%);
+}
+
+.nav-box .author-wall.up .nav-author {
+  transform: translate(0%, 100%);
+}
+
+.nav-box .author-wall.down .nav-author {
+  transform: translate(0%, -100%);
+}
+
+.nav-box:hover .author-wall {
+	transform: translate(0%, 0%);	
+}
+
+.nav-box:hover .nav-author {
+	transform: translate(0%, 0%) !important;
+	opacity: 1;
+}
