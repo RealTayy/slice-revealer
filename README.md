@@ -25,6 +25,7 @@ Currently the only way to use Slice Revealer is to manually [download](https://g
 ```
 
 ## How to use
+For a basic example head over this [CodePen](https://codepen.io/maiCoding/pen/JeJEXr).
 ### Basic Initialization
 The DOM Element you want to cover/reveal MUST have it's position, height, and width set explicitly.
 ```html
@@ -49,8 +50,7 @@ When you want it to go back to it's starting position just type:
 instance.goPhase("start")
 ```
 
-And that's it! For more in-depth information on customizing your Slice Revealer refer to the [Initialization](https://github.com/RealTayy/slice-revealer#initialization) section below.
-For a basic example head over this [CodePen](https://codepen.io/maiCoding/pen/JeJEXr).
+And that's it! For more in-depth information on customizing your Slice Revealer refer to the [**Initialization**](https://github.com/RealTayy/slice-revealer#initialization) section below.
 
 # Documentation
 ## Initialization
