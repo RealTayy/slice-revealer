@@ -109,6 +109,44 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		},
 	]
 
+	// Initialize pre-loader cover instance
+	const mainSr = sliceRevealer(document.getElementById('main_sr'), {
+		numOfSlices: 3,
+		// startPosition: 'middle',
+		endPosition: 'left',
+		zIndex: 10,
+		color: '#111',
+		sticky: true,
+	})
+
+	// Initialize hero_sr instance
+	const heroSr = sliceRevealer(document.getElementById('hero_sr'), {		
+		startPosition: 'right',
+		endPosition: 'middle',
+		zIndex: 5,
+		color: '#999',
+	})
+
+	// Initialize content_sr instance
+	const contentSr = sliceRevealer(document.getElementById('content_sr'), {		
+		startPosition: 'left',
+		endPosition: 'middle',
+		zIndex: 5,
+		color: '#fff',
+		// transitionOrder: 'reverse'
+	})
+
+
+	// Uncover when images loaded
+	imagesLoaded('#main', { background: '.nav-img' }, () => {
+		document.getElementById('main_sr').style.backgroundColor = "transparent";
+		mainSr.goPhase('end');
+
+		// contentSr.goPhase('end');
+		// heroSr.goPhase('end');
+	});
+
+
 	// Initialize all nav-box's sliceRevealer instance and push to navInstances.
 	const navInstances = [];
 	const navBoxes = document.getElementsByClassName('nav-box');

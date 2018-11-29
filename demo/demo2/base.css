@@ -83,7 +83,7 @@ html {
 	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	font-size: 22px;
-	z-index: 2;
+	z-index: 8;
 	pointer-events: none;
 }
 
@@ -177,13 +177,14 @@ footer a i span {
 
 /* content stuff */
 main {
-	position: relative;	
-	width: 100wv;
+	position: relative;		
 }
 
 .content {
-	height: 100%;
+	/* height: 100%; */
 	width: 100%;
+	position: absolute;
+	top: 0;
 }
 
 .sr__slice {

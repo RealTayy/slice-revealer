@@ -1,0 +1,81 @@
+#info {
+  position: fixed;
+  height: 100vh;
+  z-index: 5;
+  width: 100vw;
+  pointer-events: none;
+  /* display: none; */
+}
+
+#info_sr {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 7;
+}
+
+#hero_sr {
+  position: relative;
+  height: 33.3333vh;
+}
+
+#content_sr {
+  position: relative;
+  height: 66.6666vh;
+}
+
+.info-hero {
+  position: relative;
+  height: 33.3333vh;
+  overflow: hidden;
+}
+
+.info-content {
+  position: relative;
+  height: 66.6666vh;
+}
+
+.info-img {
+  height: 100%;
+  width: 100%;
+  background-image: url(./images/nov.jpg);
+  background-size: cover;
+  background-position: center
+}
+
+.info-caption {
+  position: absolute;
+  bottom: -8px;
+  z-index: 6;
+  color: #fff;
+  font-size: 84px
+}
+
+.info-content {
+  background-color: #fff;
+  padding: 15px;
+}
+
+.info-quote {
+  position: relative;
+  font-size: 24px;
+  text-align: center;
+  border-top: 3px solid #222;
+  padding-top: 10px;
+}
+
+.info-quote:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 36px;
+  content: "\f10d";
+  width: 100%;
+}
+
+.info-author {
+  font-size: 20px;
+  text-align: end;
+}

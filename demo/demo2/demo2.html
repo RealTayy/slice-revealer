@@ -47,6 +47,7 @@
 	<link rel="stylesheet" href="./base.css">
 	<link rel="stylesheet" href="./demo2.css">
 	<link rel="stylesheet" href="./months-nav.css">
+	<link rel="stylesheet" href="./info.css">
 </head>
 
 <body>
@@ -69,9 +70,37 @@
 				</footer>
 			</div>
 		</div>
-		<main>
-			<div class="content">
-				<nav class="nav-boxes">
+		<main id="main">
+			<div id="main_sr"></div>
+			<div id="info_sr">
+				<div id="hero_sr"></div>
+				<div id="content_sr"></div>
+			</div>
+			<div id="content" class="content">
+				<div id="info" class="info">
+					<div if="nov-info" class="info-box">
+						<div class="info-hero">
+							<div class="info-img"></div>
+							<div class="info-caption">November</div>
+						</div>
+						<div class="info-content">
+							<!-- <div class="info-header f-nov">November</div>						 -->
+							<div class="info-number">11</div>
+							<div class="info-quote f-nov">
+								Fallen leaves lying on the grass in the November sun bring more happiness than the daffodils.
+							</div>
+							<div class="info-author">Cyril Connolly</div>
+							<div class="info-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dicta quod cupiditate
+								iste veritatis accusantium consectetur ipsam ipsum sit? Blanditiis dignissimos explicabo saepe soluta
+								architecto
+								minus nesciunt distinctio sed nulla.</div>
+							<div class="info-back">
+								<i class="fas fa-long-arrow-alt-left"></i> Back
+							</div>
+						</div>
+					</div>
+				</div>
+				<nav id="nav-boxes" class="nav-boxes">
 					<div id="jan-nav" class="nav-box">
 						<div class="nav-cover">
 							<div class="nav-wall left">
@@ -267,8 +296,6 @@
 						</div>
 					</div>
 				</nav>
-				<div class="displays">
-				</div>
 			</div>
 		</main>
 	</div>
