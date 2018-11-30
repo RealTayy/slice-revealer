@@ -112,8 +112,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	// Initialize pre-loader cover instance
 	const mainSr = sliceRevealer(document.getElementById('main_sr'), {
 		numOfSlices: 3,
-		// startPosition: 'middle',
-		endPosition: 'left',
+		startPosition: 'middle',
+		endPosition: 'right',
 		zIndex: 10,
 		color: '#111',
 		sticky: true,
@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	// Initialize hero_sr instance
 	const heroSr = sliceRevealer(document.getElementById('hero_sr'), {
+		numOfSlices: 3,
 		startPosition: 'left',
 		endPosition: 'middle',
 		zIndex: 5,
@@ -129,6 +130,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	// Initialize content_sr instance
 	const contentSr = sliceRevealer(document.getElementById('content_sr'), {
+		numOfSlices: 3,
 		startPosition: 'right',
 		endPosition: 'middle',
 		zIndex: 5,
@@ -141,22 +143,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	imagesLoaded('#main', { background: '.nav-img' }, () => {
 		document.getElementById('main_sr').style.backgroundColor = "transparent";
 		mainSr.goPhase('end');
-		document.getElementById('nov-info').classList.remove('active');
-		contentSr.goPhase('end', {
-			doneCB: (inst) => {
-				setTimeout(() => {
-					inst.goPhase('start');
-					document.getElementById('nov-info').classList.add('active');
-				}, 1500)
-			}
-		});
-		heroSr.goPhase('end', {
-			doneCB: (inst) => {
-				setTimeout(() => {
-					inst.goPhase('start');
-				}, 1500)
-			}
-		});
 	});
 
 
@@ -177,7 +163,63 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		navLink = navLinks[i];
 		navLink.addEventListener('click', (e) => {
 			const month = e.target.dataset.month;
-			console.log(month);
+			enterInfo(month);
 		});
+	}
+
+	// Initialize all info-return click event listeners
+	const infoReturns = document.getElementsByClassName('info-return');
+	for (let i = 0; i < infoReturns.length; i++) {
+		infoReturn = infoReturns[i];
+		infoReturn.addEventListener('click', (e) => {
+			const month = e.target.dataset.month;
+			exitInfo(month);
+		});
+	}
+
+	// Function to enter info display
+	const enterInfo = (month) => {
+		if (isTransitioning()) return;
+		targetInfoBox = document.getElementById(`${month}-info`);
+		contentSr.goPhase('end', {
+			doneCB: (inst) => {
+				inst.goPhase('start');
+				targetInfoBox.style.opacity = '1';
+				targetInfoBox.classList.add('active');
+			}
+		});
+		heroSr.goPhase('end', {
+			doneCB: (inst) => {
+				inst.goPhase('start');
+			}
+		});
+	}
+
+	// Function to exit info display
+	const exitInfo = (month) => {
+		if (isTransitioning()) return;
+		targetInfoBox = document.getElementById(`${month}-info`);
+		contentSr.goPhase('end', {
+			startCB: (inst) => {
+				targetInfoBox.classList.remove('active');
+			},
+			doneCB: (inst) => {
+				inst.goPhase('start');
+				targetInfoBox.style.opacity = '0';
+			}
+		});
+		heroSr.goPhase('end', {
+			doneCB: (inst) => {
+				inst.goPhase('start');
+			}
+		});
+	}
+
+	// Helper function to check if transition is currently happening
+	const isTransitioning = () => {
+		if (mainSr.isAnimating()) return true;
+		if (heroSr.isAnimating()) return true;
+		if (contentSr.isAnimating()) return true;
+		return false;
 	}
 });

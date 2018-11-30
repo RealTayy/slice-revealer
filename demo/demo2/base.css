@@ -66,6 +66,10 @@ html {
 	height: 100vh;
 }
 
+footer span {
+  color: #fff;
+}
+
 /* links stuff */
 
 .links {

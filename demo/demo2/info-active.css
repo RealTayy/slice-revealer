@@ -81,10 +81,10 @@
   }
   .info-content {
     transition-duration: 1.3s;
-    left: 8%;
+    left: 7.8%;
   }
   .info-box.active .info-content {
 		transition-delay: .5s;
-    left: 0%
+    left: 0%;
   }
 }
