@@ -48,6 +48,7 @@
 	<link rel="stylesheet" href="./demo2.css">
 	<link rel="stylesheet" href="./months-nav.css">
 	<link rel="stylesheet" href="./info.css">
+	<link rel="stylesheet" href="./info-active.css">
 </head>
 
 <body>
@@ -78,23 +79,33 @@
 			</div>
 			<div id="content" class="content">
 				<div id="info" class="info">
-					<div if="nov-info" class="info-box">
+					<div id="nov-info" class="info-box active">
 						<div class="info-hero">
 							<div class="info-img"></div>
 							<div class="info-caption">November</div>
 						</div>
 						<div class="info-content">
-							<div class="info-number">The 11th month </div>
-							<div class="info-trivia">Scorpio • Sagittarius • Topaz • Citrine • Chrysanthemum </div>
-							<div class="info-back">
-								<i class="fas fa-long-arrow-alt-left"></i> Back
+							<div class="info-wrapper">
+								<div class="info-header-wall">
+									<div class="info-number">The 11th month </div>
+									<div class="info-trivia">Scorpio • Sagittarius • Topaz • Citrine • Chrysanthemum </div>
+								</div>
+								<div class="info-back">
+									<div class="info-return"><i class="fas fa-long-arrow-alt-left"></i> Back</div>
+								</div>
+								<div class="info-text"> November is the eleventh and penultimate month of the year in the Julian and Gregorian
+									Calendars, the fourth and last of four months to have a length of 30 days, and the fifth and last of five
+									months to have a length of less than 31 days.</div>
 							</div>
-							<div class="info-text"> November is the eleventh and penultimate month of the year in the Julian and Gregorian
-								Calendars, the fourth and last of four months to have a length of 30 days, and the fifth and last of five
-								months to have a length of less than 31 days.</div>
 							<div class="info-quote">
-								<div class="info-author">Cyril Connolly</div>
-								Fallen leaves lying on the grass in the November sun bring more happiness than the daffodils.
+								<div class="info-author-wall">
+									<div class="info-author">
+										Cyril Connolly
+									</div>
+								</div>
+								<div class="info-quote-text">
+									Fallen leaves lying on the grass in the November sun bring more happiness than the daffodils.
+								</div>
 							</div>
 						</div>
 					</div>
@@ -302,6 +313,4 @@
 	<script src="../../slice-revealer/sliceRevealer.js"></script>
 	<script src="demo2.js"></script>
 </body>
-
-
 </html>

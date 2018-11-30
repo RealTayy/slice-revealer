@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	// Initialize hero_sr instance
 	const heroSr = sliceRevealer(document.getElementById('hero_sr'), {
-		startPosition: 'right',
+		startPosition: 'left',
 		endPosition: 'middle',
 		zIndex: 5,
 		color: '#999',
@@ -129,11 +129,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	// Initialize content_sr instance
 	const contentSr = sliceRevealer(document.getElementById('content_sr'), {
-		startPosition: 'left',
+		startPosition: 'right',
 		endPosition: 'middle',
 		zIndex: 5,
-		color: '#fff',
-		// transitionOrder: 'reverse'
+		color: '#123',
+		transitionOrder: 'reverse'
 	})
 
 
@@ -141,15 +141,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	imagesLoaded('#main', { background: '.nav-img' }, () => {
 		document.getElementById('main_sr').style.backgroundColor = "transparent";
 		mainSr.goPhase('end');
-
+		document.getElementById('nov-info').classList.remove('active');
 		contentSr.goPhase('end', {
 			doneCB: (inst) => {
-				inst.goPhase('start');
+				setTimeout(() => {
+					inst.goPhase('start');
+					document.getElementById('nov-info').classList.add('active');
+				}, 1500)
 			}
 		});
 		heroSr.goPhase('end', {
 			doneCB: (inst) => {
-				inst.goPhase('start');
+				setTimeout(() => {
+					inst.goPhase('start');
+				}, 1500)
 			}
 		});
 	});
