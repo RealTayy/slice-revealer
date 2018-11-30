@@ -1,0 +1,266 @@
+:root {
+  --jan-base: #6f4a25;
+  --jan-quote: #e7d5c1;
+  --jan-author: #422c0b;
+  --feb-base: #6f4a25;
+  --feb-quote: #e7d5c1;
+  --feb-author: #422c0b;
+  --mar-base: #6f4a25;
+  --mar-quote: #e7d5c1;
+  --mar-author: #422c0b;
+  --apr-base: #6f4a25;
+  --apr-quote: #e7d5c1;
+  --apr-author: #422c0b;
+  --may-base: #6f4a25;
+  --may-quote: #e7d5c1;
+  --may-author: #422c0b;
+  --jun-base: #6f4a25;
+  --jun-quote: #e7d5c1;
+  --jun-author: #422c0b;
+  --jul-base: #6f4a25;
+  --jul-quote: #e7d5c1;
+  --jul-author: #422c0b;
+  --aug-base: #6f4a25;
+  --aug-quote: #e7d5c1;
+  --aug-author: #422c0b;
+  --sep-base: #6f4a25;
+  --sep-quote: #e7d5c1;
+  --sep-author: #422c0b;
+  --oct-base: #6f4a25;
+  --oct-quote: #e7d5c1;
+  --oct-author: #422c0b;
+  --nov-base: #6f4a25;
+  --nov-quote: #e7d5c1;
+  --nov-author: #422c0b;
+  --dec-base: #6f4a25;
+  --dec-quote: #e7d5c1;
+  --dec-author: #422c0b;
+}
+
+/* January */
+
+#jan-info .info-wrapper {
+  color: var(--jan-base);
+}
+
+#jan-info .info-quote {
+  background-color: var(--jan-base);
+  color: var(--jan-quote);
+}
+
+#jan-info .info-author {
+  background-color: var(--jan-author);
+}
+
+#jan-info .info-img {
+  background-image: url(./images/jan.jpg);
+}
+
+/* Feburary */
+
+#feb-info .info-wrapper {
+  color: var(--feb-base);
+}
+
+#feb-info .info-quote {
+  background-color: var(--feb-base);
+  color: var(--feb-quote);
+}
+
+#feb-info .info-author {
+  background-color: var(--feb-author);
+}
+
+#feb-info .info-img {
+  background-image: url(./images/feb.jpg);
+}
+
+/* March */
+
+#mar-info .info-wrapper {
+  color: var(--mar-base);
+}
+
+#mar-info .info-quote {
+  background-color: var(--mar-base);
+  color: var(--mar-quote);
+}
+
+#mar-info .info-author {
+  background-color: var(--mar-author);
+}
+
+#mar-info .info-img {
+  background-image: url(./images/mar.jpg);
+}
+
+/* April */
+
+#apr-info .info-wrapper {
+  color: var(--apr-base);
+}
+
+#apr-info .info-quote {
+  background-color: var(--apr-base);
+  color: var(--apr-quote);
+}
+
+#apr-info .info-author {
+  background-color: var(--apr-author);
+}
+
+#apr-info .info-img {
+  background-image: url(./images/apr.jpg);
+}
+
+/* May */
+
+#may-info .info-wrapper {
+  color: var(--may-base);
+}
+
+#may-info .info-quote {
+  background-color: var(--may-base);
+  color: var(--may-quote);
+}
+
+#may-info .info-author {
+  background-color: var(--may-author);
+}
+
+#may-info .info-img {
+  background-image: url(./images/may.jpg);
+}
+
+/* June */
+
+#jun-info .info-wrapper {
+  color: var(--jun-base);
+}
+
+#jun-info .info-quote {
+  background-color: var(--jun-base);
+  color: var(--jun-quote);
+}
+
+#jun-info .info-author {
+  background-color: var(--jun-author);
+}
+
+#jun-info .info-img {
+  background-image: url(./images/jun.jpg);
+}
+
+/* July */
+
+#jul-info .info-wrapper {
+  color: var(--jul-base);
+}
+
+#jul-info .info-quote {
+  background-color: var(--jul-base);
+  color: var(--jul-quote);
+}
+
+#jul-info .info-author {
+  background-color: var(--jul-author);
+}
+
+#jul-info .info-img {
+  background-image: url(./images/jul.jpg);
+}
+
+/* August */
+
+#aug-info .info-wrapper {
+  color: var(--aug-base);
+}
+
+#aug-info .info-quote {
+  background-color: var(--aug-base);
+  color: var(--aug-quote);
+}
+
+#aug-info .info-author {
+  background-color: var(--aug-author);
+}
+
+#aug-info .info-img {
+  background-image: url(./images/aug.jpg);
+}
+
+/* September */
+
+#sep-info .info-wrapper {
+  color: var(--sep-base);
+}
+
+#sep-info .info-quote {
+  background-color: var(--sep-base);
+  color: var(--sep-quote);
+}
+
+#sep-info .info-author {
+  background-color: var(--sep-author);
+}
+
+#sep-info .info-img {
+  background-image: url(./images/sep.jpg);
+}
+
+/* October */
+
+#oct-info .info-wrapper {
+  color: var(--oct-base);
+}
+
+#oct-info .info-quote {
+  background-color: var(--oct-base);
+  color: var(--oct-quote);
+}
+
+#oct-info .info-author {
+  background-color: var(--oct-author);
+}
+
+#oct-info .info-img {
+  background-image: url(./images/oct.jpg);
+}
+
+/* November */
+
+#nov-info .info-wrapper {
+  color: var(--nov-base);
+}
+
+#nov-info .info-quote {
+  background-color: var(--nov-base);
+  color: var(--nov-quote);
+}
+
+#nov-info .info-author {
+  background-color: var(--nov-author);
+}
+
+#nov-info .info-img {
+  background-image: url(./images/nov.jpg);
+}
+
+/* December */
+
+#dec-info .info-wrapper {
+  color: var(--dec-base);
+}
+
+#dec-info .info-quote {
+  background-color: var(--dec-base);
+  color: var(--dec-quote);
+}
+
+#dec-info .info-author {
+  background-color: var(--dec-author);
+}
+
+#dec-info .info-img {
+  background-image: url(./images/dec.jpg);
+}

@@ -15,6 +15,7 @@
 .nav-boxes {
   position: relative;
   width: 100%;
+  pointer-events: auto;
 }
 
 .nav-box {

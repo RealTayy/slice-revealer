@@ -8,7 +8,9 @@
 
 .info-box {
   position: absolute;
-  top: 0;  
+  z-index: 10;
+  top: 0;
+  display: none;
 }
 
 #info_sr {
@@ -33,7 +35,7 @@
 
 .info-hero {
   position: relative;
-  height: 33.3333vh;  
+  height: 33.3333vh;
 }
 
 .info-content {
@@ -58,6 +60,11 @@
   bottom: -8px;
   color: #fff;
   font-size: 84px
+}
+
+.info-return {
+  display: inline;
+  cursor: pointer;
 }
 
 .info-text {
@@ -100,7 +107,7 @@
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 20px;
-  content: "\f10d";  
+  content: "\f10d";
 }
 
 .info-quote:after {
@@ -112,7 +119,7 @@
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 20px;
-  content: "\f10e";  
+  content: "\f10e";
 }
 
 .info-author-wall {
@@ -120,7 +127,7 @@
   overflow: hidden;
   top: -15px;
   z-index: 15;
-  left: 50%;  
+  left: 50%;
   font-size: 18px;
   text-transform: uppercase;
 }
@@ -144,12 +151,12 @@
 @media only screen and (min-width: 768px) {
   .info-hero {
     height: 100vh;
-    width: 50vw;
+    width: 60vw;
     float: left;
   }
   .info-content {
     height: 100vh;
-    width: 50vw;
+    width: 40vw;
     float: left;
   }
   #hero_sr {
@@ -171,19 +178,19 @@
   }
   .info-wrapper {
     box-sizing: border-box;
-    padding: 20%;
+    padding: 10%;
   }
   .info-caption {
     font-size: 128px;
   }
   .info-text {
-    font-size: 20px;
+    font-size: 18px;
   }
   .info-author {
     font-size: 24px;
   }
   .info-quote {
-    font-size: 32px;
+    font-size: 28px;
     box-sizing: border-box;
     padding-right: 20%;
     padding-left: 20%;
