@@ -17,3 +17,21 @@ TO DO:
 KNOWN BUGS:
 > Unreliable detect stat of CSS animation
 > QueuedAnimation is buggy when moving firing rapid doIt()s.
+
+zIndex
+0
+1
+2
+3
+4 .links
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15 .info-author

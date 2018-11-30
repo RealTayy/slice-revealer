@@ -83,7 +83,7 @@ html {
 	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	font-size: 22px;
-	z-index: 8;
+	z-index: 4;
 	pointer-events: none;
 }
 

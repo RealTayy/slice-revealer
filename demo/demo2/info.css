@@ -2,12 +2,11 @@
   position: fixed;
   height: 100vh;
   z-index: 5;
-  width: 100vw;
-  pointer-events: none;
-  /* display: none; */
+  width: 100vw;  
 }
 
 #info_sr {
+  pointer-events: none;
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -15,11 +14,13 @@
 }
 
 #hero_sr {
+  pointer-events: none;
   position: relative;
   height: 33.3333vh;
 }
 
 #content_sr {
+  pointer-events: none;
   position: relative;
   height: 66.6666vh;
 }
@@ -32,7 +33,7 @@
 
 .info-content {
   position: relative;
-  height: 66.6666vh;
+  height: 66.6666vh;  
 }
 
 .info-img {
@@ -45,37 +46,87 @@
 
 .info-caption {
   position: absolute;
-  bottom: -8px;
-  z-index: 6;
+  bottom: -8px;  
   color: #fff;
   font-size: 84px
 }
 
+.info-text {
+  line-height: 1.5em;
+}
+
 .info-content {
   background-color: #fff;
-  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-number {
+  font-size: 64px;
+  text-align: center;
+}
+
+.info-trivia {
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .info-quote {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  color: #222;
+  background-color: #eee;
   font-size: 24px;
+  padding: 50px 15px 40px 15px;
   text-align: center;
-  border-top: 3px solid #222;
-  padding-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 1.25em;
 }
 
 .info-quote:before {
+  display: inline-block;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  font-size: 36px;
+  font-size: 20px;
   content: "\f10d";
-  width: 100%;
+  margin: auto;
+}
+
+.info-quote:after {
+  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 20px;
+  content: "\f10e";
+  margin: auto;
 }
 
 .info-author {
-  font-size: 20px;
-  text-align: end;
+  position: absolute;
+  top: -15px;
+  z-index: 15;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 15px;
+  background-color: #444;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.info-back {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.info-text {
+  padding: 0 15px;
 }

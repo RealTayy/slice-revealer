@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	})
 
 	// Initialize hero_sr instance
-	const heroSr = sliceRevealer(document.getElementById('hero_sr'), {		
+	const heroSr = sliceRevealer(document.getElementById('hero_sr'), {
 		startPosition: 'right',
 		endPosition: 'middle',
 		zIndex: 5,
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	})
 
 	// Initialize content_sr instance
-	const contentSr = sliceRevealer(document.getElementById('content_sr'), {		
+	const contentSr = sliceRevealer(document.getElementById('content_sr'), {
 		startPosition: 'left',
 		endPosition: 'middle',
 		zIndex: 5,
@@ -142,8 +142,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		document.getElementById('main_sr').style.backgroundColor = "transparent";
 		mainSr.goPhase('end');
 
-		// contentSr.goPhase('end');
-		// heroSr.goPhase('end');
+		contentSr.goPhase('end', {
+			doneCB: (inst) => {
+				inst.goPhase('start');
+			}
+		});
+		heroSr.goPhase('end', {
+			doneCB: (inst) => {
+				inst.goPhase('start');
+			}
+		});
 	});
 
 
