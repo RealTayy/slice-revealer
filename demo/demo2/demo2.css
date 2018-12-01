@@ -1,3 +1,13 @@
+.f-author {
+  font-family: 'Unica One', cursive;
+  font-weight: bold;
+}
+
+.f-header {
+  font-family: 'Quattrocento', serif;
+  font-weight: bold;
+}
+
 #main_sr {
   position: absolute;
   top: 0;
