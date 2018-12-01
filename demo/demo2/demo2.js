@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		// Jul
 		{
 			...defaultNavOptions,
-			color: "#02797a",
+			color: "#30797A",
 			direction: "vertical",
 			endPosition: ["top", "bottom", "top", "bottom", "top", "bottom", "top", "bottom", "top", "bottom", "top", "bottom", "top", "bottom"],
 			numOfSlices: 14,
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		//Aug
 		{
 			...defaultNavOptions,
-			color: "#9A0200",
+			color: "#933533",
 			endPosition: "right",
 			numOfSlices: 5,
 			transitionOrder: "reverse"
@@ -121,21 +121,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	// Initialize hero_sr instance
 	const heroSr = sliceRevealer(document.getElementById('hero_sr'), {
-		numOfSlices: 3,
+		numOfSlices: 12,
 		startPosition: 'left',
 		endPosition: 'middle',
 		zIndex: 5,
-		color: '#999',
+		color: '#111',
+		transitionOrder: 'random'
 	})
 
 	// Initialize content_sr instance
 	const contentSr = sliceRevealer(document.getElementById('content_sr'), {
-		numOfSlices: 3,
+		numOfSlices: 12,
 		startPosition: 'right',
 		endPosition: 'middle',
 		zIndex: 5,
-		color: '#123',
-		transitionOrder: 'reverse'
+		color: '#111',
+		transitionOrder: 'random'
 	})
 
 
@@ -179,7 +180,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	// Function to enter info display
 	const enterInfo = (month) => {
-		if (isTransitioning()) return;
+		if (isTransitioning()) return;		
+		// Do Animation
 		targetInfoBox = document.getElementById(`${month}-info`);
 		contentSr.goPhase('end', {
 			doneCB: (inst) => {

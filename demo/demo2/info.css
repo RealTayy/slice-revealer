@@ -76,6 +76,7 @@
 }
 
 .info-number {
+  margin-top: 15px;
   font-size: 64px;
   text-align: center;
 }
@@ -199,5 +200,8 @@
     box-sizing: border-box;
     padding-right: 20%;
     padding-left: 20%;
+  }
+  .info-number {
+    margin-top: 0px;
   }
 }
