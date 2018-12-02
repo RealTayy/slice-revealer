@@ -3,14 +3,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	const defaultNavOptions = {
 		startPosition: 'middle',
 		endPosition: 'left',
-		startOptions: {
-			startCB: (instance) => {
-				console.log(instance.target);
-			}
-		},
-		endOptions: {
-			startCB: () => console.log('hi')
-		},
 	}
 
 	const navOptionsArr = [
@@ -67,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		// Jul
 		{
 			...defaultNavOptions,
-			color: "#02797a",
+			color: "#30797A",
 			direction: "vertical",
 			endPosition: ["top", "bottom", "top", "bottom", "top", "bottom", "top", "bottom", "top", "bottom", "top", "bottom", "top", "bottom"],
 			numOfSlices: 14,
@@ -76,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		//Aug
 		{
 			...defaultNavOptions,
-			color: "#9A0200",
+			color: "#933533",
 			endPosition: "right",
 			numOfSlices: 5,
 			transitionOrder: "reverse"
@@ -117,7 +109,45 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		},
 	]
 
-	// Initialize all navBoxes's sliceRevealer instance and push to navInstances.
+	// Initialize pre-loader cover instance
+	const mainSr = sliceRevealer(document.getElementById('main_sr'), {
+		numOfSlices: 3,
+		startPosition: 'middle',
+		endPosition: 'right',
+		zIndex: 10,
+		color: '#222',
+		sticky: true,
+	})
+
+	// Initialize hero_sr instance
+	const heroSr = sliceRevealer(document.getElementById('hero_sr'), {
+		numOfSlices: 12,
+		startPosition: 'left',
+		endPosition: 'middle',
+		zIndex: 5,
+		color: '#222',
+		transitionOrder: 'random'
+	})
+
+	// Initialize content_sr instance
+	const contentSr = sliceRevealer(document.getElementById('content_sr'), {
+		numOfSlices: 12,
+		startPosition: 'right',
+		endPosition: 'middle',
+		zIndex: 5,
+		color: '#222',
+		transitionOrder: 'random'
+	})
+
+
+	// Uncover when images loaded
+	imagesLoaded('#main', { background: '.nav-img' }, () => {
+		document.getElementById('main_sr').style.backgroundColor = "transparent";
+		mainSr.goPhase('end');
+	});
+
+
+	// Initialize all nav-box's sliceRevealer instance and push to navInstances.
 	const navInstances = [];
 	const navBoxes = document.getElementsByClassName('nav-box');
 	for (let i = 0; i < navBoxes.length; i++) {
@@ -126,5 +156,72 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		navInstances.push(instance);
 		navBox.addEventListener('mouseenter', () => instance.goPhase('end'));
 		navBox.addEventListener('mouseleave', () => instance.goPhase('start'));
+	}
+
+	// Initialize all nav-link's click event listeners
+	const navLinks = document.getElementsByClassName('nav-link');
+	for (let i = 0; i < navBoxes.length; i++) {
+		navLink = navLinks[i];
+		navLink.addEventListener('click', (e) => {
+			const month = e.target.dataset.month;
+			enterInfo(month);
+		});
+	}
+
+	// Initialize all info-return click event listeners
+	const infoReturns = document.getElementsByClassName('info-return');
+	for (let i = 0; i < infoReturns.length; i++) {
+		infoReturn = infoReturns[i];
+		infoReturn.addEventListener('click', (e) => {
+			const month = e.target.dataset.month;
+			exitInfo(month);
+		});
+	}
+
+	// Function to enter info display
+	const enterInfo = (month) => {
+		if (isTransitioning()) return;		
+		// Do Animation
+		targetInfoBox = document.getElementById(`${month}-info`);
+		contentSr.goPhase('end', {
+			doneCB: (inst) => {
+				inst.goPhase('start');
+				targetInfoBox.style.opacity = '1';
+				targetInfoBox.classList.add('active');
+			}
+		});
+		heroSr.goPhase('end', {
+			doneCB: (inst) => {
+				inst.goPhase('start');
+			}
+		});
+	}
+
+	// Function to exit info display
+	const exitInfo = (month) => {
+		if (isTransitioning()) return;
+		targetInfoBox = document.getElementById(`${month}-info`);
+		contentSr.goPhase('end', {
+			startCB: (inst) => {
+				targetInfoBox.classList.remove('active');
+			},
+			doneCB: (inst) => {
+				inst.goPhase('start');
+				targetInfoBox.style.opacity = '0';
+			}
+		});
+		heroSr.goPhase('end', {
+			doneCB: (inst) => {
+				inst.goPhase('start');
+			}
+		});
+	}
+
+	// Helper function to check if transition is currently happening
+	const isTransitioning = () => {
+		if (mainSr.isAnimating()) return true;
+		if (heroSr.isAnimating()) return true;
+		if (contentSr.isAnimating()) return true;
+		return false;
 	}
 });

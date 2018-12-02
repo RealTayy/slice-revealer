@@ -1,6 +1,31 @@
+.f-author {
+  font-family: 'Unica One', cursive;
+  font-weight: bold;
+}
+
+.f-header {
+  font-family: 'Quattrocento', serif;
+  font-weight: bold;
+}
+
+#main_sr {
+  position: absolute;
+  top: 0;
+  height: 400vh;
+  width: 100%;
+  background-color: #222;
+  z-index: 9;
+  pointer-events: none;
+}
+
+#main_sr>.sr__container {
+  height: 100vh !important;
+}
+
 .nav-boxes {
   position: relative;
   width: 100%;
+  pointer-events: auto;
 }
 
 .nav-box {
@@ -70,7 +95,8 @@
 	transition-duration: .8s;
   transition-delay: .2s;
 	transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
-	text-align: center;
+  text-align: center;
+  pointer-events: none;
 }
 
 .nav-quote {
@@ -79,7 +105,8 @@
 	font-size: 24px;
 	transition-duration: .8s;
   transition-delay: .3s;
-  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);  
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
+  pointer-events: none;
 }
 
 .nav-author {
@@ -89,17 +116,24 @@
 	text-transform: uppercase;
 	transition-duration: .8s;
   transition-delay: .4s;
-  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);  
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
+  pointer-events: none;
 }
 @media only screen and (min-width: 600px) {
 	.nav-box {  
 		width: 50%;	
 		float: left;
-	}
+  }
+  #main_sr {
+    height: 200vh;
+  }
 }
 
 @media only screen and (min-width: 960px) {
-	.nav-box {  
+  #main_sr {
+    height: 133.3333vh;
+  }
+  .nav-box {  
 		width: 33.3333%;			
 	}
 }
@@ -107,7 +141,10 @@
 @media only screen and (min-width: 1140px) {
 	.nav-box {  
 		width: 25%;			
-	}
+  }
+  #main_sr {
+    height: 100vh;
+  }
 }
 
 /* Hover Effects HERE */

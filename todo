@@ -1,8 +1,10 @@
 sass --watch ./slice-revealer/sliceRevealer.scss ./slice-revealer/sliceRevealer.css
 
-DO BEFORE v1 RELEASE
-> fix readman options link
+v1.0.1 goals
+- Make Demo 2 even SICKER
+- Finish Method documentation (resetPosition);
 
+TO DO:
 > Implement custom easings
 > Work around for box-shadow 1 pixel off
 > Move getAttribute to array for array lookups YO!
@@ -11,6 +13,8 @@ DO BEFORE v1 RELEASE
 > Add sticky options for init ALSO zIndex
 > Ability to flip directions of slices
 
-KNOWN BUG:
-> Unreliable detect stat of CSS animation
-> QueuedAnimation is buggy when moving firing rapid doIt()s.
+KNOWN BUGS:
+> Unreliable detect start of CSS animation
+** PRETTY SURE I FIXED THIS IN v1.01 BUT NEEDS FURTHER TESTING
+> QueuedAnimation is buggy when moving firing rapid goPhase()s.
+** PRETTY SURE I FIXED THIS IN v1.01 BUT NEEDS FURTHER TESTING
