@@ -4,7 +4,6 @@ v1.0.1 goals
 - Make Demo 2 even SICKER
 - Finish Method documentation (resetPosition);
 
-
 TO DO:
 > Implement custom easings
 > Work around for box-shadow 1 pixel off
@@ -15,23 +14,7 @@ TO DO:
 > Ability to flip directions of slices
 
 KNOWN BUGS:
-> Unreliable detect stat of CSS animation
-> QueuedAnimation is buggy when moving firing rapid doIt()s.
-
-zIndex
-0
-1
-2
-3
-4 .links
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15 .info-author
+> Unreliable detect start of CSS animation
+** PRETTY SURE I FIXED THIS IN v1.01 BUT NEEDS FURTHER TESTING
+> QueuedAnimation is buggy when moving firing rapid goPhase()s.
+** PRETTY SURE I FIXED THIS IN v1.01 BUT NEEDS FURTHER TESTING

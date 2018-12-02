@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		startPosition: 'middle',
 		endPosition: 'right',
 		zIndex: 10,
-		color: '#111',
+		color: '#222',
 		sticky: true,
 	})
 
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		startPosition: 'left',
 		endPosition: 'middle',
 		zIndex: 5,
-		color: '#111',
+		color: '#222',
 		transitionOrder: 'random'
 	})
 
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		startPosition: 'right',
 		endPosition: 'middle',
 		zIndex: 5,
-		color: '#111',
+		color: '#222',
 		transitionOrder: 'random'
 	})
 

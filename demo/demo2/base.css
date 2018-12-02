@@ -81,13 +81,13 @@ footer span {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 95vh;
+  height: 98vh;
   width: 100vw;
 	-webkit-box-pack: justify;
 	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	font-size: 22px;
-	z-index: 4;
+	z-index: 20;
 	pointer-events: none;
 }
 
@@ -124,14 +124,6 @@ header .title {
 
 nav span.active {	
 	color: #333;
-}
-
-.bottom-links {
-	text-align: center;
-}
-
-footer {	
-	text-align: center;
 }
 
 footer .mini-logo {

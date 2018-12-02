@@ -306,7 +306,7 @@ SliceRevealer.prototype.goPhase = function (newPosition, newOptions = {}) {
 	const position = options[`${newPosition}Position`];
 	const direction = options.direction;
 	const numOfSlices = options.numOfSlices;
-	
+
 	// Options that can be passed in as arguement	
 	const sliceDuration = options.sliceDuration * 1000; // Convert seconds to milliseconds
 	const totalDuration = options.totalDuration * 1000; // Convert seconds to milliseconds	
@@ -353,10 +353,8 @@ SliceRevealer.prototype.goPhase = function (newPosition, newOptions = {}) {
 
 				// Canceled current queued animation for slice
 				clearTimeout(this.sliceAnimations[sliceIndex]);
-				// Start and save animation to sliceAnimations in case it needs to be canceled
-				this.sliceAnimations[sliceIndex] = setTimeout(() => {
-					// Set slice's data-timeout to new timeout reference #										
-					slice.setAttribute('timeout', this.sliceAnimations[sliceIndex]);
+				// Start and save animation to sliceAnimations in case it needs to be canceled				
+				this.sliceAnimations[sliceIndex] = setTimeout(() => {					
 					// Set slice's new css
 					slice.style.color = color;
 					// Find each individual silces's position if passed an position array			
@@ -395,6 +393,8 @@ SliceRevealer.prototype.goPhase = function (newPosition, newOptions = {}) {
 						slice.setAttribute('animating', true);
 					}
 				}, delay)
+				// Set slice's data-timeout to new timeout reference #										
+				slice.setAttribute('timeout', this.sliceAnimations[sliceIndex]);
 			}
 			// Queue up a callback to execute upon animation finishing
 			this.queuedDoneCallback = doneCB;
@@ -412,7 +412,7 @@ SliceRevealer.prototype.isAnimating = function () {
 		const queuedTimeout = this.sliceAnimations[i];
 		if (curTimeout !== queuedTimeout) return true;
 		return false;
-	});
+	});	
 	return isAnimating
 }
 

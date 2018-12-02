@@ -13,7 +13,7 @@ More demo sites coming soon.
 Documentation site coming soon. For now refer to the [**Documentation**](https://github.com/RealTayy/slice-revealer#documentation) section below.
 
 ## Getting Started
-Currently the only way to use Slice Revealer is to manually [download](https://github.com/RealTayy/slice-revealer/raw/master/archive/slice-revealer-v1.0.0.rar) and link `slickRevealer.min.js` and `slickRevealer.css` in your HTML
+Currently the only way to use Slice Revealer is to manually [download](https://github.com/RealTayy/slice-revealer/raw/master/archive/slice-revealer-v1.0.1.zip) and link `slickRevealer.min.js` and `slickRevealer.css` in your HTML
 ```html
 <head>
     <link rel="stylesheet" type="text/css" href="./sliceRevealer.css">
@@ -142,6 +142,6 @@ The options passed during `goPhase()` will override any default options and opti
 ### License
 Slice Reavealer is an open source software under the [MIT license](https://github.com/RealTayy/slice-revealer/blob/master/LICENSE.md)
 ### Credit/Shameless Plug
-Interested in who made this? Come visit my portfolio at [MaiCoding](http://www.maiCoding.me)
+Interested in who made this? Come visit my portfolio at [MaiCoding](https://www.maiCoding.me)
 
 Want more sick and easy to use animations? Come over to [AnimationZone]()
