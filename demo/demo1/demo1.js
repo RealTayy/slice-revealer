@@ -84,42 +84,41 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			initialDelay: 1,
 			startCB: () => {
 				slides[0].classList.add('active');
-			}
-		});
+				// Event Listener for pagination
+				const pagination = document.getElementsByClassName('pagination')[0];
+				pagination.addEventListener('click', (e) => {
+					const target = e.target;
+					if (target.tagName === "SPAN") {
+						// If click on same page then do nothing
+						if (e.target.classList.contains('active')) return;
+						// If trying to pagenate and activeInstance is still animating then don't do anything
+						if (activeInstance.isAnimating()) return;
+						const index = Array.prototype.indexOf.call(target.parentNode.children, target);
+						slideTo(index)
+					}
+				});
 
-		// Event Listener for pagination
-		const pagination = document.getElementsByClassName('pagination')[0];
-		pagination.addEventListener('click', (e) => {
-			const target = e.target;
-			if (target.tagName === "SPAN") {
-				// If click on same page then do nothing
-				if (e.target.classList.contains('active')) return;
-				// If trying to pagenate and activeInstance is still animating then don't do anything
-				if (activeInstance.isAnimating()) return;
-				const index = Array.prototype.indexOf.call(target.parentNode.children, target);
-				slideTo(index)
-			}
-		});
+				// Event listener for arrow-nav
+				const arrowNav = document.getElementsByClassName("arrow-nav")[0];
+				arrowNav.addEventListener('click', (e) => {
+					const target = e.target;
+					if (target.tagName === "SPAN") {
+						const index = Array.prototype.indexOf.call(target.parentNode.children, target);
+						if (index === 0) {
+							// Previous arrow clicked
+							if (activeInstance.isAnimating()) return;
+							if (activeIndex === 0) slideTo(sliceRevealerArr.length - 1)
+							else slideTo(activeIndex - 1);
 
-		// Event listener for arrow-nav
-		const arrowNav = document.getElementsByClassName("arrow-nav")[0];
-		arrowNav.addEventListener('click', (e) => {
-			const target = e.target;
-			if (target.tagName === "SPAN") {
-				const index = Array.prototype.indexOf.call(target.parentNode.children, target);
-				if (index === 0) {
-					// Previous arrow clicked
-					if (activeInstance.isAnimating()) return;
-					if (activeIndex === 0) slideTo(sliceRevealerArr.length - 1)
-					else slideTo(activeIndex - 1);
-
-				}
-				else {
-					// Next arrow clicked
-					if (activeInstance.isAnimating()) return;
-					if (activeIndex === sliceRevealerArr.length - 1) slideTo(0)
-					else slideTo(activeIndex + 1);
-				}
+						}
+						else {
+							// Next arrow clicked
+							if (activeInstance.isAnimating()) return;
+							if (activeIndex === sliceRevealerArr.length - 1) slideTo(0)
+							else slideTo(activeIndex + 1);
+						}
+					}
+				});
 			}
 		});
 	});
