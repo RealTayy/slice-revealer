@@ -1,5 +1,7 @@
 sass --watch ./slice-revealer/sliceRevealer.scss ./slice-revealer/sliceRevealer.css
 
+https://fonts.google.com/specimen/Ubuntu
+
 v1.0.1 goals
 - Make Demo 2 even SICKER
 - Finish Method documentation (resetPosition);
