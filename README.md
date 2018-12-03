@@ -81,13 +81,13 @@ When passing a target to `sliceRevealer()` you can use both `getElementById()` o
 ```javascript
 // Both of these work!
 var target = document.getElementById("targetID");
-var target = document.getElementsByClassName("targetClassName");
+var target = document.getElementsByClassName("targetClassName")[0];
 ```
 
 While Slice Revealer is dependency free and does not rely on jQuery you can still pass in jQuery objects as targets.
 ```javascript
 // This works too!
-var target = $(someJQuerySelector);
+var target = $(someJQuerySelector)[0];
 ```
 
 #### Options - Initializing (Optional)
