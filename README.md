@@ -13,7 +13,7 @@ More demo sites coming soon.
 Documentation site coming soon. For now refer to the [**Documentation**](https://github.com/RealTayy/slice-revealer#documentation) section below.
 
 ## Getting Started
-Currently the only way to use Slice Revealer is to manually [download](https://github.com/RealTayy/slice-revealer/raw/master/archive/slice-revealer-v1.0.1.zip) and link `slickRevealer.min.js` and `slickRevealer.css` in your HTML
+Currently the only way to use Slice Revealer is to manually [download](https://github.com/RealTayy/slice-revealer/files/2647540/slice-revealer-v1.0.1.zip) and link `slickRevealer.min.js` and `slickRevealer.css` in your HTML
 ```html
 <head>
     <link rel="stylesheet" type="text/css" href="./sliceRevealer.css">
