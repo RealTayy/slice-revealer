@@ -35,8 +35,8 @@ The DOM Element you want to cover/reveal MUST have it's position, height, and wi
 
 Then in your javascript you need to target a DOM Element you want to cover/reveal and create a `SliceRevealer()` instance. For more information on a valid target refer to the [**Targeting**](https://github.com/RealTayy/slice-revealer#targeting) section below.
 ``` javascript
-var target = document.getElementById("sr-target");
-var instance = sliceRevealer(target);
+const target = document.getElementById("sr-target");
+const instance = sliceRevealer(target);
 ```
 
 ### Basic Usage
@@ -57,18 +57,14 @@ And that's it! For more in-depth information on customizing your Slice Revealer 
 For a quick demo on intializing, targeting, and setting options head to this [CodePen](https://codepen.io/maiCoding/pen/VVWMRM)
 
 ### Creating an Instance
-All Slice revealer instances are made through the `sliceRevealer()` function which takes two arguements.
-```javascript
-var target = document.getElementById('sr-target');
-sliceRevealer(target, options);
-```
+All Slice revealer instances are made through the `sliceRevealer()` function which takes two arguments.
 
 ### sliceRevealer(target, options)
 Creates and returns an instance of `SliceRevealer()`
 
 ```javascript
-var target = document.getElementById('sr-target');
-sliceRevealer(target, options);
+const target = document.getElementById('sr-target');
+const instance = sliceRevealer(target, options);
 ```
 
 | Parameter          | Type                                               | Description                                                                                                                              |
@@ -80,14 +76,14 @@ sliceRevealer(target, options);
 When passing a target to `sliceRevealer()` you can use both `getElementById()` or `getElementsByClassName()`. Please note that using `getElementsByClassName()` will only initialize Slice Revealer on the first element found.
 ```javascript
 // Both of these work!
-var target = document.getElementById("targetID");
-var target = document.getElementsByClassName("targetClassName")[0];
+const target = document.getElementById("targetID");
+const target = document.getElementsByClassName("targetClassName")[0];
 ```
 
 While Slice Revealer is dependency free and does not rely on jQuery you can still pass in jQuery objects as targets.
 ```javascript
 // This works too!
-var target = $(someJQuerySelector)[0];
+const target = $(someJQuerySelector)[0];
 ```
 
 #### Options - Initializing (Optional)
@@ -113,12 +109,12 @@ var target = $(someJQuerySelector)[0];
 
 ## Methods
 All methods are called on the instance that is created when initializing
-``` javascript
-var target = document.getElementById("sr-target");
-var instance = sliceRevealer(target);
+```javascript
+const target = document.getElementById("sr-target");
+const instance = sliceRevealer(target);
 ```
 
-### **.goPhase(phase, options)**
+### .goPhase(phase, options)
 ```javascript
 instance.goPhase(phase, options);
 ```
