@@ -6,8 +6,6 @@ Slice Revealer is a easy to use dependency free library that allows users to cov
 
 [Demo 2](https://realtayy.github.io/slice-revealer/demo/demo2/demo2.html)
 
-More demo sites coming soon.
-
 [Options & Targeting Demo](https://codepen.io/maiCoding/pen/VVWMRM)
 
 Documentation site coming soon. For now refer to the [**Documentation**](https://github.com/RealTayy/slice-revealer#documentation) section below.
@@ -25,7 +23,7 @@ Currently the only way to use Slice Revealer is to manually [download](https://g
 ```
 
 ## How to use
-For a basic example head over this [CodePen](https://codepen.io/maiCoding/pen/JeJEXr).
+For a basic example head over to this [CodePen](https://codepen.io/maiCoding/pen/JeJEXr).
 ### Basic Initialization
 The DOM Element you want to cover/reveal MUST have it's position, height, and width set explicitly.
 ```html
