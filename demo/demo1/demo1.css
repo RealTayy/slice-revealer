@@ -221,7 +221,7 @@ footer a i span {
 }
 
 .pagination .page {
-	font-size: 28px;
+	font-size: 24px;
 }
 .shadow {
 	-webkit-filter: drop-shadow(1px 1px 1px black);
@@ -282,7 +282,7 @@ main {
 
 .slide-text {
 	position: absolute;
-	font-size: 120px;
+	font-size: 100px;
 	z-index: 1;
 	bottom: 0px;
 	right: 0px;
