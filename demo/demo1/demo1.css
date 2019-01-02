@@ -79,6 +79,7 @@ a {
 /* links stuff */
 
 .links {
+	pointer-events: none;
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
