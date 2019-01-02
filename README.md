@@ -1,5 +1,5 @@
 # Slice Revealer
-Slice Revealer is a easy to use dependency free library that allows users to cover and uncover DOM elements with customizable animated slices. The idea was inspired by [Zhenya Rynzhuk](https://zhenyary.com/) of [Sochnik](https://dribbble.com/Sochnik)'s [transition experiments](https://dribbble.com/shots/4132057-Selected-Works-Transitions-Experiments).
+Slice Revealer is a easy to use dependency free library that allows users to cover and uncover DOM elements with customizable animated slices. The idea was inspired by [Zhenya Rynzhuk](https://zhenyary.com/) of [Sochnik](https://dribbble.com/Sochnik)'s [transition experiments](https://dribbble.com/shots/4132057-Selected-Works-Transitions-Experiments) and [Mary Lou's](https://github.com/crnacura) [Slice Revealer Demo](https://tympanus.net/codrops/2018/02/06/slice-revealer/) which is on [Codrops](https://tympanus.net/codrops/).
 
 ## Demos & Documentation
 [Demo 1](https://realtayy.github.io/slice-revealer/demo/demo1/demo1.html)
