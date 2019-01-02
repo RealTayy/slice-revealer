@@ -21,17 +21,28 @@
 	<link rel="stylesheet" href="../../slice-revealer/sliceRevealer.css">
 	<!-- Page Css -->
 	<link rel="stylesheet" href="./demo1.css">
+	<link rel="stylesheet" href="./preloader.css">
 </head>
 
 <body>
 	<div class="container f-1">
-		<div class="links">
+		<div id="main-preloader" class="preloader">
+			<div class="preloader-animation">
+				<div class="preloader-circle pc-left">
+					<img src="./images/mini-az.png">
+				</div>
+				<div class="preloader-circle pc-right">
+					<img src="./images/mini-mc.png">
+				</div>
+			</div>
+		</div>
+		<div id="links" class="links">
 			<div class="top-links">
 				<header>
 					<div class="title shadow">Slice Revealer</div>
 					<nav class="demo-nav"><a href="#"><span class="demo-link shadow active">Demo 1</span></a><a href="../demo2/demo2.html"><span
 							 class="demo-link shadow">Demo 2</span></a>
-							 <!-- <a href="#"><span class="demo-link shadow">Demo 3</span></a> -->
+						<!-- <a href="#"><span class="demo-link shadow">Demo 3</span></a> -->
 					</nav>
 				</header>
 				<div class="instructions shadow">Navigate slides with "Back/Next" button or Pagination links on the bottom</div>

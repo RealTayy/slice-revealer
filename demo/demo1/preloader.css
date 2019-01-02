@@ -1,0 +1,112 @@
+.preloader {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+	align-items: center;
+	opacity: 1;  
+	transition-duration: .3s;
+	z-index: 1000;
+	pointer-events: none;
+}
+
+.preloader-animation {
+  position: fixed;
+  height: 172px;
+  width: 172px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.preloader-circle {
+  position: relative;
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  outline: 1px solid transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pc-left {
+  animation: pcLeft 4s 0s infinite;
+  background-color: white;
+}
+
+.pc-right {
+  animation: pcRight 4s 0s infinite;
+  background-color: white;
+}
+
+@keyframes pcLeft {
+  0% {
+    transform: translate(0px, 0px);
+    border-radius: 50% 50% 50% 50%;
+  }
+  12.5% {
+    border-radius: 50% 50% 50% 0%;
+  }
+  25% {
+    transform: translate(54px, -54px);
+    border-radius: 50% 50% 50% 50%;
+  }
+  37.5% {
+    border-radius: 0% 50% 50% 50%;
+  }
+  50% {
+    transform: translate(108px, 0px);
+    border-radius: 50% 50% 50% 50%;
+  }
+  62.5% {
+    border-radius: 50% 0% 50% 50%;
+  }
+  75% {
+    transform: translate(54px, 54px);
+    border-radius: 50% 50% 50% 50%;
+  }
+  87.5% {
+    border-radius: 50% 50% 0% 50%;
+  }
+  100% {
+    transform: translate(0px, 0px);
+    border-radius: 50% 50% 50% 50%;
+  }
+}
+
+@keyframes pcRight {
+  0% {
+    transform: translate(0px, 0px);
+    border-radius: 50% 50% 50% 50%;
+  }
+  12.5% {
+    border-radius: 50% 0% 50% 50%;
+  }
+  25% {
+    transform: translate(-54px, 54px);
+    border-radius: 50% 50% 50% 50%;
+  }
+  37.5% {
+    border-radius: 50% 50% 0% 50%;
+  }
+  50% {
+    transform: translate(-108px, 0px);
+    border-radius: 50% 50% 50% 50%;
+  }
+  62.5% {
+    border-radius: 50% 50% 50% 0%;
+  }
+  75% {
+    transform: translate(-54px, -54px);
+    border-radius: 50% 50% 50% 50%;
+  }
+  87.5% {
+    border-radius: 0% 50% 50% 50%;
+  }
+  100% {
+    transform: translate(0px, 0px);
+    border-radius: 50% 50% 50% 50%;
+  }
+}

@@ -305,7 +305,9 @@ main {
 	}
 	
 	.links {
+		opacity: 0;
 		height: 100%;
+		pointer-events: none;
 	}
 	
 	footer {

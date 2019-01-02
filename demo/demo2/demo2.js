@@ -143,7 +143,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	// Uncover when images loaded
 	imagesLoaded('#main', { background: '.nav-img' }, () => {
 		document.getElementById('main_sr').style.backgroundColor = "transparent";
-		mainSr.goPhase('end');
+		mainSr.goPhase('end', {
+			startCB: () => {
+				document.getElementById('links').style.opacity = 1;
+				document.getElementById('main-preloader').style.opacity = 0;
+			}
+		});
 	});
 
 
@@ -180,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	// Function to enter info display
 	const enterInfo = (month) => {
-		if (isTransitioning()) return;		
+		if (isTransitioning()) return;
 		// Do Animation
 		targetInfoBox = document.getElementById(`${month}-info`);
 		contentSr.goPhase('end', {

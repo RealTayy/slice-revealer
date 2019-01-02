@@ -83,6 +83,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		activeInstance.goPhase('end', {
 			initialDelay: 1,
 			startCB: () => {
+				const links = document.getElementById('links');
+				links.style.opacity = 1;
+				links.style.pointerEvents = "auto";
+				const circles = document.getElementById('main-preloader').style.opacity = 0;
 				slides[0].classList.add('active');
 				// Event Listener for pagination
 				const pagination = document.getElementsByClassName('pagination')[0];

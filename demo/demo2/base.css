@@ -89,6 +89,7 @@ footer span {
 	font-size: 22px;
 	z-index: 20;
 	pointer-events: none;
+	opacity: 0;
 }
 
 .links a {

@@ -48,6 +48,7 @@
 	<!-- Slice Reaveler -->
 	<link rel="stylesheet" href="../../slice-revealer/sliceRevealer.css">
 	<!-- Page Css -->
+	<link rel="stylesheet" href="./preloader.css">
 	<link rel="stylesheet" href="./base.css">
 	<link rel="stylesheet" href="./demo2.css">
 	<link rel="stylesheet" href="./months-nav.css">
@@ -58,7 +59,17 @@
 
 <body>
 	<div class="container f-1">
-		<div class="links f-1">
+		<div id="main-preloader" class="preloader">
+			<div class="preloader-animation">
+				<div class="preloader-circle pc-left">
+					<img src="./images/mini-az.png">
+				</div>
+				<div class="preloader-circle pc-right">
+					<img src="./images/mini-mc.png">
+				</div>
+			</div>
+		</div>
+		<div id="links" class="links f-1">
 			<div class="top-links">
 				<header>
 					<div class="title">Slice Revealer</div>
