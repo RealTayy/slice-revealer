@@ -1,7 +1,5 @@
 .sr__container {
   position: absolute;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   height: 100%;
   width: 100%;
@@ -12,17 +10,11 @@
 }
 
 .sr__container.sr__horizontal {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 .sr__container.sr__vertical {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
 
 .sr__slice {
@@ -30,18 +22,13 @@
   position: relative;
   background-color: currentColor;
   float: left;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -webkit-transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
-       -o-transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
-          transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
-  -webkit-box-shadow: 0 0 0 1px currentColor;
-          box-shadow: 0 0 0 1px currentColor;
+  flex-grow: 1;
+  transition-timing-function: cubic-bezier(0.95, 0.15, 0.3, 1);
+  box-shadow: 0 0 0 1px currentColor;
 }
 
 .sr__slice.resetting {
-  -webkit-transition-duration: 0s !important;
-       -o-transition-duration: 0s !important;
-          transition-duration: 0s !important;
+  transition-duration: 0s !important;
 }
+
+/*# sourceMappingURL=sliceRevealer.css.map */
